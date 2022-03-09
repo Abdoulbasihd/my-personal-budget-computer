@@ -10,4 +10,5 @@
     <string name="menu_for_adding_a_loan_that_i_gave_to_someone_or_consult_periodic_credits_statuses">Menu pour enregistrer un prêt que j\'ai accordé à un tiers, consulter les crédits que j\'ai accordé sur une période par rapport à leur statut (remboursé ou non)</string>
     <string name="my_account">Mon compte</string>
     <string name="about">Apropos</string>
+    <string name="not_yet_implemented">Not yet implemented... Coming soon</string>
 </resources>
