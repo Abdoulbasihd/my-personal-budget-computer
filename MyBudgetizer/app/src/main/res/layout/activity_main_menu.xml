@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <!--Nothing for ze moment-->
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.MainMenuActivity"
+        android:layout_margin="@dimen/default_border_margin_4"
+        >
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="@dimen/big_margin_10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/small_margin_2"
+            app:cardElevation="@dimen/default_card_elevation_2"
+            app:cardCornerRadius="@dimen/default_card_radius_5"
+            >
+
+            <RelativeLayout
+                android:layout_marginTop="@dimen/big_margin_10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/small_margin_2"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_expenses"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="@dimen/big_margin_10"
+                    android:layout_marginStart="@dimen/small_margin_2"
+                    android:layout_marginEnd="@dimen/small_margin_2"
+                    android:layout_marginBottom="@dimen/small_margin_2"
+                    app:cardElevation="@dimen/default_card_elevation_2"
+                    app:cardCornerRadius="@dimen/default_card_radius_5"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                        <ImageView
+                            android:id="@+id/expenses_logo"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_margin="@dimen/small_margin_2"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/twotone_outbox_blue_500_48dp"
+                            android:contentDescription="@string/icon_expenses" />
+
+                        <View
+                            android:layout_width="0.8dp"
+                            android:layout_height="80dp"
+                            android:layout_toEndOf="@+id/expenses_logo"
+                            android:background="@color/default_text_color_blue_cyan"
+                            android:layout_centerVertical="true"
+                            />
+
+                        <TextView
+                            android:id="@+id/expenses_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/default_border_margin_4"
+                            android:layout_marginTop="@dimen/big_margin_10"
+                            android:layout_marginEnd="@dimen/default_border_margin_4"
+                            android:layout_marginBottom="@dimen/default_border_margin_4"
+                            android:layout_toEndOf="@+id/expenses_logo"
+                            android:text="@string/my_expenses"
+                            android:textColor="@color/default_text_color_blue_cyan"
+                            android:textSize="@dimen/title_text_size_big_20"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/expenses_description"
+                            android:layout_toEndOf="@+id/expenses_logo"
+                            android:layout_below="@+id/expenses_title"
+                            android:layout_marginStart="@dimen/big_margin_10"
+                            android:layout_marginEnd="@dimen/default_border_margin_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/menu_for_expense_registering_or_periodic_expenses_consultation"
+                            android:textSize="@dimen/default_body_text_size_12"
+                            android:textColor="@color/default_text_color_blue_cyan"
+                            />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_budget"
+                    android:layout_below="@+id/card_expenses"
+                    android:layout_width="105dp"
+                    android:layout_height="120dp"
+                    android:layout_margin="@dimen/small_margin_2"
+                    app:cardElevation="@dimen/default_card_elevation_2"
+                    app:cardCornerRadius="@dimen/default_card_radius_5"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                        <ImageView
+                            android:id="@+id/budget_logo"
+                            android:layout_width="100dp"
+                            android:layout_height="70dp"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginTop="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            android:layout_marginBottom="@dimen/small_margin_2"
+                            android:contentDescription="@string/icon_expenses"
+                            android:src="@drawable/twotone_account_balance_wallet_blue_500_48dp" />
+
+                        <TextView
+                            android:id="@+id/budget_title"
+                            android:layout_below="@+id/budget_logo"
+                            android:layout_margin="@dimen/small_margin_2"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/my_budgets"
+                            android:textSize="@dimen/title_text_medium_size_15"
+                            android:textColor="@color/default_text_color_blue_cyan"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_earning"
+                    android:layout_below="@+id/card_expenses"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="105dp"
+                    android:layout_height="120dp"
+                    android:layout_margin="@dimen/small_margin_2"
+                    app:cardElevation="@dimen/default_card_elevation_2"
+                    app:cardCornerRadius="@dimen/default_card_radius_5"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                        <ImageView
+                            android:id="@+id/earning_logo"
+                            android:layout_width="100dp"
+                            android:layout_height="70dp"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginTop="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            android:layout_marginBottom="@dimen/small_margin_2"
+                            android:contentDescription="@string/icon_expenses"
+                            android:src="@drawable/twotone_move_to_inbox_blue_500_48dp" />
+
+                        <TextView
+                            android:id="@+id/earning_title"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/earning_logo"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginTop="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            android:layout_marginBottom="@dimen/small_margin_2"
+                            android:text="@string/my_income_or_earning"
+                            android:textAlignment="center"
+                            android:textColor="@color/default_text_color_blue_cyan"
+                            android:textSize="@dimen/title_text_medium_size_15"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_debts"
+                    android:layout_below="@+id/card_expenses"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="105dp"
+                    android:layout_height="120dp"
+                    android:layout_margin="@dimen/small_margin_2"
+                    app:cardElevation="@dimen/default_card_elevation_2"
+                    app:cardCornerRadius="@dimen/default_card_radius_5"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                        <ImageView
+                            android:id="@+id/debts_logo"
+                            android:layout_width="100dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="@dimen/small_margin_2"
+                            android:src="@drawable/twotone_attach_money_blue_500_48dp"
+                            android:contentDescription="@string/icon_expenses" />
+
+                        <TextView
+                            android:id="@+id/debts_title"
+                            android:layout_below="@+id/debts_logo"
+                            android:layout_margin="@dimen/small_margin_2"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/my_debts"
+                            android:textSize="@dimen/title_text_medium_size_15"
+                            android:textColor="@color/default_text_color_blue_cyan"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_receivable"
+                    android:layout_below="@+id/card_budget"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="@dimen/small_margin_2"
+                    app:cardElevation="@dimen/default_card_elevation_2"
+                    app:cardCornerRadius="@dimen/default_card_radius_5"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                        <ImageView
+                            android:id="@+id/receivable_logo"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_margin="@dimen/small_margin_2"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/twotone_monetization_on_blue_500_48dp"
+                            android:contentDescription="@string/icon_expenses" />
+
+                        <View
+                            android:layout_width="0.8dp"
+                            android:layout_height="80dp"
+                            android:layout_toEndOf="@+id/receivable_logo"
+                            android:background="@color/default_text_color_blue_cyan"
+                            android:layout_centerVertical="true"
+                            />
+
+                        <TextView
+                            android:id="@+id/receivable_title"
+                            android:layout_toEndOf="@+id/receivable_logo"
+                            android:layout_marginTop="@dimen/big_margin_10"
+                            android:layout_marginEnd="@dimen/default_border_margin_4"
+                            android:layout_marginStart="@dimen/default_border_margin_4"
+                            android:layout_marginBottom="@dimen/default_border_margin_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/my_receivables"
+                            android:textSize="@dimen/title_text_size_big_20"
+                            android:textStyle="bold"
+                            android:textColor="@color/default_text_color_blue_cyan"
+                            />
+
+                        <TextView
+                            android:id="@+id/receivable_description"
+                            android:layout_toEndOf="@+id/receivable_logo"
+                            android:layout_below="@+id/receivable_title"
+                            android:layout_marginStart="@dimen/big_margin_10"
+                            android:layout_marginEnd="@dimen/default_border_margin_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/menu_for_adding_a_loan_that_i_gave_to_someone_or_consult_periodic_credits_statuses"
+                            android:textSize="@dimen/default_body_text_size_12"
+                            android:textColor="@color/default_text_color_blue_cyan"
+                            />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_account_manager"
+                    android:layout_below="@+id/card_receivable"
+                    android:layout_alignParentStart="true"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_margin="@dimen/small_margin_2"
+                    app:cardElevation="@dimen/default_card_elevation_2"
+                    app:cardCornerRadius="@dimen/default_card_radius_5"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                        <ImageView
+                            android:id="@+id/account_manager_logo"
+                            android:layout_width="110dp"
+                            android:layout_height="70dp"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginTop="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            android:layout_marginBottom="@dimen/small_margin_2"
+                            android:contentDescription="@string/icon_expenses"
+                            android:src="@drawable/twotone_manage_accounts_blue_500_48dp" />
+
+                        <TextView
+                            android:id="@+id/account_manager_title"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/account_manager_logo"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginTop="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            android:layout_marginBottom="@dimen/small_margin_2"
+                            android:text="@string/my_account"
+                            android:textAlignment="center"
+                            android:textColor="@color/default_text_color_blue_cyan"
+                            android:textSize="@dimen/title_text_medium_size_15"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_about_app"
+                    android:layout_below="@+id/card_receivable"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_margin="@dimen/small_margin_2"
+                    app:cardElevation="@dimen/default_card_elevation_2"
+                    app:cardCornerRadius="@dimen/default_card_radius_5"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                        <ImageView
+                            android:id="@+id/about_app_logo"
+                            android:layout_width="110dp"
+                            android:layout_height="70dp"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginTop="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            android:layout_marginBottom="@dimen/small_margin_2"
+                            android:contentDescription="@string/icon_expenses"
+                            android:src="@drawable/twotone_question_mark_blue_500_48dp" />
+
+                        <TextView
+                            android:id="@+id/about_app_title"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/about_app_logo"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginTop="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            android:layout_marginBottom="@dimen/small_margin_2"
+                            android:text="@string/about"
+                            android:textAlignment="center"
+                            android:textColor="@color/default_text_color_blue_cyan"
+                            android:textSize="@dimen/title_text_medium_size_15"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+</layout>
