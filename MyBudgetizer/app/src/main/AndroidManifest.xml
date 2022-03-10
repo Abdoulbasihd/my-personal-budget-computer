@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="cm.abimmobiledev.mybudgetizer">
 
     <application
@@ -12,7 +13,9 @@
         <activity
             android:name=".ui.expense.ExpenseDashboardActivity"
             android:exported="false" />
-        <activity android:name=".ui.MainMenuActivity">
+        <activity
+            android:exported="true"
+            android:name=".ui.MainMenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

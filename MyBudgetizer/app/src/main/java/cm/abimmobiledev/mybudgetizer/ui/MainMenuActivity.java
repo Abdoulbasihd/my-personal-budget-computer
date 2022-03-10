@@ -1,6 +1,5 @@
 package cm.abimmobiledev.mybudgetizer.ui;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -11,7 +10,6 @@ import com.google.android.material.snackbar.Snackbar;
 import cm.abimmobiledev.mybudgetizer.R;
 import cm.abimmobiledev.mybudgetizer.databinding.ActivityMainMenuBinding;
 import cm.abimmobiledev.mybudgetizer.nav.ExNavigation;
-import cm.abimmobiledev.mybudgetizer.useful.Util;
 
 public class MainMenuActivity extends AppCompatActivity {
 

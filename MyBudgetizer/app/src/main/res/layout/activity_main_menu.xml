@@ -98,7 +98,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_budget"
                     android:layout_below="@+id/card_expenses"
-                    android:layout_width="120dp"
+                    android:layout_width="105dp"
                     android:layout_height="120dp"
                     android:layout_margin="@dimen/small_margin_2"
                     app:cardElevation="@dimen/default_card_elevation_2"
@@ -111,17 +111,20 @@
 
                         <ImageView
                             android:id="@+id/budget_logo"
-                            android:layout_width="110dp"
+                            android:layout_width="100dp"
                             android:layout_height="70dp"
-                            android:layout_margin="@dimen/small_margin_2"
-                            android:src="@drawable/twotone_account_balance_wallet_blue_500_48dp"
-                            android:contentDescription="@string/icon_expenses" />
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginTop="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            android:layout_marginBottom="@dimen/small_margin_2"
+                            android:contentDescription="@string/icon_expenses"
+                            android:src="@drawable/twotone_account_balance_wallet_blue_500_48dp" />
 
                         <TextView
                             android:id="@+id/budget_title"
                             android:layout_below="@+id/budget_logo"
                             android:layout_margin="@dimen/small_margin_2"
-                            android:layout_width="110dp"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:text="@string/my_budgets"
                             android:textSize="@dimen/title_text_medium_size_15"
@@ -138,7 +141,7 @@
                     android:id="@+id/card_earning"
                     android:layout_below="@+id/card_expenses"
                     android:layout_centerHorizontal="true"
-                    android:layout_width="120dp"
+                    android:layout_width="105dp"
                     android:layout_height="120dp"
                     android:layout_margin="@dimen/small_margin_2"
                     app:cardElevation="@dimen/default_card_elevation_2"
@@ -151,7 +154,7 @@
 
                         <ImageView
                             android:id="@+id/earning_logo"
-                            android:layout_width="110dp"
+                            android:layout_width="100dp"
                             android:layout_height="70dp"
                             android:layout_marginStart="@dimen/small_margin_2"
                             android:layout_marginTop="@dimen/small_margin_2"
@@ -162,7 +165,7 @@
 
                         <TextView
                             android:id="@+id/earning_title"
-                            android:layout_width="110dp"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/earning_logo"
                             android:layout_marginStart="@dimen/small_margin_2"
@@ -183,7 +186,7 @@
                     android:id="@+id/card_debts"
                     android:layout_below="@+id/card_expenses"
                     android:layout_alignParentEnd="true"
-                    android:layout_width="120dp"
+                    android:layout_width="105dp"
                     android:layout_height="120dp"
                     android:layout_margin="@dimen/small_margin_2"
                     app:cardElevation="@dimen/default_card_elevation_2"
@@ -196,7 +199,7 @@
 
                         <ImageView
                             android:id="@+id/debts_logo"
-                            android:layout_width="110dp"
+                            android:layout_width="100dp"
                             android:layout_height="70dp"
                             android:layout_margin="@dimen/small_margin_2"
                             android:src="@drawable/twotone_attach_money_blue_500_48dp"
@@ -206,7 +209,7 @@
                             android:id="@+id/debts_title"
                             android:layout_below="@+id/debts_logo"
                             android:layout_margin="@dimen/small_margin_2"
-                            android:layout_width="110dp"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:text="@string/my_debts"
                             android:textSize="@dimen/title_text_medium_size_15"
