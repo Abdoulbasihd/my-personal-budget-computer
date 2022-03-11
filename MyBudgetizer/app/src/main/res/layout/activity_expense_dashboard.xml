@@ -1,9 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.expense.ExpenseDashboardActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardElevation="@dimen/default_card_elevation_2"
+        android:layout_margin="@dimen/default_border_margin_4"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_expenses_summary"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_margin="@dimen/small_margin_2"
+                app:cardElevation="@dimen/card_elevation_medium_4"
+                app:cardCornerRadius="@dimen/default_card_radius_5"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <TextView
+                        android:id="@+id/title_expense_summary"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/summary"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/title_text_medium_size_15"
+                        android:textColor="@color/default_text_color_blue_cyan"
+                        />
+                    <View
+                        android:id="@+id/summary_title_separator"
+                        android:layout_width="250dp"
+                        android:layout_height="0.7dp"
+                        android:background="@color/default_text_color_blue_cyan"
+                        android:layout_below="@+id/title_expense_summary"
+                        android:layout_centerHorizontal="true"
+                        />
+                    <TextView
+                        android:id="@+id/today_expense"
+                        android:layout_below="@+id/summary_title_separator"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/default_border_margin_4"
+                        android:text="@string/to_day"
+                        android:textColor="@color/default_text_color_blue_cyan"
+                        />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_today_expenses"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/default_border_margin_4"
+                        android:layout_below="@+id/summary_title_separator"
+                        android:layout_alignParentEnd="true"
+                        app:cardElevation="@dimen/default_card_elevation_2"
+                        app:cardCornerRadius="@dimen/default_card_radius_5"
+                        app:cardBackgroundColor="@color/default_text_color_blue_cyan"
+                        >
+                        <TextView
+                            android:id="@+id/today_expense_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/default_border_margin_4"
+                            android:text="0 F.CFA"
+                            android:textColor="@color/text_white"
+                            android:textStyle="bold"
+                            />
+                    </androidx.cardview.widget.CardView>
+
+
+                    <TextView
+                        android:id="@+id/this_month_expense"
+                        android:layout_below="@+id/card_today_expenses"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/default_border_margin_4"
+                        android:text="@string/this_month"
+                        android:textColor="@color/default_text_color_blue_cyan"
+                        />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_month_expenses"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/default_border_margin_4"
+                        android:padding="@dimen/small_margin_2"
+                        android:layout_below="@+id/card_today_expenses"
+                        android:layout_alignParentEnd="true"
+                        app:cardElevation="@dimen/default_card_elevation_2"
+                        app:cardCornerRadius="@dimen/default_card_radius_5"
+                        app:cardBackgroundColor="@color/default_text_color_blue_cyan"
+                        >
+                        <TextView
+                            android:id="@+id/this_month_expense_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/default_border_margin_4"
+                            android:text="0 F.CFA"
+                            android:textColor="@color/text_white"
+                            android:textStyle="bold"
+                            />
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/this_year_expense"
+                        android:layout_below="@+id/card_month_expenses"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/default_border_margin_4"
+                        android:text="@string/this_year"
+                        android:textColor="@color/default_text_color_blue_cyan"
+                        />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_year_expense"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/default_border_margin_4"
+                        android:padding="@dimen/small_margin_2"
+                        android:layout_below="@+id/card_month_expenses"
+                        android:layout_alignParentEnd="true"
+                        app:cardElevation="@dimen/default_card_elevation_2"
+                        app:cardCornerRadius="@dimen/default_card_radius_5"
+                        app:cardBackgroundColor="@color/default_text_color_blue_cyan"
+                        >
+                        <TextView
+                            android:id="@+id/this_year_expense_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/default_border_margin_4"
+                            android:text="0 F.CFA"
+                            android:textColor="@color/text_white"
+                            android:textStyle="bold"
+                            />
+                    </androidx.cardview.widget.CardView>
+
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/my_last_expenses_title"
+                android:layout_below="@+id/card_expenses_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/default_border_margin_4"
+                android:layout_marginStart="@dimen/default_border_margin_4"
+                android:layout_marginEnd="@dimen/default_border_margin_4"
+                android:text="@string/my_last_expenses"
+                android:textColor="@color/default_text_color_blue_cyan"
+                android:textStyle="bold"
+                />
+            <View
+                android:id="@+id/my_last_expenses_title_separator"
+                android:layout_width="250dp"
+                android:layout_height="0.7dp"
+                android:background="@color/default_text_color_blue_cyan"
+                android:layout_below="@+id/my_last_expenses_title"
+                android:layout_centerHorizontal="true"
+                />
+
+            <LinearLayout
+                android:id="@+id/layout_last_expenses"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/my_last_expenses_title_separator"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/my_last_expenses_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/small_margin_2"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginEnd="@dimen/small_margin_2"
+                    android:layout_marginBottom="@dimen/small_margin_2" />
+
+                <Button
+                    android:id="@+id/show_more"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="@dimen/default_border_margin_4"
+                    android:textSize="11sp"
+                    android:background="@color/default_text_color_blue_cyan"
+                    android:text="@string/show_more_view_expenses_of_a_period"
+                    android:textColor="@color/text_white" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/no_expense_element"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NO ELEMENT FOUND. NO EXPENSE HAVE BEEN REGISTERED. REGISTER YOUR EXPENSES TO VIEW VIEW IT HERE"
+                android:textAlignment="center"
+                android:textColor="@color/text_black"
+                android:textStyle="bold|italic"
+                android:textSize="@dimen/title_text_medium_size_15"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/big_margin_10"
+                />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/new_expense"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:background="@color/default_text_color_blue_cyan"
+                android:src="@drawable/twotone_add_white_48dp"
+                android:layout_margin="@dimen/default_border_margin_4"
+                />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/back_from_expense_menu"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toStartOf="@+id/new_expense"
+                android:background="@color/default_text_color_blue_cyan"
+                android:src="@drawable/twotone_keyboard_arrow_left_white_48dp"
+                android:layout_margin="@dimen/default_border_margin_4"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
