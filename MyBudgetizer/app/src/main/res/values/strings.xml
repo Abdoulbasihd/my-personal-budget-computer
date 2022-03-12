@@ -17,4 +17,10 @@
     <string name="this_year">Cette année</string>
     <string name="my_last_expenses">Mes dernières dépenses</string>
     <string name="show_more_view_expenses_of_a_period">Voir plus (Rechercher les dépenses d\'une période)</string>
+    <string name="save_an_expense">Enregistrer une dépense</string>
+    <string name="entitled">Intitulé</string>
+    <string name="amount">Montant</string>
+    <string name="data_and_time">Date et heure</string>
+    <string name="reason_description">Raison ou Description</string>
+    <string name="save">Enregistrer</string>
 </resources>

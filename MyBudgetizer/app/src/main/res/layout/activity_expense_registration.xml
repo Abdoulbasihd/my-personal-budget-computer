@@ -1,9 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.expense.ExpenseRegistrationActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        app:cardElevation="@dimen/default_card_elevation_2"
+        app:cardCornerRadius="@dimen/default_card_radius_5"
+        android:layout_margin="@dimen/default_border_margin_4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.expense.ExpenseRegistrationActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <androidx.cardview.widget.CardView
+                android:id="@+id/new_expense_form_on_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_border_margin_4"
+                app:cardElevation="@dimen/default_card_elevation_2"
+                app:cardCornerRadius="@dimen/default_card_radius_5"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/small_margin_2"
+                    >
+
+                    <TextView
+                        android:id="@+id/title_new_expense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/save_an_expense"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/title_text_medium_size_15"
+                        android:textColor="@color/default_text_color_blue_cyan"
+                        android:textStyle="bold"
+                        />
+                    <View
+                        android:id="@+id/title_new_expense_sep"
+                        android:layout_width="@dimen/view_line_default_width"
+                        android:layout_height="0.7dp"
+                        android:layout_below="@+id/title_new_expense"
+                        android:layout_centerHorizontal="true"
+                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/entitled_layout"
+                        android:layout_below="@+id/title_new_expense_sep"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/big_margin_10"
+                        android:layout_marginStart="@dimen/small_margin_2"
+                        android:layout_marginEnd="@dimen/small_margin_2"
+                        app:hintTextColor="@color/default_text_color_blue_cyan"
+                        app:boxBackgroundColor="@color/default_text_input_color"
+                        android:hint="@string/entitled"
+                        android:textColorHint="@color/default_text_color_blue_cyan"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/entitled_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/amount_layout"
+                        android:layout_below="@+id/entitled_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/big_margin_10"
+                        android:layout_marginStart="@dimen/small_margin_2"
+                        android:layout_marginEnd="@dimen/small_margin_2"
+                        app:hintTextColor="@color/default_text_color_blue_cyan"
+                        app:boxBackgroundColor="@color/default_text_input_color"
+                        android:hint="@string/amount"
+
+                        android:textColorHint="@color/default_text_color_blue_cyan"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/amount_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/date_time_layout"
+                        android:layout_below="@+id/amount_layout"
+                        android:layout_toStartOf="@+id/pick_date_and_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/big_margin_10"
+                        android:layout_marginStart="@dimen/small_margin_2"
+                        android:layout_marginEnd="@dimen/small_margin_2"
+                        app:hintTextColor="@color/default_text_color_blue_cyan"
+                        app:boxBackgroundColor="@color/default_text_input_color"
+                        android:hint="@string/data_and_time"
+
+                        android:textColorHint="@color/default_text_color_blue_cyan"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/date_time_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/pick_date_and_time"
+                        android:layout_marginTop="@dimen/big_margin_10"
+                        android:layout_below="@+id/amount_layout"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/twotone_edit_calendar_blue_500_48dp"
+                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/reason_layout"
+                        android:layout_below="@+id/date_time_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/big_margin_10"
+                        android:layout_marginStart="@dimen/small_margin_2"
+                        android:layout_marginEnd="@dimen/small_margin_2"
+                        app:hintTextColor="@color/default_text_color_blue_cyan"
+                        app:boxBackgroundColor="@color/default_text_input_color"
+                        android:hint="@string/reason_description"
+
+                        android:textColorHint="@color/default_text_color_blue_cyan"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/reason_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/save_expense"
+                android:layout_below="@+id/new_expense_form_on_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_border_margin_4"
+                android:background="@color/default_text_color_blue_cyan"
+                android:text="@string/save"
+                android:textColor="@color/text_white"
+                />
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -47,7 +47,7 @@
                         />
                     <View
                         android:id="@+id/summary_title_separator"
-                        android:layout_width="250dp"
+                        android:layout_width="@dimen/view_line_default_width"
                         android:layout_height="0.7dp"
                         android:background="@color/default_text_color_blue_cyan"
                         android:layout_below="@+id/title_expense_summary"
@@ -171,14 +171,14 @@
                 android:textColor="@color/default_text_color_blue_cyan"
                 android:textStyle="bold"
                 />
+
             <View
                 android:id="@+id/my_last_expenses_title_separator"
-                android:layout_width="250dp"
+                android:layout_width="@dimen/view_line_default_width"
                 android:layout_height="0.7dp"
-                android:background="@color/default_text_color_blue_cyan"
                 android:layout_below="@+id/my_last_expenses_title"
                 android:layout_centerHorizontal="true"
-                />
+                android:background="@color/default_text_color_blue_cyan" />
 
             <LinearLayout
                 android:id="@+id/layout_last_expenses"

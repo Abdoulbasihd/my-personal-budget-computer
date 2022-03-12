@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import cm.abimmobiledev.mybudgetizer.R;
+
 public class ExpenseRegistrationActivity extends AppCompatActivity {
 
     @Override

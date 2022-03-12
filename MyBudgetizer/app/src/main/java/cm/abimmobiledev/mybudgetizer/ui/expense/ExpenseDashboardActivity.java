@@ -21,11 +21,12 @@ public class ExpenseDashboardActivity extends AppCompatActivity {
         expenseDashboardBinding.backFromExpenseMenu.setOnClickListener(backView -> this.onBackPressed());
 
         expenseDashboardBinding.newExpense.setOnClickListener(newExpenseView -> {
-            //TODO : open expense registration page
+            //open expense registration page
+            ExNavigation.openNewExpense(ExpenseDashboardActivity.this);
         });
 
         expenseDashboardBinding.showMore.setOnClickListener(moveExpensesView -> {
-            //TODO go to expense search & result page.
+            // go to expense search & result page.
         });
     }
 
