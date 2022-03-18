@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="expenseModel"
+            type="cm.abimmobiledev.mybudgetizer.viewmodel.ExpenseRegViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -71,6 +73,12 @@
                             android:id="@+id/entitled_edit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@={expenseModel.entitle}"
+                            android:textColor="@color/default_text_color"
+                            android:maxLines="1"
+                            android:maxEms="1"
+
+                            android:inputType="textPersonName"
                             />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -94,6 +102,9 @@
                             android:id="@+id/amount_edit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@={expenseModel.amount}"
+                            android:textColor="@color/default_text_color"
+                            android:inputType="numberDecimal"
                             />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -118,6 +129,9 @@
                             android:id="@+id/date_time_edit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@={expenseModel.dateTimeOfExpense}"
+                            android:inputType="datetime"
+                            android:textColor="@color/default_text_color"
                             />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -130,7 +144,7 @@
                         android:layout_height="50dp"
                         android:layout_alignParentEnd="true"
                         android:src="@drawable/twotone_edit_calendar_blue_500_48dp"
-                        />
+                        android:contentDescription="calendar_pick_up" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/reason_layout"
@@ -151,6 +165,9 @@
                             android:id="@+id/reason_edit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@={expenseModel.reason}"
+                            android:textColor="@color/default_text_color"
+
                             />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -159,16 +176,17 @@
 
             </androidx.cardview.widget.CardView>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/save_expense"
-                android:layout_below="@+id/new_expense_form_on_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/default_border_margin_4"
-                android:background="@color/default_text_color_blue_cyan"
+                android:layout_below="@+id/new_expense_form_on_card"
+                android:layout_marginStart="@dimen/default_border_margin_4"
+                android:layout_marginTop="@dimen/big_margin_10"
+                android:layout_marginEnd="@dimen/default_border_margin_4"
+                android:layout_marginBottom="@dimen/big_margin_10"
                 android:text="@string/save"
-                android:textColor="@color/text_white"
-                />
+                android:textColor="@color/text_white" />
         </RelativeLayout>
 
 
