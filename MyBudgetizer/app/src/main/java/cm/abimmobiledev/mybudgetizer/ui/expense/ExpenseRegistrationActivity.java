@@ -19,6 +19,7 @@ import cm.abimmobiledev.mybudgetizer.database.BudgetizerAppDatabase;
 import cm.abimmobiledev.mybudgetizer.database.entity.Expense;
 import cm.abimmobiledev.mybudgetizer.databinding.ActivityExpenseRegistrationBinding;
 import cm.abimmobiledev.mybudgetizer.exception.BudgetizerGeneralException;
+import cm.abimmobiledev.mybudgetizer.nav.ExNavigation;
 import cm.abimmobiledev.mybudgetizer.useful.Util;
 import cm.abimmobiledev.mybudgetizer.viewmodel.ExpenseRegViewModel;
 
@@ -76,6 +77,12 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        ExNavigation.openExpensesHome(ExpenseRegistrationActivity.this);
+    }
+
     /**
      * pick date and set it to dateTimeEditText
      */
@@ -90,7 +97,7 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 (view, year, monthOfYear, dayOfMonth) -> {
 
-                    String currentDate = year + "/" + getMonthFormatted(monthOfYear) + "/" + getDayFormatted(dayOfMonth);
+                    String currentDate = year + "/" + Util.getMonthFormatted(monthOfYear) + "/" + Util.getDayFormatted(dayOfMonth);
                     expenseRegistrationBinding.dateTimeEdit.setText(currentDate);
 
                     pickTime(c, currentDate);
@@ -99,25 +106,7 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    public String getMonthFormatted(int monthOfYear) {
-        String month;
-        if (monthOfYear+1<10)
-            month = "0"+monthOfYear;
-        else
-            month = String.valueOf(monthOfYear+1);
 
-        return month;
-    }
-
-    public String getDayFormatted(int dayOfMonth) {
-        String month;
-        if (dayOfMonth<10)
-            month = "0"+dayOfMonth;
-        else
-            month = String.valueOf(dayOfMonth);
-
-        return month;
-    }
     /**
      * pick time and set date and time picked to edit text
      * @param cal Calendar object

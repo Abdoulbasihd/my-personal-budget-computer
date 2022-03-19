@@ -42,11 +42,11 @@ public class Util {
             String d = dateT.substring(8, 9);
             String h = dateT.substring(11, 12);
             String min = dateT.substring(14, 15);
-            int year = Integer.parseInt(y);
-            int month = Integer.parseInt(m);
-            int day = Integer.parseInt(d);
-            int hh = Integer.parseInt(h);
-            int mm = Integer.parseInt(min);
+            Integer.parseInt(y);
+            Integer.parseInt(m);
+            Integer.parseInt(d);
+            Integer.parseInt(h);
+            Integer.parseInt(min);
         }
         catch (Exception exception){
             return false;
@@ -55,5 +55,24 @@ public class Util {
         return dateSplit.length == 3 && timeSplit.length == 3;
     }
 
+    public static String getMonthFormatted(int monthOfYear) {
+        String month;
+        if (monthOfYear+1<10)
+            month = "0"+(monthOfYear+1);
+        else
+            month = String.valueOf(monthOfYear+1);
+
+        return month;
+    }
+
+    public static String getDayFormatted(int dayOfMonth) {
+        String month;
+        if (dayOfMonth<10)
+            month = "0"+dayOfMonth;
+        else
+            month = String.valueOf(dayOfMonth);
+
+        return month;
+    }
 
 }

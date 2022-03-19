@@ -62,4 +62,23 @@ public class UtilTest {
     }
 
 
+    @Test
+    public void getMonthFormatted() {
+        assertEquals("03", Util.getMonthFormatted(2));
+    }
+
+    @Test
+    public void getMonthFormatted_sup() {
+        assertEquals("11", Util.getMonthFormatted(10));
+    }
+
+    @Test
+    public void getDayFormatted_inf() {
+        assertEquals("03", Util.getDayFormatted(3));
+    }
+
+    @Test
+    public void getDayFormatted_sup() {
+        assertEquals("10", Util.getDayFormatted(10));
+    }
 }

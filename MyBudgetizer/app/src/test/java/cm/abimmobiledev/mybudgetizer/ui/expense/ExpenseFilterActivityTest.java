@@ -20,7 +20,7 @@ public class ExpenseFilterActivityTest {
     public void setUp() throws Exception {
 
         expenses = new ArrayList<>();
-        Expense expense = new Expense(0, "test", 500, "12/12/2022 12:12:00", "R-A-S");
+        Expense expense = new Expense( "test", 500, "12/12/2022 12:12:00", "R-A-S");
         expenses.add(expense);
         expenses.add(expense);
         expenses.add(expense);

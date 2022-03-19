@@ -31,4 +31,7 @@
     <string name="an_error_occured">Une erreur s\'est produite</string>
     <string name="saved">Sauvegardée</string>
     <string name="ok">OK</string>
+    <string name="expense_date">Date de la dépense :</string>
+    <string name="expended_amount">Montant dépensé</string>
+    <string name="looking_up">Recherche...</string>
 </resources>

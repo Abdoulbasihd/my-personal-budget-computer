@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/layout/activity_expense_registration.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.12771739130434784" />
         <entry key="app/src/main/res/layout/activity_main_menu.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_expense.xml" value="0.25" />
       </map>
     </option>
   </component>

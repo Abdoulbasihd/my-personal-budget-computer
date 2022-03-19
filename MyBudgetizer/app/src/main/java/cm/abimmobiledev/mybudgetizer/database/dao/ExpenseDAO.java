@@ -23,10 +23,11 @@ public interface ExpenseDAO {
     List<Expense> loadAllByExpenseDate(String expenseDate);
 
     @Query("SELECT * FROM expense WHERE date_time_of_expense LIKE :monthFormatted ")
-    List<Expense> loadAllExpenseOfAGivenMonth(String monthFormatted); // month formatted :
+    List<Expense> loadAllExpenseOfAGivenMonth(String monthFormatted); // month formatted.... we ain't need others (for month and day) as only the param change
 
-    @Query("SELECT * FROM expense WHERE date_time_of_expense LIKE :yearFormatted ")
-    List<Expense> loadAllExpenseOfAGivenYear(String yearFormatted);
+    //here we want to select e last limiter numbers of elements of the table expense
+    @Query("SELECT * FROM expense ORDER BY expense_id DESC LIMIT :limiter ")
+    List<Expense> getLastExpenses(int limiter);
 
     @Query("SELECT * FROM expense WHERE amount =:expenseAmount ")
     List<Expense> loadAllExpenseByExpenseAmount(String expenseAmount);
