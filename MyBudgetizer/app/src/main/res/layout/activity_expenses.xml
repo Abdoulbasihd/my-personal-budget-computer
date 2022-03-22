@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/default_border_margin_4"
+        app:cardElevation="@dimen/default_card_elevation_2"
+        app:cardCornerRadius="@dimen/default_card_radius_5"
+        tools:context=".ui.expense.ExpensesActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/small_margin_2"
+            >
+
+            <TextView
+                android:id="@+id/expenses_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/default_text_color_blue_cyan"
+                android:textSize="@dimen/title_text_medium_size_15"
+                android:textStyle="bold"
+                android:text="@string/my_periodical_expenses"
+                />
+            <View
+                android:layout_width="@dimen/view_line_default_width"
+                android:layout_height="0.7dp"
+                android:id="@+id/title_separator"
+                android:layout_below="@+id/expenses_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/big_margin_10"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/search_layout"
+                android:visibility="invisible"
+                android:layout_below="@+id/title_separator"
+                >
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_toStartOf="@+id/expense_search_date_picker"
+                    app:boxBackgroundColor="@color/default_input_color"
+                    android:hint="@string/expense_date"
+                    app:hintTextColor="@color/default_text_color_blue_cyan"
+                    app:hintAnimationEnabled="true"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/expense_date_input"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/expense_search_date_picker"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/twotone_edit_calendar_blue_500_48dp"
+                    />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/search_layout"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/no_expense_registered"
+                android:textColor="@color/default_text_color_blue_cyan"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"
+                android:id="@+id/no_item_found_tv"
+                android:visibility="visible"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

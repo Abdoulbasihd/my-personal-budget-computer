@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/default_border_margin_4"
+        app:cardElevation="@dimen/default_card_elevation_2"
+        app:cardCornerRadius="@dimen/default_card_radius_5"
+        tools:context=".ui.expense.BottomSheetMoreExpenseMenuFragment"
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_margin="@dimen/big_margin_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/view_today_expenses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/today_expenses"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/view_this_month_expenses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/this_month_expense"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/view_this_year_expenses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/this_year_expenses"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/filter_for_a_given_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/view_expenses_of_a_date"
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

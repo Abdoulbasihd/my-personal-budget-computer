@@ -180,48 +180,53 @@
                 android:layout_centerHorizontal="true"
                 android:background="@color/default_text_color_blue_cyan" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/layout_last_expenses"
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/my_last_expenses_title_separator"
-                android:orientation="vertical">
+                android:layout_marginBottom="50dp"
+                android:orientation="vertical"
+                >
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/my_last_expenses_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/small_margin_2"
                     android:layout_marginStart="@dimen/small_margin_2"
                     android:layout_marginTop="@dimen/small_margin_2"
                     android:layout_marginEnd="@dimen/small_margin_2"
-                    android:layout_marginBottom="@dimen/small_margin_2" />
+                    android:layout_marginBottom="40dp" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/show_more"
+                    android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
                     android:layout_margin="@dimen/default_border_margin_4"
-                    android:textSize="11sp"
-                    android:background="@color/default_text_color_blue_cyan"
-                    android:text="@string/show_more_view_expenses_of_a_period"
-                    android:textColor="@color/text_white" />
-            </LinearLayout>
+                    android:text="@string/view_more"
+                    android:textColor="@color/text_white"
+                    app:cornerRadius="@dimen/default_card_radius_5"
+                    app:elevation="@dimen/default_card_elevation_2"
+                    />
+            </RelativeLayout>
+
 
             <TextView
                 android:id="@+id/no_expense_element"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NO ELEMENT FOUND. NO EXPENSE HAVE BEEN REGISTERED. REGISTER YOUR EXPENSES TO VIEW VIEW IT HERE"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/big_margin_10"
+                android:layout_marginTop="@dimen/big_margin_10"
+                android:layout_marginEnd="@dimen/big_margin_10"
+                android:layout_marginBottom="@dimen/big_margin_10"
+                android:text="@string/no_expense_registered"
                 android:textAlignment="center"
                 android:textColor="@color/text_black"
-                android:textStyle="bold|italic"
                 android:textSize="@dimen/title_text_medium_size_15"
-                android:layout_centerInParent="true"
-                android:layout_margin="@dimen/big_margin_10"
-                />
+                android:textStyle="bold|italic" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/new_expense"

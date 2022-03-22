@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+
+
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -37,6 +39,7 @@ public class ExpenseDashboardActivity extends AppCompatActivity {
     AlertDialog.Builder expenseBoardDialog;
     ProgressDialog expenseListBoardProgress;
     ProgressDialog expenseBoardProgress;
+    List<Expense> periodicExpenses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +62,13 @@ public class ExpenseDashboardActivity extends AppCompatActivity {
         });
 
         expenseDashboardBinding.showMore.setOnClickListener(moveExpensesView -> {
-            // go to expense search & result page.
+            BottomSheetMoreExpenseMenuFragment moreExpenseBD = new BottomSheetMoreExpenseMenuFragment();
+            //moreExpenseBD.setContentView(R.layout.fragment_bottom_sheet_more_expense_menu);
+            moreExpenseBD.show(getSupportFragmentManager(), "ModalBottomSheet");
+
         });
+
+
 
 
         final Calendar calendar = Calendar.getInstance();
@@ -125,13 +133,13 @@ public class ExpenseDashboardActivity extends AppCompatActivity {
 
 
     public void getLastExpenses(int numberOfElements) {
-        //TODO : add loader
+
         expenseListBoardProgress.show();
         ExecutorService lastExpensesServ = Executors.newSingleThreadExecutor();
 
         lastExpensesServ.execute(() -> {
             BudgetizerAppDatabase lastExpensesAppDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());
-            List<Expense> periodicExpenses = lastExpensesAppDatabase.expenseDAO().getLastExpenses(numberOfElements);
+            periodicExpenses = lastExpensesAppDatabase.expenseDAO().getLastExpenses(numberOfElements);
 
             ExpenseAdapter expenseAdapter = new ExpenseAdapter(periodicExpenses);
 
@@ -141,22 +149,22 @@ public class ExpenseDashboardActivity extends AppCompatActivity {
                 expenseDashboardBinding.myLastExpensesRecycler.setHasFixedSize(true);
                 expenseDashboardBinding.myLastExpensesRecycler.setLayoutManager(new LinearLayoutManager(this));
                 expenseDashboardBinding.myLastExpensesRecycler.setAdapter(expenseAdapter);
-                expenseDashboardBinding.myLastExpensesRecycler.setVerticalScrollBarEnabled(true);
-                expenseDashboardBinding.myLastExpensesRecycler.setVerticalFadingEdgeEnabled(true);
-                expenseDashboardBinding.myLastExpensesRecycler.setVerticalScrollbarPosition(View.SCROLLBAR_POSITION_RIGHT);
+                //expenseDashboardBinding.myLastExpensesRecycler.setVerticalScrollBarEnabled(true);
+                //expenseDashboardBinding.myLastExpensesRecycler.setVerticalFadingEdgeEnabled(true);
+                //expenseDashboardBinding.myLastExpensesRecycler.setVerticalScrollbarPosition(View.SCROLLBAR_POSITION_RIGHT);
 
-
-                //todo : dismiss progress here
+                //dismiss progress here
                 expenseListBoardProgress.dismiss();
 
                 if (periodicExpenses!=null && !periodicExpenses.isEmpty()) {
-                    //TODO : create a method for all this...
-                    expenseDashboardBinding.myLastExpensesRecycler.setVisibility(View.VISIBLE);
+                    //create a method for all this...
+                    expenseDashboardBinding.layoutLastExpenses.setVisibility(View.VISIBLE);
                     expenseDashboardBinding.noExpenseElement.setVisibility(View.GONE);
+                    Log.d(EXP_DASH_TAG, "getLastExpenses:  expenses size is "+periodicExpenses.size());
                 }
                 else {
 
-                    expenseDashboardBinding.myLastExpensesRecycler.setVisibility(View.GONE);
+                    expenseDashboardBinding.layoutLastExpenses.setVisibility(View.GONE);
                     expenseDashboardBinding.noExpenseElement.setVisibility(View.VISIBLE);
                 }
             });

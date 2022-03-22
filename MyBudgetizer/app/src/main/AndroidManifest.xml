@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.expense.ExpensesActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.expense.ExpenseFilterActivity"
             android:exported="false" />
         <activity
