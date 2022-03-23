@@ -5,5 +5,19 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="text_white">#FFFFFF</color>
     <color name="text_black">#000000</color>
+    <color name="default_error_color_red">#FF0104</color>
     <color name="default_text_color_blue_cyan">#2196F3</color>
+    <color name="default_text_input_color">#F1DAE1</color>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="default_text_color">#5E06FA</color>
+    <color name="default_input_color">#4BFA00BB</color>
+
 </resources>

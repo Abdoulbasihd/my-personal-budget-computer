@@ -24,46 +24,46 @@ __***Une dépense peut être liée ou non à un budget. Et un budget peut enregi
 
 ## 2. Les enregistrements
 
-* --> __**Budget**_
-	* - denomination ou intitulé
-	* - date de début
-	* - date de fin
-	* - montant total
-	* - [liste des dépenses lié ? relation 1 budget pour plusieur depenses ]
+* > __**Budget**__
+	 - denomination ou intitulé
+	 - date de début
+	 - date de fin
+	 - montant total
+	 - [liste des dépenses lié ? relation 1 budget pour plusieur depenses ]
 
+* > __**depense**__
+	 - intitulé
+	 - montant
+	 - date et heure de dépense
+	 - raison (description)
 
-* --> __**depense**__
-	* - intitulé
-	* - montant
-	* - date et heure de dépense
-	* - raison (description)
+* > __**Gain**__
+	 - intitulé
+	 - montant
+	 - date de gain
+	 - source des fonds
+	 - description
 
-* --> __**Gain**__
-	* - intitulé
-	* - montant
-	* - date de gain
-	* - source des fonds
-	* - description
-
-* --> __**Dette**__
-	* - intitulé
-	* - montant
-	* - date d'emprunt
-	* - date d'échéance de remboursement
-	* - date de remboursement
-	* - remboursé ou non (boolean)
-	* - nom du créancier
-	* - contact du créancier
+* > __**Dette**__
+	 - intitulé
+	 - montant
+	 - date d'emprunt
+	 - date d'échéance de remboursement
+	 - date de remboursement
+	 - remboursé ou non (boolean)
+	 - nom du créancier
+	 - contact du créancier
 	
-* --> __**Creance**__
-	* - intitulé
-	* - montant
-	* - date de prêt
-	* - date d'échéance de remboursement
-	* - date de remboursement
-	* - nom de l'emprunteur
-	* - contact de l'emprunteur
-	* - description
+* > __**Creance**__
+	 - intitulé
+	 - montant
+	 - date de prêt
+	 - date d'échéance de remboursement
+	 - date de remboursement
+	 - nom de l'emprunteur
+	 - contact de l'emprunteur
+	 - description
 
 
 __Add next : link to an account__
+

@@ -17,4 +17,33 @@
     <string name="this_year">Cette année</string>
     <string name="my_last_expenses">Mes dernières dépenses</string>
     <string name="show_more_view_expenses_of_a_period">Voir plus (Rechercher les dépenses d\'une période)</string>
+    <string name="save_an_expense">Enregistrer une dépense</string>
+    <string name="entitled">Intitulé</string>
+    <string name="amount">Montant</string>
+    <string name="data_and_time">Date et heure</string>
+    <string name="reason_description">Raison ou Description</string>
+    <string name="save">Enregistrer</string>
+    <string name="mandatory_field">Champs Obligatoire</string>
+    <string name="amount_must_be_a_number_and_is_mandatory">Le montant doit etre une suite de chiffre et est obligatoire</string>
+    <string name="new_expense">Nouvelle Dépense</string>
+    <string name="save_done">Sauvegarde effectué</string>
+    <string name="saving">Sauvegarde en cours...</string>
+    <string name="an_error_occured">Une erreur s\'est produite</string>
+    <string name="saved">Sauvegardée</string>
+    <string name="ok">OK</string>
+    <string name="expense_date">Date de la dépense :</string>
+    <string name="expended_amount">Montant dépensé</string>
+    <string name="looking_up">Recherche...</string>
+    <string name="view_more">Voir plus</string>
+    <string name="today_expenses">Dépenses d\'aujourd\'hui</string>
+    <string name="this_month_expense">Dépenses de ce mois</string>
+    <string name="this_year_expenses">Dépenses de cette années</string>
+    <string name="view_expenses_of_a_date">Voir les dépenses d\'une date</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="my_periodical_expenses">Mes dépenses périodique</string>
+    <string name="no_expense_registered">NO ELEMENT FOUND. NO EXPENSE HAVE BEEN REGISTERED. REGISTER YOUR EXPENSES TO VIEW VIEW IT HERE</string>
+    <string name="fill_in_a_date_or_part_of_a_date">Entrer une date ou une partie d\'une date</string>
+    <string name="deleting">Suppression en cours...</string>
+    <string name="back">Rentrer</string>
 </resources>
