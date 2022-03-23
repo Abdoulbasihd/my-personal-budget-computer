@@ -43,4 +43,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="my_periodical_expenses">Mes dépenses périodique</string>
     <string name="no_expense_registered">NO ELEMENT FOUND. NO EXPENSE HAVE BEEN REGISTERED. REGISTER YOUR EXPENSES TO VIEW VIEW IT HERE</string>
+    <string name="fill_in_a_date_or_part_of_a_date">Entrer une date ou une partie d\'une date</string>
+    <string name="deleting">Suppression en cours...</string>
+    <string name="back">Rentrer</string>
 </resources>

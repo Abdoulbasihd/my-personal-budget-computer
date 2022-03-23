@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -69,8 +70,22 @@ public class ExpenseDashboardActivity extends AppCompatActivity {
         });
 
 
+        expenseDashboardBinding.cardRefresh.setOnClickListener(v -> dashViewDataSetup());
 
 
+        dashViewDataSetup();
+
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        ExNavigation.openMainHome(ExpenseDashboardActivity.this);
+    }
+
+    public void dashViewDataSetup(){
         final Calendar calendar = Calendar.getInstance();
         setPeriodicExpenses(getCurrentDayFormatted(calendar), PERIOD_DAILY);
         setPeriodicExpenses(getCurrentMonthFormatted(calendar), PERIOD_MONTHLY);
@@ -78,12 +93,6 @@ public class ExpenseDashboardActivity extends AppCompatActivity {
 
         // : get 10 last entries of expenses and show it
         getLastExpenses(10);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        ExNavigation.openMainHome(ExpenseDashboardActivity.this);
     }
 
     /**
@@ -114,7 +123,7 @@ public class ExpenseDashboardActivity extends AppCompatActivity {
                                 expenseDashboardBinding.thisMonthExpenseValue.setText(String.format("%s F. CFA", computedAmount));
                             else if (periodicity==PERIOD_YEARLY)
                                 expenseDashboardBinding.thisYearExpenseValue.setText(String.format("%s F. CFA", computedAmount));
-                            //TODO may be you could add for week
+                            // may be you could add for week
 
                         } catch (BudgetizerGeneralException exception) {
                             Log.d(EXP_DASH_TAG, "selectPeriodicExpenses: "+exception.getLocalizedMessage(), exception);

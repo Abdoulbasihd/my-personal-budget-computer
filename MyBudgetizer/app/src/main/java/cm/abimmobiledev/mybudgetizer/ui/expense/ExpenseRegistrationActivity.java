@@ -3,6 +3,7 @@ package cm.abimmobiledev.mybudgetizer.ui.expense;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -37,10 +38,6 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        expenseRegDialog = Util.initAlertDialogBuilder(this, getString(R.string.new_expense), getString(R.string.save_done));
-        expenseRegDialog.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
-           //NOTHING TO DO, just close
-        });
         expenseRegProgress = Util.initProgressDialog(this, getString(R.string.saving));
 
         expenseRegViewModel = new ExpenseRegViewModel();
@@ -48,6 +45,14 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
         expenseRegistrationBinding = DataBindingUtil.setContentView(this, R.layout.activity_expense_registration);
         expenseRegistrationBinding.setExpenseModel(expenseRegViewModel);
         expenseRegistrationBinding.executePendingBindings();
+
+        expenseRegDialog = Util.initAlertDialogBuilder(this, getString(R.string.new_expense), getString(R.string.save_done));
+        expenseRegDialog.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
+            expenseRegViewModel.setEntitle("");
+            expenseRegViewModel.setDateTimeOfExpense("");
+            expenseRegViewModel.setReason("");
+            expenseRegistrationBinding.executePendingBindings();
+        });
 
         expenseRegistrationBinding.pickDateAndTime.setOnClickListener(pickerView -> pickDate());
 
@@ -196,6 +201,9 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
 
             runOnUiThread(() -> {
                 expenseRegDialog.setMessage(getString(R.string.saved));
+                expenseRegDialog.setNegativeButton(getString(R.string.back), (dialog, which) -> {
+                    ExNavigation.openExpensesHome(ExpenseRegistrationActivity.this);
+                });
                 expenseRegDialog.show();
                 expenseRegProgress.dismiss();
             });

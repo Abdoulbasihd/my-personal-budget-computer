@@ -153,6 +153,27 @@
                     </androidx.cardview.widget.CardView>
 
 
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_refresh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="@dimen/default_border_margin_4"
+                        android:padding="@dimen/default_border_margin_4"
+                        app:cardElevation="@dimen/card_elevation_medium_4"
+                        app:cardCornerRadius="@dimen/default_card_radius_5"
+                        >
+                        <ImageView
+                            android:id="@+id/iv_refresh"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_twotone_refresh_24"
+                            />
+
+                    </androidx.cardview.widget.CardView>
+
+
 
                 </RelativeLayout>
 
