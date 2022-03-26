@@ -10,6 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.debt.DebtsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.debt.DebtRegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.debt.DebtBoardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.earning.EarningsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.earning.EarningBoardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.earning.EarningRegistrationActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.expense.ExpensesActivity"
             android:exported="false" />
         <activity
