@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_border_margin_4">4dp</dimen>
+    <dimen name="small_margin_2">2dp</dimen>
+    <dimen name="default_card_elevation_2">2dp</dimen>
+    <dimen name="card_elevation_medium_4">4dp</dimen>
+    <dimen name="card_elevation_large_6">6dp</dimen>
+    <dimen name="default_card_radius_5">5dp</dimen>
+    <dimen name="big_margin_10">10dp</dimen>
+    <dimen name="title_text_size_big_20">20sp</dimen>
+    <dimen name="default_body_text_size_12">12sp</dimen>
+    <dimen name="title_text_medium_size_15">15sp</dimen>
+    <dimen name="view_line_default_width">250dp</dimen>
+    <dimen name="view_line_default_height" >1dp</dimen>
+</resources>

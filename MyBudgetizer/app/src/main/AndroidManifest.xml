@@ -9,13 +9,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".ui.expense.ExpensesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.expense.ExpenseFilterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.expense.ExpenseRegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.expense.ExpenseDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MainMenuActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
