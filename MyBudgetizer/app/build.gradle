@@ -17,7 +17,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 31
         versionCode 1
-        versionName "1.0"
+        versionName "0.1"
         multiDexEnabled true //to sole error ... Cannot fit requested classes in a single dex file (# methods: 79235 > 65536) ??
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
