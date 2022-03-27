@@ -142,7 +142,7 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
      * @return a boolean : true when filled.
      * @throws BudgetizerGeneralException when amount ain't a number
      */
-    public boolean mandatoryFilled(String entitle, String amount, String dateTime) throws BudgetizerGeneralException {
+    public static boolean mandatoryFilled(String entitle, String amount, String dateTime) throws BudgetizerGeneralException {
 
         //when amount ain't a number (event if is null), let's catch an exception
         try {

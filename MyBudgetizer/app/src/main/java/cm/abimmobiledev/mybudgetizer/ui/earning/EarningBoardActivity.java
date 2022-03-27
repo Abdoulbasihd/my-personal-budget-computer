@@ -38,7 +38,7 @@ public class EarningBoardActivity extends AppCompatActivity {
     ActivityEarningBoardBinding earningBoardBinding;
 
     AlertDialog.Builder earningBoardDialog;
-    ProgressDialog expensesListProgress;
+    ProgressDialog earningsListProgress;
     ProgressDialog earningBoardResumeProgress;
     List<Earning> periodicEarnings;
 
@@ -53,7 +53,7 @@ public class EarningBoardActivity extends AppCompatActivity {
         earningBoardDialog.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
             //NOTHING TO DO, just close
         });
-        expensesListProgress = Util.initProgressDialog(this, getString(R.string.looking_up));
+        earningsListProgress = Util.initProgressDialog(this, getString(R.string.looking_up));
         earningBoardResumeProgress = Util.initProgressDialog(this, getString(R.string.looking_up));
 
         earningBoardBinding.backFromIncomeMenu.setOnClickListener(backView -> this.onBackPressed());
@@ -120,7 +120,7 @@ public class EarningBoardActivity extends AppCompatActivity {
                         else if (periodicity==PERIOD_MONTHLY)
                             earningBoardBinding.thisMonthIncomesValue.setText(String.format("%s F. CFA", computedAmount));
                         else if (periodicity==PERIOD_YEARLY)
-                            earningBoardBinding.thisMonthIncomesValue.setText(String.format("%s F. CFA", computedAmount));
+                            earningBoardBinding.thisYearIncomesValue.setText(String.format("%s F. CFA", computedAmount));
                         // may be you could add for week
 
                     } catch (BudgetizerGeneralException exception) {
@@ -167,7 +167,7 @@ public class EarningBoardActivity extends AppCompatActivity {
 
     public void getLastIncomes(int numberOfElements) {
 
-        expensesListProgress.show();
+        earningsListProgress.show();
         ExecutorService lastExpensesServ = Executors.newSingleThreadExecutor();
 
         lastExpensesServ.execute(() -> {
@@ -187,7 +187,7 @@ public class EarningBoardActivity extends AppCompatActivity {
                 //earningBoardBinding.myLastIncomesRecycler.setVerticalScrollbarPosition(View.SCROLLBAR_POSITION_RIGHT);
 
                 //dismiss progress here
-                expensesListProgress.dismiss();
+                earningsListProgress.dismiss();
 
                 if (periodicEarnings!=null && !periodicEarnings.isEmpty()) {
                     //create a method for all this...

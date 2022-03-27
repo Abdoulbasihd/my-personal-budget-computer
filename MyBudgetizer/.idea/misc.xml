@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/layout/activity_debt_board.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_debt_registration.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_earning_board.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_earning_registration.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_expense_dashboard.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_expense_filter.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_expense_registration.xml" value="0.25" />

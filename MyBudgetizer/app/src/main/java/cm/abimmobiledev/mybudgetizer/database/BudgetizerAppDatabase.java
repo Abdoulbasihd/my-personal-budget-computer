@@ -11,7 +11,7 @@ import cm.abimmobiledev.mybudgetizer.database.dao.ExpenseDAO;
 import cm.abimmobiledev.mybudgetizer.database.entity.Earning;
 import cm.abimmobiledev.mybudgetizer.database.entity.Expense;
 
-@Database(entities = {Expense.class, Earning.class}, version = 1)
+@Database(entities = {Expense.class, Earning.class}, version = 2)
 public abstract class BudgetizerAppDatabase extends RoomDatabase {
 
     public abstract ExpenseDAO expenseDAO();

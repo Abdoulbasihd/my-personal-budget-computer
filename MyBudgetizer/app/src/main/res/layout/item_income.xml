@@ -114,7 +114,7 @@
                     android:id="@+id/funds_source"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/amount_received"
+                    android:layout_below="@+id/income_date_title"
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="@dimen/default_border_margin_4"
                     android:layout_marginTop="@dimen/small_margin_2"
