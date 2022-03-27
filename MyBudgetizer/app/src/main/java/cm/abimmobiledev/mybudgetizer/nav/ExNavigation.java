@@ -10,7 +10,7 @@ import cm.abimmobiledev.mybudgetizer.ui.expense.ExpensesActivity;
 
 public class ExNavigation {
 
-    public static final String EXPENSE_SEARCH_PARAM = "SEARCH_PARAM";
+    public static final String SEARCH_PARAM = "SEARCH_PARAM";
     public static final String EXPENSE_OF_TODAY = "EXP_TODAY";
     public static final String EXPENSE_OF_THIS_MONTH = "EXP_D_MONTH";
     public static final String EXPENSE_OF_THIS_YEAR = "EXP_D_YEAR";
@@ -30,7 +30,7 @@ public class ExNavigation {
 
     public static void openExpenseSearch(Activity contextToExpenseSearch, String searchParam) {
         Intent intentToExpenseSearch = new Intent(contextToExpenseSearch, ExpensesActivity.class);
-        intentToExpenseSearch.putExtra(EXPENSE_SEARCH_PARAM, searchParam);
+        intentToExpenseSearch.putExtra(SEARCH_PARAM, searchParam);
         contextToExpenseSearch.startActivity(intentToExpenseSearch);
         contextToExpenseSearch.finish();
     }

@@ -105,7 +105,7 @@ public class ExpensesActivity extends AppCompatActivity {
         if (intent==null)
             throw new BudgetizerGeneralException("Opening expense search... Param intent couldn't be null");
 
-        return intent.getStringExtra(ExNavigation.EXPENSE_SEARCH_PARAM);
+        return intent.getStringExtra(ExNavigation.SEARCH_PARAM);
     }
 
     public void getExpenses(String dateSearchPattern) throws BudgetizerGeneralException {

@@ -117,16 +117,4 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
     }
 
 
-    public int notifyItemPositionChanged(int position, int length) {
-
-        if (position<0 || length <0 || position>length)
-            return 0;
-
-        for (int counter = position; counter < length; counter++) {
-            notifyItemChanged(counter);
-            Log.d("TAG", "notifyItemPositionChanged: "+counter);
-        }
-
-        return 1;
-    }
 }

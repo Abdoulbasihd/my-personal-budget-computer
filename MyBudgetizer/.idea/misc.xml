@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_expense_dashboard.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_debt_board.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_debt_registration.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_earning_board.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_expense_dashboard.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_expense_filter.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_expense_registration.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_expenses.xml" value="0.1" />
@@ -13,6 +16,7 @@
         <entry key="app/src/main/res/layout/bs_menu_more_expense.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_bottom_sheet_more_expense_menu.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_expense.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_income.xml" value="0.22" />
       </map>
     </option>
   </component>

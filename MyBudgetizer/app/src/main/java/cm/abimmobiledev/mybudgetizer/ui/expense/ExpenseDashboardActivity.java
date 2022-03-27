@@ -32,10 +32,10 @@ public class ExpenseDashboardActivity extends AppCompatActivity {
     ActivityExpenseDashboardBinding expenseDashboardBinding;
 
     private static final String EXP_DASH_TAG = "X_D_TAG";
-    private static final int PERIOD_DAILY = 0;
-    private static final int PERIOD_WEEKLY = 1;
-    private static final int PERIOD_MONTHLY = 2;
-    private static final int PERIOD_YEARLY = 3;
+    public static final int PERIOD_DAILY = 0;
+    public static final int PERIOD_WEEKLY = 1;
+    public static final int PERIOD_MONTHLY = 2;
+    public static final int PERIOD_YEARLY = 3;
 
     AlertDialog.Builder expenseBoardDialog;
     ProgressDialog expenseListBoardProgress;
@@ -118,11 +118,11 @@ public class ExpenseDashboardActivity extends AppCompatActivity {
                         try {
                             double computedAmount = computeExpendedAmount(periodicExpenses);
                             if (periodicity==PERIOD_DAILY)
-                                expenseDashboardBinding.todayExpenseValue.setText(String.format("%s F. CFA", computedAmount));
+                                expenseDashboardBinding.todayExpensesValue.setText(String.format("%s F. CFA", computedAmount));
                             else if (periodicity==PERIOD_MONTHLY)
-                                expenseDashboardBinding.thisMonthExpenseValue.setText(String.format("%s F. CFA", computedAmount));
+                                expenseDashboardBinding.thisMonthExpensesValue.setText(String.format("%s F. CFA", computedAmount));
                             else if (periodicity==PERIOD_YEARLY)
-                                expenseDashboardBinding.thisYearExpenseValue.setText(String.format("%s F. CFA", computedAmount));
+                                expenseDashboardBinding.thisYearExpensesValue.setText(String.format("%s F. CFA", computedAmount));
                             // may be you could add for week
 
                         } catch (BudgetizerGeneralException exception) {
