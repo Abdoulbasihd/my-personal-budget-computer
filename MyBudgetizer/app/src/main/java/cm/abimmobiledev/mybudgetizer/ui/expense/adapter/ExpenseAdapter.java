@@ -62,34 +62,42 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         
         holder.deleteContent.setOnClickListener(deleteItemView -> {
 
-            ProgressDialog expenseDelProgress = Util.initProgressDialog(holder.deleteContent.getContext(), holder.deleteContent.getContext().getString(R.string.deleting));
-            expenseDelProgress.show();
-
-            AlertDialog.Builder myExpenseDeletorDialog = Util.initAlertDialogBuilder(holder.deleteContent.getContext(), "État",  "Dépense Supprimée. Bien vouloir actualiser");
-
-
-            ExecutorService expenseDelService = Executors.newSingleThreadExecutor();
-            
-            expenseDelService.execute(() -> {
-
-                BudgetizerAppDatabase expenseDelAppDatabase = BudgetizerAppDatabase.getInstance(holder.deleteContent.getContext());
-                expenseDelAppDatabase.expenseDAO().delete(expense);
-                expenses.remove(expense);
-
-                new Handler(Looper.getMainLooper()).post(() -> {
-                    expenseDelProgress.dismiss();
-                    myExpenseDeletorDialog.setPositiveButton("OK", (dialog, which) -> {
-                        //nothing to do here, just close
-                    }).show();
-                });
-
-
-
-                notifyItemRemoved(position);
-                notifyItemChanged(position);
-                //notifyItemPositionChanged(position, expenses.size());
-
+            AlertDialog.Builder myExpenseDelAlertDialog = Util.initAlertDialogBuilder(holder.deleteContent.getContext(), "Alerte",  "Voulez-vous vraiment supprimer cette dépense");
+            myExpenseDelAlertDialog.setNegativeButton("Annuler", (dialog, which) -> {
+                //Ne rien faire ici
             });
+            myExpenseDelAlertDialog.setPositiveButton("Continuer", (dialog, which) -> {
+                ProgressDialog expenseDelProgress = Util.initProgressDialog(holder.deleteContent.getContext(), holder.deleteContent.getContext().getString(R.string.deleting));
+                expenseDelProgress.show();
+
+                AlertDialog.Builder myExpenseDeletorDialog = Util.initAlertDialogBuilder(holder.deleteContent.getContext(), "État",  "Dépense Supprimée. Bien vouloir actualiser");
+
+
+                ExecutorService expenseDelService = Executors.newSingleThreadExecutor();
+
+                expenseDelService.execute(() -> {
+
+                    BudgetizerAppDatabase expenseDelAppDatabase = BudgetizerAppDatabase.getInstance(holder.deleteContent.getContext());
+                    expenseDelAppDatabase.expenseDAO().delete(expense);
+                    expenses.remove(expense);
+
+                    new Handler(Looper.getMainLooper()).post(() -> {
+                        expenseDelProgress.dismiss();
+                        myExpenseDeletorDialog.setPositiveButton("OK", (dialog1, which1) -> {
+                            //nothing to do here, just close
+                        }).show();
+                    });
+
+
+
+                    notifyItemRemoved(position);
+                    notifyItemChanged(position);
+                    //notifyItemPositionChanged(position, expenses.size());
+
+                });
+            });
+            myExpenseDelAlertDialog.show();
+
         });
     }
 

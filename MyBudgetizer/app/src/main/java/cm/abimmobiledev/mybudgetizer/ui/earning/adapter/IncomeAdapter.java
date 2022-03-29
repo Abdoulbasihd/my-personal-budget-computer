@@ -1,6 +1,7 @@
 package cm.abimmobiledev.mybudgetizer.ui.earning.adapter;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
@@ -61,33 +62,42 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
 
         holder.deleteContent.setOnClickListener(deleteItemView -> {
 
-            ProgressDialog earnDelProgress = Util.initProgressDialog(holder.deleteContent.getContext(), holder.deleteContent.getContext().getString(R.string.deleting));
-            earnDelProgress.show();
-
-            AlertDialog.Builder myEarnDeletorDialog = Util.initAlertDialogBuilder(holder.deleteContent.getContext(), holder.deleteContent.getContext().getString(R.string.state),  "Revenu Supprimée. Bien vouloir actualiser");
-
-
-            ExecutorService incomeDelService = Executors.newSingleThreadExecutor();
-
-            incomeDelService.execute(() -> {
-
-                BudgetizerAppDatabase incomeDelAppDatabase = BudgetizerAppDatabase.getInstance(holder.deleteContent.getContext());
-                incomeDelAppDatabase.earningDAO().delete(earning);
-                earnings.remove(earning);
-
-                new Handler(Looper.getMainLooper()).post(() -> {
-                    earnDelProgress.dismiss();
-                    myEarnDeletorDialog.setPositiveButton("OK", (dialog, which) -> {
-                        //nothing to do here, just close
-                    }).show();
-                });
-
-
-
-                notifyItemRemoved(position);
-                notifyItemChanged(position);
-
+            AlertDialog.Builder myEarnAlertDeletionDialog = Util.initAlertDialogBuilder(holder.deleteContent.getContext(), holder.deleteContent.getContext().getString(R.string.state),  "Voulez-vous vraiment supprimer ?");
+            myEarnAlertDeletionDialog.setNegativeButton("Annuler", (dialog, which) -> {
+                //Ne rien faire ici
             });
+            myEarnAlertDeletionDialog.setPositiveButton("Continuer", (dialog, which) -> {
+                ProgressDialog earnDelProgress = Util.initProgressDialog(holder.deleteContent.getContext(), holder.deleteContent.getContext().getString(R.string.deleting));
+                earnDelProgress.show();
+
+                AlertDialog.Builder myEarnDeletorDialog = Util.initAlertDialogBuilder(holder.deleteContent.getContext(), holder.deleteContent.getContext().getString(R.string.state),  "Revenu Supprimée. Bien vouloir actualiser");
+
+
+                ExecutorService incomeDelService = Executors.newSingleThreadExecutor();
+
+                incomeDelService.execute(() -> {
+
+                    BudgetizerAppDatabase incomeDelAppDatabase = BudgetizerAppDatabase.getInstance(holder.deleteContent.getContext());
+                    incomeDelAppDatabase.earningDAO().delete(earning);
+                    earnings.remove(earning);
+
+                    new Handler(Looper.getMainLooper()).post(() -> {
+                        earnDelProgress.dismiss();
+                        myEarnDeletorDialog.setPositiveButton("Ok", (dialog1, which1) -> {
+                            //nothing to do here, just close
+                        }).show();
+                    });
+
+
+
+                    notifyItemRemoved(position);
+                    notifyItemChanged(position);
+
+                });
+            });
+            myEarnAlertDeletionDialog.show();
+
+
         });
     }
 

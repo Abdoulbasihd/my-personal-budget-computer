@@ -150,9 +150,9 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/delete_content"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_below="@+id/expense_sticker"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_margin="@dimen/default_border_margin_4"
                 app:cardCornerRadius="@dimen/default_card_radius_5"
                 app:cardElevation="@dimen/card_elevation_medium_4"
