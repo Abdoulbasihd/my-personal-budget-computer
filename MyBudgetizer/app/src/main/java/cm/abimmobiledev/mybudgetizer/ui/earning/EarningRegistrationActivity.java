@@ -54,6 +54,7 @@ public class EarningRegistrationActivity extends AppCompatActivity {
             incomeRegViewModel.setIncomeDateTime("");
             incomeRegViewModel.setReasonOrDesc("");
             incomeRegViewModel.setSourceFunds("");
+            earningRegistrationBinding.stickerEdit.setText("");
             earningRegistrationBinding.executePendingBindings();
         });
 
@@ -67,11 +68,12 @@ public class EarningRegistrationActivity extends AppCompatActivity {
             String amount = incomeRegViewModel.getAmount().trim();
             String fundSource = incomeRegViewModel.getSourceFunds().trim();
             String reason = incomeRegViewModel.getReasonOrDesc().trim();
+            String sticker = earningRegistrationBinding.stickerEdit.getText().toString();
 
             try {
                 if (mandatoryFilled(entitle, amount, dateTime)) {
                     incomeRegProgress.show();
-                    incomeDatabaseInsert(entitle, amount, dateTime, fundSource, reason);
+                    incomeDatabaseInsert(entitle, amount, dateTime, fundSource, reason, sticker);
 
                     return;
                 }
@@ -85,6 +87,12 @@ public class EarningRegistrationActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        IncNavigator.openEarningsHome(EarningRegistrationActivity.this);
     }
 
     /**
@@ -158,14 +166,15 @@ public class EarningRegistrationActivity extends AppCompatActivity {
      * @param dateReg String
      * @param fundSource String
      * @param reason String
+     * @param sticker string
      */
-    public void incomeDatabaseInsert(String entitle, String amount, String dateReg, String fundSource, String reason) {
+    public void incomeDatabaseInsert(String entitle, String amount, String dateReg, String fundSource, String reason, String sticker) {
 
         ExecutorService insertEarnExec = Executors.newSingleThreadExecutor();
         insertEarnExec.execute(() -> {
 
             try {
-                Earning earningNew = new Earning(entitle, Double.parseDouble(amount), fundSource, dateReg,  reason);
+                Earning earningNew = new Earning(entitle, Double.parseDouble(amount), fundSource, dateReg,  reason, sticker);
 
 
                 BudgetizerAppDatabase appDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());

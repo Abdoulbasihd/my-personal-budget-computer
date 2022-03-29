@@ -260,17 +260,6 @@
                 android:layout_margin="@dimen/default_border_margin_4"
                 />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/back_from_income_menu"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_alignParentBottom="true"
-                android:layout_toStartOf="@+id/new_income"
-                android:background="@color/default_text_color_blue_cyan"
-                android:src="@drawable/twotone_keyboard_arrow_left_white_48dp"
-                android:layout_margin="@dimen/default_border_margin_4"
-                />
-
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

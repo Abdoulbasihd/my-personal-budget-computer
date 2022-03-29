@@ -21,11 +21,14 @@ public class Earning extends BasicInfo {
     @ColumnInfo(name = "reason_or_desc")
     public String reasonOrDesc;
 
-    public Earning(String entitled, double amount, String fundsSource, String incomeDateAndTime, String reasonOrDesc) {
+    public String sticker; //for filtering purpose.
+
+    public Earning(String entitled, double amount, String fundsSource, String incomeDateAndTime, String reasonOrDesc, String sticker) {
         super(entitled, amount);
         this.fundsSource = fundsSource;
         this.incomeDateAndTime = incomeDateAndTime;
         this.reasonOrDesc = reasonOrDesc;
+        this.sticker = sticker;
     }
 
     public int getEarningId() {
@@ -58,5 +61,13 @@ public class Earning extends BasicInfo {
 
     public void setFundsSource(String fundsSource) {
         this.fundsSource = fundsSource;
+    }
+
+    public String getSticker() {
+        return sticker;
+    }
+
+    public void setSticker(String sticker) {
+        this.sticker = sticker;
     }
 }

@@ -30,7 +30,6 @@ import cm.abimmobiledev.mybudgetizer.exception.BudgetizerGeneralException;
 import cm.abimmobiledev.mybudgetizer.nav.ExNavigation;
 import cm.abimmobiledev.mybudgetizer.nav.IncNavigator;
 import cm.abimmobiledev.mybudgetizer.ui.earning.adapter.IncomeAdapter;
-import cm.abimmobiledev.mybudgetizer.ui.expense.BottomSheetMoreExpenseMenuFragment;
 import cm.abimmobiledev.mybudgetizer.useful.Util;
 
 public class EarningBoardActivity extends AppCompatActivity {
@@ -56,18 +55,15 @@ public class EarningBoardActivity extends AppCompatActivity {
         earningsListProgress = Util.initProgressDialog(this, getString(R.string.looking_up));
         earningBoardResumeProgress = Util.initProgressDialog(this, getString(R.string.looking_up));
 
-        earningBoardBinding.backFromIncomeMenu.setOnClickListener(backView -> this.onBackPressed());
-
-
         earningBoardBinding.newIncome.setOnClickListener(newExpenseView -> {
             //open expense registration page
             IncNavigator.openNewIncome(EarningBoardActivity.this);
         });
 
         earningBoardBinding.showMore.setOnClickListener(moveExpensesView -> {
-            BottomSheetMoreExpenseMenuFragment moreExpenseBD = new BottomSheetMoreExpenseMenuFragment();
+            BottomSheetMoreEarningsFragment moreEarningsBD = new BottomSheetMoreEarningsFragment();
             //moreExpenseBD.setContentView(R.layout.fragment_bottom_sheet_more_expense_menu);
-            moreExpenseBD.show(getSupportFragmentManager(), "ModalBottomSheet");
+            moreEarningsBD.show(getSupportFragmentManager(), "ModalBottomSheet");
 
         });
 

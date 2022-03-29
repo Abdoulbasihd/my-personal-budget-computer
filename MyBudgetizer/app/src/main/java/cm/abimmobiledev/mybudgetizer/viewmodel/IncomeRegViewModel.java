@@ -11,7 +11,7 @@ public class IncomeRegViewModel extends BaseObservable {
     private Earning earning;
 
     public IncomeRegViewModel() {
-        this.earning = new Earning("", 0, "", "", "");
+        this.earning = new Earning("", 0, "", "", "", "");
     }
 
     @Bindable
@@ -71,6 +71,16 @@ public class IncomeRegViewModel extends BaseObservable {
     public void  setSourceFunds (String sourceFunds){
         earning.setFundsSource(sourceFunds);
         notifyPropertyChanged(BR.sourceFunds);
+    }
+
+    @Bindable
+    public String getSticker(){
+        return earning.getSticker();
+    }
+
+    public void  setSticker (String sticker){
+        earning.setFundsSource(sticker);
+        notifyPropertyChanged(BR.sticker);
     }
 
 }

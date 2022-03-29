@@ -11,7 +11,7 @@ public class ExpenseRegViewModel extends BaseObservable {
     private Expense expense;
 
     public ExpenseRegViewModel() {
-        this.expense = new Expense("", 0, "", "");
+        this.expense = new Expense("", 0, "", "", "");
     }
 
     @Bindable
@@ -61,6 +61,16 @@ public class ExpenseRegViewModel extends BaseObservable {
     public void  setReason (String reason){
         expense.setReason(reason);
         notifyPropertyChanged(BR.reason);
+    }
+
+    @Bindable
+    public String getSticker(){
+        return expense.getSticker();
+    }
+
+    public void  setSticker (String sticker){
+        expense.setReason(sticker);
+        notifyPropertyChanged(BR.sticker);
     }
 
 

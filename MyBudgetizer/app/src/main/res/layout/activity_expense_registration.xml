@@ -144,7 +144,7 @@
                         android:layout_height="50dp"
                         android:layout_alignParentEnd="true"
                         android:src="@drawable/twotone_edit_calendar_blue_500_48dp"
-                        android:contentDescription="calendar_pick_up" />
+                        android:contentDescription="@string/expense_date" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/reason_layout"
@@ -171,6 +171,34 @@
                             />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/sticker_layout"
+                        android:layout_below="@+id/reason_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/big_margin_10"
+                        android:layout_marginStart="@dimen/small_margin_2"
+                        android:layout_marginEnd="@dimen/small_margin_2"
+                        app:hintTextColor="@color/default_text_color_blue_cyan"
+                        app:boxBackgroundColor="@color/default_text_input_color"
+                        android:hint="@string/filtering_sticker"
+
+                        android:textColorHint="@color/default_text_color_blue_cyan"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/sticker_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/default_text_color"
+                            android:maxLines="1"
+                            android:maxLength="8"
+                            android:inputType="text"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
 
                 </RelativeLayout>
 

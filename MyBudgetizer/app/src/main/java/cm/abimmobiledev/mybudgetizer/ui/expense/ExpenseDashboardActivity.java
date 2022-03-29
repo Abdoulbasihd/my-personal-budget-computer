@@ -4,7 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -55,7 +54,6 @@ public class ExpenseDashboardActivity extends AppCompatActivity {
 
         expenseDashboardBinding = DataBindingUtil.setContentView(this, R.layout.activity_expense_dashboard);
 
-        expenseDashboardBinding.backFromExpenseMenu.setOnClickListener(backView -> this.onBackPressed());
 
         expenseDashboardBinding.newExpense.setOnClickListener(newExpenseView -> {
             //open expense registration page

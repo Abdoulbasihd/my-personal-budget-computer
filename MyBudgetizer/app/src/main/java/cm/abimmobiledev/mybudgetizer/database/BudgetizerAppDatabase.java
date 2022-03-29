@@ -24,7 +24,7 @@ public abstract class BudgetizerAppDatabase extends RoomDatabase {
         if (budgetizerAppDatabaseSingleInstance==null) {
             budgetizerAppDatabaseSingleInstance  = Room.databaseBuilder(applicationContext.getApplicationContext(), BudgetizerAppDatabase.class, "my-budgets-db")
                     //not allowing main thread queries ? or  allowMainThreadQueries
-                    .fallbackToDestructiveMigration()
+                    //.fallbackToDestructiveMigration()
                     .build();
         }
 

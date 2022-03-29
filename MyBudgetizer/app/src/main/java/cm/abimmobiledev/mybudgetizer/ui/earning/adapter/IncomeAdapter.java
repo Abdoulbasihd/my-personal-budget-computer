@@ -44,11 +44,18 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
 
         Earning earning = earnings.get(position);
 
+        if (earning.sticker.trim().isEmpty())
+            holder.incomeStickerCard.setVisibility(View.GONE);
+        else
+            holder.incomeStickerCard.setVisibility(View.VISIBLE);
+
+
         holder.incomeDescription.setText(earning.getReasonOrDesc());
         holder.incomeTitle.setText(earning.getEntitled());
         holder.incomeAmount.setText(String.valueOf(earning.getAmount()));
         holder.incomeDate.setText(earning.getIncomeDateAndTime());
         holder.incomeFundsSource.setText(earning.getFundsSource());
+        holder.incomeSticker.setText(earning.getSticker());
 
         holder.incomeCard.setOnClickListener(v -> Toast.makeText(holder.incomeCard.getContext(), "suggestions @ abdulbasihd@gmail.com. Thanks", Toast.LENGTH_LONG).show());
 
@@ -99,6 +106,9 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
         final CardView incomeCard;
         final CardView deleteContent;
 
+        final TextView incomeSticker;
+        final CardView incomeStickerCard;
+
         public IncomeViewHolder(@NonNull View incomeItemView) {
             super(incomeItemView);
 
@@ -109,6 +119,9 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
             incomeFundsSource = incomeItemView.findViewById(R.id.funds_source);
             incomeCard = incomeItemView.findViewById(R.id.income_card);
             deleteContent = incomeItemView.findViewById(R.id.delete_content);
+
+            incomeSticker = incomeItemView.findViewById(R.id.sticker);
+            incomeStickerCard = incomeItemView.findViewById(R.id.income_sticker);
 
         }
 
