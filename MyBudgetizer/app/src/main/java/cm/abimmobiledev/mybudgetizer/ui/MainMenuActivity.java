@@ -12,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar;
 import cm.abimmobiledev.mybudgetizer.R;
 import cm.abimmobiledev.mybudgetizer.databinding.ActivityMainMenuBinding;
 import cm.abimmobiledev.mybudgetizer.nav.ExNavigation;
+import cm.abimmobiledev.mybudgetizer.nav.IncNavigator;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -35,6 +36,7 @@ public class MainMenuActivity extends AppCompatActivity {
         mainMenuBinding.cardAccountManager.setOnClickListener(aboutView -> Snackbar.make(aboutView, getString(R.string.not_yet_implemented), Snackbar.LENGTH_LONG).show());
 
         mainMenuBinding.cardExpenses.setOnClickListener(expensesView -> ExNavigation.openExpensesHome(MainMenuActivity.this));
+        mainMenuBinding.cardEarning.setOnClickListener(earnView -> IncNavigator.openEarningsHome(MainMenuActivity.this));
     }
 
 

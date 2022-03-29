@@ -21,77 +21,217 @@
             android:layout_margin="@dimen/small_margin_2"
             >
 
-            <TextView
-                android:id="@+id/expenses_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:textColor="@color/default_text_color_blue_cyan"
-                android:textSize="@dimen/title_text_medium_size_15"
-                android:textStyle="bold"
-                android:text="@string/my_periodical_expenses"
-                />
-            <View
-                android:layout_width="@dimen/view_line_default_width"
-                android:layout_height="0.7dp"
-                android:id="@+id/title_separator"
-                android:layout_below="@+id/expenses_title"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/big_margin_10"
-                />
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/search_layout"
-                android:visibility="visible"
-                android:layout_below="@+id/title_separator"
+                android:orientation="vertical"
+                android:id="@+id/expenses_header"
                 >
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_toStartOf="@+id/expense_search_date_picker"
-                    app:boxBackgroundColor="@color/default_input_color"
-                    android:hint="@string/fill_in_a_date_or_part_of_a_date"
-                    app:hintTextColor="@color/default_text_color_blue_cyan"
-                    app:hintAnimationEnabled="true"
-                    >
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:id="@+id/expense_date_input"
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageView
-                    android:id="@+id/expense_search_date_picker"
-                    android:layout_toStartOf="@+id/expense_search"
-                    android:layout_margin="@dimen/small_margin_2"
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/twotone_edit_calendar_blue_500_48dp"
+                <TextView
+                    android:id="@+id/expenses_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:textSize="@dimen/title_text_medium_size_15"
+                    android:textStyle="bold"
+                    android:text="@string/my_periodical_expenses"
+                    />
+                <View
+                    android:layout_width="@dimen/view_line_default_width"
+                    android:layout_height="1dp"
+                    android:id="@+id/title_separator"
+                    android:layout_below="@+id/expenses_title"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/big_margin_10"
                     />
 
-                <ImageView
-                    android:id="@+id/expense_search"
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/small_margin_2"
-                    android:layout_marginTop="@dimen/small_margin_2"
-                    android:layout_marginEnd="@dimen/small_margin_2"
-                    android:layout_marginBottom="@dimen/small_margin_2"
-                    android:src="@drawable/ic_twotone_search_48" />
+                <androidx.cardview.widget.CardView
+                    android:layout_below="@+id/title_separator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/search_layout"
+                        >
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/card_date_filter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                >
+                                <RelativeLayout
+                                    android:id="@+id/search_by_date_title_layout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    >
+
+                                    <TextView
+                                        android:text="@string/filter_expenses_of_a_period_day_or_month_or_year"
+                                        android:layout_centerVertical="true"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toStartOf="@+id/filter_by_date_title_icon"
+                                        />
+                                    <ImageView
+                                        android:id="@+id/filter_by_date_title_icon"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_width="25dp"
+                                        android:layout_height="25dp"
+                                        android:src="@drawable/ic_twotone_arrow_circle_down_24"
+                                        />
+
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/search_by_date_layout"
+                                    android:visibility="visible"
+                                    android:layout_below="@+id/search_by_date_title_layout"
+                                    >
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:layout_toStartOf="@+id/expense_search_date_picker"
+                                        app:boxBackgroundColor="@color/default_input_color"
+                                        android:hint="@string/fill_in_a_date_or_part_of_a_date"
+                                        app:hintTextColor="@color/default_text_color_blue_cyan"
+                                        app:hintAnimationEnabled="true"
+                                        >
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:layout_width="match_parent"
+                                            android:layout_height="50dp"
+                                            android:id="@+id/expense_date_input"
+                                            />
+
+                                    </com.google.android.material.textfield.TextInputLayout>
+
+                                    <ImageView
+                                        android:id="@+id/expense_search_date_picker"
+                                        android:layout_toStartOf="@+id/expense_search"
+                                        android:layout_margin="@dimen/small_margin_2"
+                                        android:layout_width="40dp"
+                                        android:layout_height="50dp"
+                                        android:src="@drawable/twotone_edit_calendar_blue_500_48dp"
+                                        />
+
+                                    <ImageView
+                                        android:id="@+id/expense_search"
+                                        android:layout_width="40dp"
+                                        android:layout_height="50dp"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_marginStart="@dimen/small_margin_2"
+                                        android:layout_marginTop="@dimen/small_margin_2"
+                                        android:layout_marginEnd="@dimen/small_margin_2"
+                                        android:layout_marginBottom="@dimen/small_margin_2"
+                                        android:src="@drawable/ic_twotone_search_48" />
+
+                                </RelativeLayout>
+                            </RelativeLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/card_sticker_filter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/card_date_filter"
+                            android:layout_margin="@dimen/small_margin_2"
+                            app:cardElevation="@dimen/default_card_elevation_2"
+                            app:cardCornerRadius="@dimen/default_card_elevation_2"
+                            >
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                >
+                                <RelativeLayout
+                                    android:id="@+id/search_by_sticker_title_layout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    >
+
+                                    <TextView
+                                        android:text="@string/filter_by_sticker"
+                                        android:layout_centerVertical="true"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toStartOf="@+id/filter_by_sticker_title_icon"
+                                        />
+                                    <ImageView
+                                        android:id="@+id/filter_by_sticker_title_icon"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_width="25dp"
+                                        android:layout_height="25dp"
+                                        android:src="@drawable/ic_twotone_arrow_circle_down_24"
+                                        />
+
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/sticker_search_layout"
+                                    android:visibility="visible"
+                                    android:layout_below="@+id/search_by_sticker_title_layout"
+                                    >
+
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:layout_toStartOf="@+id/income_search"
+                                        app:boxBackgroundColor="@color/default_input_color"
+                                        android:hint="@string/fill_in_a_date_or_part_of_a_date"
+                                        app:hintTextColor="@color/default_text_color_blue_cyan"
+                                        app:hintAnimationEnabled="true"
+                                        >
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:layout_width="match_parent"
+                                            android:layout_height="50dp"
+                                            android:id="@+id/sticker_input"
+                                            />
+
+                                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                                    <ImageView
+                                        android:id="@+id/income_search"
+                                        android:layout_width="40dp"
+                                        android:layout_height="50dp"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_marginStart="@dimen/small_margin_2"
+                                        android:layout_marginTop="@dimen/small_margin_2"
+                                        android:layout_marginEnd="@dimen/small_margin_2"
+                                        android:layout_marginBottom="@dimen/small_margin_2"
+                                        android:src="@drawable/ic_twotone_search_48" />
+
+                                </RelativeLayout>
+                            </RelativeLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
 
             </RelativeLayout>
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/periodic_expenses_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/search_layout" />
+                android:layout_below="@+id/expenses_header" />
 
             <TextView
                 android:id="@+id/no_item_found_tv"

@@ -3,7 +3,6 @@ package cm.abimmobiledev.mybudgetizer.ui.expense.adapter;
 import android.app.ProgressDialog;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +46,13 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
     public void onBindViewHolder(@NonNull ExpenseViewHolder holder, int position) {
         Expense expense = expenses.get(position);
 
+        if (expense.sticker.trim().isEmpty())
+            holder.expenseStickerCard.setVisibility(View.GONE);
+        else
+            holder.expenseStickerCard.setVisibility(View.VISIBLE);
+
+        holder.expenseSticker.setText(expense.getSticker());
+
         holder.expenseReason.setText(expense.getReason());
         holder.expenseTitle.setText(expense.getEntitled());
         holder.expenseAmount.setText(String.valueOf(expense.getAmount()));
@@ -56,34 +62,42 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         
         holder.deleteContent.setOnClickListener(deleteItemView -> {
 
-            ProgressDialog expenseDelProgress = Util.initProgressDialog(holder.deleteContent.getContext(), holder.deleteContent.getContext().getString(R.string.deleting));
-            expenseDelProgress.show();
-
-            AlertDialog.Builder myExpenseDeletorDialog = Util.initAlertDialogBuilder(holder.deleteContent.getContext(), "État",  "Dépense Supprimée. Bien vouloir actualiser");
-
-
-            ExecutorService expenseDelService = Executors.newSingleThreadExecutor();
-            
-            expenseDelService.execute(() -> {
-
-                BudgetizerAppDatabase expenseDelAppDatabase = BudgetizerAppDatabase.getInstance(holder.deleteContent.getContext());
-                expenseDelAppDatabase.expenseDAO().delete(expense);
-                expenses.remove(expense);
-
-                new Handler(Looper.getMainLooper()).post(() -> {
-                    expenseDelProgress.dismiss();
-                    myExpenseDeletorDialog.setPositiveButton("OK", (dialog, which) -> {
-                        //nothing to do here, just close
-                    }).show();
-                });
-
-
-
-                notifyItemRemoved(position);
-                notifyItemChanged(position);
-                //notifyItemPositionChanged(position, expenses.size());
-
+            AlertDialog.Builder myExpenseDelAlertDialog = Util.initAlertDialogBuilder(holder.deleteContent.getContext(), "Alerte",  "Voulez-vous vraiment supprimer cette dépense");
+            myExpenseDelAlertDialog.setNegativeButton("Annuler", (dialog, which) -> {
+                //Ne rien faire ici
             });
+            myExpenseDelAlertDialog.setPositiveButton("Continuer", (dialog, which) -> {
+                ProgressDialog expenseDelProgress = Util.initProgressDialog(holder.deleteContent.getContext(), holder.deleteContent.getContext().getString(R.string.deleting));
+                expenseDelProgress.show();
+
+                AlertDialog.Builder myExpenseDeletorDialog = Util.initAlertDialogBuilder(holder.deleteContent.getContext(), "État",  "Dépense Supprimée. Bien vouloir actualiser");
+
+
+                ExecutorService expenseDelService = Executors.newSingleThreadExecutor();
+
+                expenseDelService.execute(() -> {
+
+                    BudgetizerAppDatabase expenseDelAppDatabase = BudgetizerAppDatabase.getInstance(holder.deleteContent.getContext());
+                    expenseDelAppDatabase.expenseDAO().delete(expense);
+                    expenses.remove(expense);
+
+                    new Handler(Looper.getMainLooper()).post(() -> {
+                        expenseDelProgress.dismiss();
+                        myExpenseDeletorDialog.setPositiveButton("OK", (dialog1, which1) -> {
+                            //nothing to do here, just close
+                        }).show();
+                    });
+
+
+
+                    notifyItemRemoved(position);
+                    notifyItemChanged(position);
+                    //notifyItemPositionChanged(position, expenses.size());
+
+                });
+            });
+            myExpenseDelAlertDialog.show();
+
         });
     }
 
@@ -94,6 +108,9 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
 
     public static class ExpenseViewHolder extends RecyclerView.ViewHolder {
 
+        final TextView expenseSticker;
+        final CardView expenseStickerCard;
+
         final TextView expenseTitle;
         final TextView expenseAmount;
         final TextView expenseDate;
@@ -103,6 +120,9 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
 
         public ExpenseViewHolder(@NonNull View expenseItemView) {
             super(expenseItemView);
+
+            expenseSticker = expenseItemView.findViewById(R.id.sticker);
+            expenseStickerCard = expenseItemView.findViewById(R.id.expense_sticker);
 
             expenseTitle = expenseItemView.findViewById(R.id.expense_title);
             expenseAmount = expenseItemView.findViewById(R.id.amount_expended);
@@ -117,16 +137,4 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
     }
 
 
-    public int notifyItemPositionChanged(int position, int length) {
-
-        if (position<0 || length <0 || position>length)
-            return 0;
-
-        for (int counter = position; counter < length; counter++) {
-            notifyItemChanged(counter);
-            Log.d("TAG", "notifyItemPositionChanged: "+counter);
-        }
-
-        return 1;
-    }
 }

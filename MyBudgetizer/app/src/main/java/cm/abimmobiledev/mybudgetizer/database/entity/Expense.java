@@ -6,26 +6,24 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "expense")
-public class Expense {
+public class Expense extends BasicInfo {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "expense_id")
     public int expenseId;
 
-    public String entitled;
-
-    public double amount;
 
     @ColumnInfo(name = "date_time_of_expense")
     public String dateTimeOfExpense;
 
     public String reason;
+    public String sticker; // for filtering purpose; example : construction
 
-    public Expense(String entitled, double amount, String dateTimeOfExpense, String reason) {
-        this.entitled = entitled;
-        this.amount = amount;
+    public Expense(String entitled, double amount, String dateTimeOfExpense, String reason, String sticker) {
+        super(entitled, amount);
         this.dateTimeOfExpense = dateTimeOfExpense;
         this.reason = reason;
+        this.sticker = sticker;
     }
 
     public int getExpenseId() {
@@ -34,22 +32,6 @@ public class Expense {
 
     public void setExpenseId(int expenseId) {
         this.expenseId = expenseId;
-    }
-
-    public String getEntitled() {
-        return entitled;
-    }
-
-    public void setEntitled(String entitled) {
-        this.entitled = entitled;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
     }
 
     public String getDateTimeOfExpense() {
@@ -66,5 +48,13 @@ public class Expense {
 
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    public String getSticker() {
+        return sticker;
+    }
+
+    public void setSticker(String sticker) {
+        this.sticker = sticker;
     }
 }
