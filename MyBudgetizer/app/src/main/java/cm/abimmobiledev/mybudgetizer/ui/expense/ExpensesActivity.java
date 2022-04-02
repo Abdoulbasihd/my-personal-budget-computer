@@ -4,7 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -86,7 +85,7 @@ public class ExpensesActivity extends AppCompatActivity {
         ExNavigation.openExpensesHome(this);
     }
 
-    public boolean isGivenDateSearch(String param) throws BudgetizerGeneralException {
+    public static boolean isGivenDateSearch(String param) throws BudgetizerGeneralException {
         if(param==null)
             throw new BudgetizerGeneralException("Opening expense search... Param couldn't be null");
 
@@ -97,15 +96,15 @@ public class ExpensesActivity extends AppCompatActivity {
         if (isGivenDateSearch(param))
             activityExpensesBinding.searchLayout.setVisibility(View.VISIBLE);
         else
-            activityExpensesBinding.searchLayout.setVisibility(View.INVISIBLE);
+            activityExpensesBinding.searchLayout.setVisibility(View.GONE);
 
     }
 
-    public String getSearchParam (Intent intent) throws BudgetizerGeneralException {
+    public static String getSearchParam (Intent intent) throws BudgetizerGeneralException {
         if (intent==null)
-            throw new BudgetizerGeneralException("Opening expense search... Param intent couldn't be null");
+            throw new BudgetizerGeneralException("Opening expense/earnings search... Param intent couldn't be null");
 
-        return intent.getStringExtra(ExNavigation.EXPENSE_SEARCH_PARAM);
+        return intent.getStringExtra(ExNavigation.SEARCH_PARAM);
     }
 
     public void getExpenses(String dateSearchPattern) throws BudgetizerGeneralException {

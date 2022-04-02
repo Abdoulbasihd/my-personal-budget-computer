@@ -201,9 +201,12 @@
                             android:id="@+id/debts_logo"
                             android:layout_width="100dp"
                             android:layout_height="70dp"
-                            android:layout_margin="@dimen/small_margin_2"
-                            android:src="@drawable/twotone_attach_money_blue_500_48dp"
-                            android:contentDescription="@string/icon_expenses" />
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginTop="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            android:layout_marginBottom="@dimen/small_margin_2"
+                            android:contentDescription="@string/icon_expenses"
+                            android:src="@drawable/debt" />
 
                         <TextView
                             android:id="@+id/debts_title"
@@ -240,11 +243,14 @@
                             android:id="@+id/receivable_logo"
                             android:layout_width="90dp"
                             android:layout_height="90dp"
-                            android:layout_margin="@dimen/small_margin_2"
                             android:layout_alignParentStart="true"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/twotone_monetization_on_blue_500_48dp"
-                            android:contentDescription="@string/icon_expenses" />
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginTop="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            android:layout_marginBottom="@dimen/small_margin_2"
+                            android:contentDescription="@string/icon_expenses"
+                            android:src="@drawable/recouvrement_2" />
 
                         <View
                             android:layout_width="0.8dp"

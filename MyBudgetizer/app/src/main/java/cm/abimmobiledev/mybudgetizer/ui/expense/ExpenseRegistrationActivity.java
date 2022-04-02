@@ -3,7 +3,6 @@ package cm.abimmobiledev.mybudgetizer.ui.expense;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -51,6 +50,7 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
             expenseRegViewModel.setEntitle("");
             expenseRegViewModel.setDateTimeOfExpense("");
             expenseRegViewModel.setReason("");
+            expenseRegistrationBinding.stickerEdit.setText("");
             expenseRegistrationBinding.executePendingBindings();
         });
 
@@ -63,11 +63,12 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
             String dateTime = expenseRegViewModel.getDateTimeOfExpense().trim();
             String amount = expenseRegViewModel.getAmount().trim();
             String reason = expenseRegViewModel.getReason().trim();
+            String sticker = expenseRegistrationBinding.stickerEdit.getText().toString();
 
             try {
                 if (mandatoryFilled(entitle, amount, dateTime)) {
                     expenseRegProgress.show();
-                    expenseDatabaseInsert(entitle, amount, dateTime, reason);
+                    expenseDatabaseInsert(entitle, amount, dateTime, reason, sticker);
 
                     return;
                 }
@@ -142,7 +143,7 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
      * @return a boolean : true when filled.
      * @throws BudgetizerGeneralException when amount ain't a number
      */
-    public boolean mandatoryFilled(String entitle, String amount, String dateTime) throws BudgetizerGeneralException {
+    public static boolean mandatoryFilled(String entitle, String amount, String dateTime) throws BudgetizerGeneralException {
 
         //when amount ain't a number (event if is null), let's catch an exception
         try {
@@ -177,14 +178,15 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
      * @param amount String
      * @param dateReg String
      * @param reason String
+     * @param sticker String
      */
-    public void expenseDatabaseInsert(String entitle, String amount, String dateReg, String reason) {
+    public void expenseDatabaseInsert(String entitle, String amount, String dateReg, String reason, String sticker) {
 
         ExecutorService insertExpenseExec = Executors.newSingleThreadExecutor();
         insertExpenseExec.execute(() -> {
 
             try {
-                Expense expenseNew = new Expense(entitle, Double.parseDouble(amount), dateReg, reason);
+                Expense expenseNew = new Expense(entitle, Double.parseDouble(amount), dateReg, reason, sticker);
 
 
                 BudgetizerAppDatabase appDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());
@@ -201,9 +203,7 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
 
             runOnUiThread(() -> {
                 expenseRegDialog.setMessage(getString(R.string.saved));
-                expenseRegDialog.setNegativeButton(getString(R.string.back), (dialog, which) -> {
-                    ExNavigation.openExpensesHome(ExpenseRegistrationActivity.this);
-                });
+                expenseRegDialog.setNegativeButton(getString(R.string.back), (dialog, which) -> ExNavigation.openExpensesHome(ExpenseRegistrationActivity.this));
                 expenseRegDialog.show();
                 expenseRegProgress.dismiss();
             });

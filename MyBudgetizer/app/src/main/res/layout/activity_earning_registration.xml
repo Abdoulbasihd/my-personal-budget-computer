@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="expenseModel"
-            type="cm.abimmobiledev.mybudgetizer.viewmodel.ExpenseRegViewModel" />
+            name="incomeModel"
+            type="cm.abimmobiledev.mybudgetizer.viewmodel.IncomeRegViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -73,7 +73,7 @@
                             android:id="@+id/entitled_edit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@={expenseModel.entitle}"
+                            android:text="@={incomeModel.entitle}"
                             android:textColor="@color/default_text_color"
                             android:maxLines="1"
                             android:maxEms="1"
@@ -102,7 +102,7 @@
                             android:id="@+id/amount_edit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@={expenseModel.amount}"
+                            android:text="@={incomeModel.amount}"
                             android:textColor="@color/default_text_color"
                             android:inputType="numberDecimal"
                             />
@@ -129,7 +129,7 @@
                             android:id="@+id/date_time_edit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@={expenseModel.dateTimeOfExpense}"
+                            android:text="@={incomeModel.incomeDateTime}"
                             android:inputType="datetime"
                             android:textColor="@color/default_text_color"
                             />
@@ -144,11 +144,37 @@
                         android:layout_height="50dp"
                         android:layout_alignParentEnd="true"
                         android:src="@drawable/twotone_edit_calendar_blue_500_48dp"
-                        android:contentDescription="@string/expense_date" />
+                        android:contentDescription="calendar_pick_up" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/funds_source_layout"
+                        android:layout_below="@+id/date_time_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/big_margin_10"
+                        android:layout_marginStart="@dimen/small_margin_2"
+                        android:layout_marginEnd="@dimen/small_margin_2"
+                        app:hintTextColor="@color/default_text_color_blue_cyan"
+                        app:boxBackgroundColor="@color/default_text_input_color"
+                        android:hint="@string/funds_sources"
+                        android:textColorHint="@color/default_text_color_blue_cyan"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/funds_source_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@={incomeModel.sourceFunds}"
+                            android:inputType="text"
+                            android:textColor="@color/default_text_color"
+
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/reason_layout"
-                        android:layout_below="@+id/date_time_layout"
+                        android:layout_below="@+id/funds_source_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/big_margin_10"
@@ -165,8 +191,9 @@
                             android:id="@+id/reason_edit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@={expenseModel.reason}"
+                            android:text="@={incomeModel.reasonOrDesc}"
                             android:textColor="@color/default_text_color"
+                            android:inputType="text"
 
                             />
 
@@ -192,20 +219,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/default_text_color"
-                            android:maxLines="1"
                             android:maxLength="8"
+                            android:maxLines="1"
                             android:inputType="text"
                             />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
 
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/save_expense"
+                android:id="@+id/save_income"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/new_expense_form_on_card"
@@ -219,4 +245,5 @@
 
 
     </androidx.cardview.widget.CardView>
+
 </layout>

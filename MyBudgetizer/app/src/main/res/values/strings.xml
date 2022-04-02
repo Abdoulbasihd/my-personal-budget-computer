@@ -46,4 +46,22 @@
     <string name="fill_in_a_date_or_part_of_a_date">Entrer une date ou une partie d\'une date</string>
     <string name="deleting">Suppression en cours...</string>
     <string name="back">Rentrer</string>
+    <string name="summary_of_my_incomes">Résumé de mes gains</string>
+    <string name="my_recent_incomes">Mes récents gains (entrées)</string>
+    <string name="no_income_found">Aucun gain (aucune entrée)</string>
+    <string name="amount_received">Montant perçu</string>
+    <string name="collection_date">Date de perception</string>
+    <string name="funds_sources">Source des fonds</string>
+    <string name="state">État</string>
+    <string name="incomes_of_today">Revenus d\'aujourd\'hui</string>
+    <string name="incomes_of_this_month">Revenu de ce mois</string>
+    <string name="incomes_of_this_year">Revenu de cette année</string>
+    <string name="view_incomes_of_a_day">Voir les revenus d\'une date (Jour ou mois ou années)</string>
+    <string name="my_incomes">Mes revenus</string>
+    <string name="my_incomes_of_today">Mes revenus d\'aujoud\'hui</string>
+    <string name="my_incomes_of_this_month">Mes revenus de ce mois</string>
+    <string name="my_incomes_of_this_year">Mes revenus de cette année</string>
+    <string name="filtering_sticker">Étiquette de filtrage</string>
+    <string name="filter_expenses_of_a_period_day_or_month_or_year">Filtrer les dépenses d\'une période</string>
+    <string name="filter_by_sticker">Filter par étiquette de filtrage</string>
 </resources>
