@@ -39,15 +39,17 @@
 
         <TextView
             android:id="@+id/paragraph_2"
-            android:layout_below="@+id/paragraph_1"
-            android:layout_margin="@dimen/default_border_margin_4"
-            android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cette version présente juste la gestion des dépenses : enregistrer une nouvelle dépense, voir les dépenses d'une période, et éventuellement supprimer une dépense (à cause d'erreur d'enregistrement ??)... Les autres fonctionnalité seront développer prochainement; merci de suivre les mis-à-jours"
+            android:layout_below="@+id/paragraph_1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/default_border_margin_4"
+            android:layout_marginTop="@dimen/default_border_margin_4"
+            android:layout_marginEnd="@dimen/default_border_margin_4"
+            android:layout_marginBottom="@dimen/default_border_margin_4"
+            android:text="Cette version présente juste les fonctionnalités gestion des dépenses et des gains : enregistrer, voir la liste d'une période donnée, et éventuellement supprimer (à cause d'erreur d'enregistrement ??)... Les autres fonctionnalité seront développer prochainement; merci de suivre les mis-à-jours"
             android:textAlignment="center"
-            android:textColor="@color/default_text_color_blue_cyan"
-            />
+            android:textColor="@color/default_text_color_blue_cyan" />
 
         <TextView
             android:id="@+id/paragraph_3"
