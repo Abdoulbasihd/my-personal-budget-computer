@@ -66,4 +66,6 @@
     <string name="filter_by_sticker">Filter par étiquette de filtrage</string>
     <string name="fill_in_a_sticker_for_filtering">Entrer une étiquette pour filt</string>
     <string name="total">Total</string>
+    <string name="my_last_debts_contracted">Mes dernières dettes contractées</string>
+    <string name="no_debt_found">Aucune dette trouvée.</string>
 </resources>
