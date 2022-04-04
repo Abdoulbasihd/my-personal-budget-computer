@@ -167,13 +167,13 @@
                                         android:layout_height="wrap_content"
                                         android:layout_toStartOf="@+id/filter_by_sticker_title_icon"
                                         />
+
                                     <ImageView
                                         android:id="@+id/filter_by_sticker_title_icon"
-                                        android:layout_alignParentEnd="true"
                                         android:layout_width="25dp"
                                         android:layout_height="25dp"
-                                        android:src="@drawable/ic_twotone_arrow_circle_down_24"
-                                        />
+                                        android:layout_alignParentEnd="true"
+                                        android:src="@drawable/ic_twotone_arrow_circle_down_24" />
 
                                 </RelativeLayout>
 
@@ -181,7 +181,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/sticker_search_layout"
-                                    android:visibility="visible"
+                                    android:visibility="gone"
                                     android:layout_below="@+id/search_by_sticker_title_layout"
                                     >
 
@@ -190,7 +190,7 @@
                                         android:layout_height="60dp"
                                         android:layout_toStartOf="@+id/income_search"
                                         app:boxBackgroundColor="@color/default_input_color"
-                                        android:hint="@string/fill_in_a_date_or_part_of_a_date"
+                                        android:hint="@string/fill_in_a_sticker_for_filtering"
                                         app:hintTextColor="@color/default_text_color_blue_cyan"
                                         app:hintAnimationEnabled="true"
                                         >
@@ -218,6 +218,42 @@
                             </RelativeLayout>
 
 
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/expenses_total_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/card_sticker_filter"
+                            android:layout_margin="@dimen/small_margin_2"
+                            app:cardBackgroundColor="@color/color_important"
+                            >
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/default_border_margin_4"
+                                >
+                                <TextView
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/total"
+                                    android:textSize="@dimen/title_text_medium_size_15"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/black"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentTop="true"
+                                    />
+                                <TextView
+                                    android:id="@+id/total_expended"
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/title_text_medium_size_15"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/black"
+                                    android:textAlignment="textEnd"
+                                    android:layout_alignParentEnd="true"
+                                    />
+                            </RelativeLayout>
                         </androidx.cardview.widget.CardView>
 
                     </RelativeLayout>

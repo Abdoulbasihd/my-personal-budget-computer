@@ -64,4 +64,6 @@
     <string name="filtering_sticker">Étiquette de filtrage</string>
     <string name="filter_expenses_of_a_period_day_or_month_or_year">Filtrer les dépenses d\'une période</string>
     <string name="filter_by_sticker">Filter par étiquette de filtrage</string>
+    <string name="fill_in_a_sticker_for_filtering">Entrer une étiquette pour filt</string>
+    <string name="total">Total</string>
 </resources>
