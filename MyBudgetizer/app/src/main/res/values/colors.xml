@@ -21,4 +21,8 @@
     <color name="default_text_color">#5E06FA</color>
     <color name="default_input_color">#4BFA00BB</color>
 
+    <color name="unpaid_red_color">#FF1414</color>
+    <color name="paid_green_color">#00FF00</color>
+
+
 </resources>

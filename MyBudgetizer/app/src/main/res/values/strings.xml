@@ -75,4 +75,10 @@
     <string name="repayment_due_date">Date limite de paiement</string>
     <string name="repayment_date__if_paid_already">Date de paiement (Si déjà payé)</string>
     <string name="must_be_a_number">Doit être un nombre</string>
+    <string name="paid_on">Payé le</string>
+    <string name="due_date">Date d\'échéance</string>
+    <string name="not_paid">Non payé</string>
+    <string name="paid">Payé</string>
+    <string name="debtor_names">Noms du debiteur</string>
+    <string name="debtor_contact">Contact du débiteur</string>
 </resources>

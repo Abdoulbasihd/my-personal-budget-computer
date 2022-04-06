@@ -19,8 +19,10 @@
         <entry key="app/src/main/res/layout/bs_menu_more_expense.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_bottom_sheet_more_earnings.xml" value="0.13958333333333334" />
         <entry key="app/src/main/res/layout/fragment_bottom_sheet_more_expense_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_debt.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_expense.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_income.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/item_receivable.xml" value="0.1" />
       </map>
     </option>
   </component>
