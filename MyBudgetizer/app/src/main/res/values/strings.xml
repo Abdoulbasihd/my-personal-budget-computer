@@ -68,4 +68,11 @@
     <string name="total">Total</string>
     <string name="my_last_debts_contracted">Mes dernières dettes contractées</string>
     <string name="no_debt_found">Aucune dette trouvée.</string>
+    <string name="save_a_debt">Enregistrer une dette</string>
+    <string name="creditor_names">Noms du créancier</string>
+    <string name="creditor_contact">Contact du créancier</string>
+    <string name="loaning_date">Date d\'emprunt</string>
+    <string name="repayment_due_date">Date limite de paiement</string>
+    <string name="repayment_date__if_paid_already">Date de paiement (Si déjà payé)</string>
+    <string name="must_be_a_number">Doit être un nombre</string>
 </resources>

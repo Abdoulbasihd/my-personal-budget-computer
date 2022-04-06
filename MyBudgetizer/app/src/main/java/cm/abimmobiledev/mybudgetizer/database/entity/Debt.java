@@ -20,6 +20,9 @@ public class Debt extends BasicInfo{
     @ColumnInfo(name = "repayment_due_date")
     public String repaymentDueDate;
 
+    @ColumnInfo(name = "repayment_date")
+    public String repaymentDate;
+
     public String description;
 
     @ColumnInfo(name = "creditor_name")
@@ -29,9 +32,8 @@ public class Debt extends BasicInfo{
     public String creditorContact;
 
 
-    public Debt(String entitled, double amount, boolean paid, String loanDate, String dueDate, String creditorName, String creditorContact, String description) {
-        super(entitled, amount);
-        this.refundedOrPaid = paid;
+    public Debt(String entitled, double amount, String loanDate, String dueDate, String creditorName, String creditorContact, String description, String sticker) {
+        super(entitled, amount, sticker);
         this.loaningDate = loanDate;
         this.repaymentDueDate = dueDate;
         this.creditorName = creditorName;
@@ -93,5 +95,13 @@ public class Debt extends BasicInfo{
 
     public void setCreditorContact(String creditorContact) {
         this.creditorContact = creditorContact;
+    }
+
+    public String getRepaymentDate() {
+        return repaymentDate;
+    }
+
+    public void setRepaymentDate(String repaymentDate) {
+        this.repaymentDate = repaymentDate;
     }
 }

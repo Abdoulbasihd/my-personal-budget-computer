@@ -19,7 +19,7 @@ public interface DebtDAO {
     List<Earning> loadAllByIds(int[] ids);
 
     /**
-     *
+     *<h1>Get paid or unpaid debts</h1>
      * @param paid boolean : true when looking for refunded debt, false else
      * @return list of either refunded or not debt (depending on param)
      */
@@ -34,6 +34,14 @@ public interface DebtDAO {
     @Query("SELECT * FROM debt WHERE loaning_date LIKE :likeFormattedLoanDate ")
     List<Debt> loadAllDebtLikeFormattedLoanDate(String likeFormattedLoanDate); // year formatted : %yyyy%;
 
+
+    /**
+     *
+     * @param likeFormattedPayDate String. %yyyy% for like year; <br> %yyyy/mm% for like month <br> and %yyyy/mm/dd% for like day formatted..
+     * @return a list of debts of a period
+     */
+    @Query("SELECT * FROM debt WHERE repayment_date LIKE :likeFormattedPayDate ")
+    List<Debt> loadAllDebtLikeFormattedPaymentDate(String likeFormattedPayDate); // year formatted : %yyyy%;
 
     /**
      *

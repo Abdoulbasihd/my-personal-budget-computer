@@ -21,14 +21,12 @@ public class Earning extends BasicInfo {
     @ColumnInfo(name = "reason_or_desc")
     public String reasonOrDesc;
 
-    public String sticker; //for filtering purpose.
 
     public Earning(String entitled, double amount, String fundsSource, String incomeDateAndTime, String reasonOrDesc, String sticker) {
-        super(entitled, amount);
+        super(entitled, amount, sticker);
         this.fundsSource = fundsSource;
         this.incomeDateAndTime = incomeDateAndTime;
         this.reasonOrDesc = reasonOrDesc;
-        this.sticker = sticker;
     }
 
     public int getEarningId() {
