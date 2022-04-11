@@ -13,10 +13,10 @@ import cm.abimmobiledev.mybudgetizer.database.entity.Earning;
 @Dao
 public interface DebtDAO {
     @Query("SELECT * FROM debt")
-    List<Earning> getAllDebts();
+    List<Debt> getAllDebts();
 
     @Query("SELECT * FROM debt WHERE debt_id IN (:ids)")
-    List<Earning> loadAllByIds(int[] ids);
+    List<Debt> loadAllByIds(int[] ids);
 
     /**
      *<h1>Get paid or unpaid debts</h1>

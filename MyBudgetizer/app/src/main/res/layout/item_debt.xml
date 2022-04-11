@@ -67,16 +67,14 @@
                     android:textStyle="bold" />
 
 
-
                 <View
+                    android:id="@+id/separator"
                     android:layout_width="20dp"
                     android:layout_height="0.7dp"
-                    android:layout_centerHorizontal="true"
                     android:layout_below="@+id/debt_title"
-                    android:id="@+id/separator"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginBottom="@dimen/default_border_margin_4"
-                    android:background="@color/default_text_color_blue_cyan"
-                    />
+                    android:background="@color/default_text_color_blue_cyan" />
 
                 <TextView
                     android:id="@+id/amount_title"
@@ -233,16 +231,15 @@
 
                 <TextView
                     android:id="@+id/witness_title"
-                    android:layout_below="@+id/creditor_contact_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/default_body_text_size_12"
-                    android:textColor="@color/default_text_color_blue_cyan"
-                    android:text="@string/witness"
-                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_below="@+id/creditor_contact_title"
                     android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginTop="@dimen/small_margin_2"
                     android:layout_marginEnd="@dimen/default_border_margin_4"
-                    />
+                    android:text="@string/witness"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:textSize="@dimen/default_body_text_size_12" />
                 <TextView
                     android:id="@+id/witness_name"
                     android:layout_width="wrap_content"

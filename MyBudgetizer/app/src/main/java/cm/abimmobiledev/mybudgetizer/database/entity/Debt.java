@@ -44,6 +44,10 @@ public class Debt extends BasicInfo{
         this.telltale = telltale;
     }
 
+    public Debt() {
+        super("", 0, "");
+    }
+
     public int getDebtId() {
         return debtId;
     }

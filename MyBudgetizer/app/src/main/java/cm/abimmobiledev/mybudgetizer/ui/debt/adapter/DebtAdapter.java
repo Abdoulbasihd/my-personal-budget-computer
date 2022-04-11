@@ -62,6 +62,7 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtViewHolder
         holder.debtSticker.setText(debt.getSticker());
         holder.creditorName.setText(debt.getCreditorName());
         holder.creditorContact.setText(debt.getCreditorContact());
+        holder.telltaleName.setText(debt.getTelltale());
         holder.paidOnDate.setText(debt.getRepaymentDate());
         holder.dueDate.setText(debt.getRepaymentDueDate());
         holder.loanDate.setText(debt.getLoaningDate());
@@ -116,7 +117,7 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtViewHolder
         return debts.size();
     }
 
-    public class DebtViewHolder extends RecyclerView.ViewHolder {
+    public static class DebtViewHolder extends RecyclerView.ViewHolder {
 
         final TextView debtTitle;
         final TextView debtAmount;
@@ -125,6 +126,8 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtViewHolder
         final TextView paidOnDate;
         final TextView creditorName;
         final TextView creditorContact;
+
+        final TextView telltaleName; //the person who testify
 
         final CardView debtCard;
         final CardView deleteContent;
@@ -138,13 +141,14 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtViewHolder
         public DebtViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            debtTitle = itemView.findViewById(R.id.title);
+            debtTitle = itemView.findViewById(R.id.debt_title);
             debtAmount = itemView.findViewById(R.id.amount);
             loanDate = itemView.findViewById(R.id.loan_date);
             dueDate = itemView.findViewById(R.id.due_date);
             paidOnDate = itemView.findViewById(R.id.pay_date);
             creditorName = itemView.findViewById(R.id.creditor_names);
             creditorContact = itemView.findViewById(R.id.creditor_contact);
+            telltaleName = itemView.findViewById(R.id.witness_name);
 
             debtCard = itemView.findViewById(R.id.debt_card);
             deleteContent = itemView.findViewById(R.id.delete_content);

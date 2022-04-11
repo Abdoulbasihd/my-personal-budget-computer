@@ -29,7 +29,7 @@
                 android:layout_marginTop="@dimen/default_border_margin_4"
                 android:layout_marginStart="@dimen/default_border_margin_4"
                 android:layout_marginEnd="@dimen/default_border_margin_4"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="4dp"
                 app:cardElevation="@dimen/default_card_elevation_2"
                 app:cardCornerRadius="@dimen/default_card_radius_5"
                 >
@@ -38,8 +38,11 @@
                     android:layout_height="wrap_content">
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="@dimen/small_margin_2"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin_2"
+                        android:layout_marginStart="@dimen/small_margin_2"
+                        android:layout_marginEnd="@dimen/small_margin_2"
+                        android:layout_marginBottom="106dp"
                         >
 
                         <TextView
@@ -312,10 +315,10 @@
                             android:layout_marginTop="@dimen/big_margin_10"
                             android:layout_marginStart="@dimen/small_margin_2"
                             android:layout_marginEnd="@dimen/small_margin_2"
+                            android:layout_marginBottom="54dp"
                             app:hintTextColor="@color/default_text_color_blue_cyan"
                             app:boxBackgroundColor="@color/default_text_input_color"
                             android:hint="@string/filtering_sticker"
-
                             android:textColorHint="@color/default_text_color_blue_cyan"
                             >
 

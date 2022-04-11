@@ -1,8 +1,10 @@
 package cm.abimmobiledev.mybudgetizer.database.entity;
 
 import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+@Entity(tableName = "receivable")
 public class Receivable extends BasicInfo {
 
     @PrimaryKey(autoGenerate = true)

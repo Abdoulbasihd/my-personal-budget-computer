@@ -84,4 +84,14 @@
     <string name="witness">Témoin</string>
     <string name="telltale">Temoin</string>
     <string name="new_debt">Nouvelle dette</string>
+    <string name="incurred_or_contracted_today">Contractées aujourd\'hui</string>
+    <string name="incurred_this_month">Contractée ce mois</string>
+    <string name="incurred_this_year">Contractée cette année</string>
+    <string name="disbursed_today">Remboursée aujourd\'hui</string>
+    <string name="disbursed_this_month">Remboursée ce mois</string>
+    <string name="disbursed_this_year">Remboursée cette année</string>
+    <string name="expire_today">Expire aujourd\'hui</string>
+    <string name="expires_this_month">Expire ce mois</string>
+    <string name="expire_this_year">Expire cette année</string>
+    <string name="filter_otherwise">Filtrer autrement</string>
 </resources>

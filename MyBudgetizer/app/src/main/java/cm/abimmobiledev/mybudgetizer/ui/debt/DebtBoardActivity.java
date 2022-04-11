@@ -31,6 +31,7 @@ import cm.abimmobiledev.mybudgetizer.exception.BudgetizerGeneralException;
 import cm.abimmobiledev.mybudgetizer.nav.DebtNavigator;
 import cm.abimmobiledev.mybudgetizer.nav.ExNavigation;
 import cm.abimmobiledev.mybudgetizer.ui.debt.adapter.DebtAdapter;
+import cm.abimmobiledev.mybudgetizer.ui.earning.BottomSheetMoreEarningsFragment;
 import cm.abimmobiledev.mybudgetizer.ui.earning.adapter.IncomeAdapter;
 import cm.abimmobiledev.mybudgetizer.useful.Util;
 
@@ -59,6 +60,10 @@ public class DebtBoardActivity extends AppCompatActivity {
         debtsListProgress = Util.initProgressDialog(this, getString(R.string.looking_up));
         debtBoardResumeProgress = Util.initProgressDialog(this, getString(R.string.looking_up));
 
+        debtBoardBinding.showMore.setOnClickListener(v -> {
+            BottomSheetMoreDebtsFragment moreDebtsBottomSheet = new BottomSheetMoreDebtsFragment();
+            moreDebtsBottomSheet.show(getSupportFragmentManager(), "MDebtModalBottomSheet");
+        });
 
         debtBoardBinding.newDebt.setOnClickListener(newDebtView -> DebtNavigator.openNewDebt(DebtBoardActivity.this));
         debtBoardBinding.cardRefresh.setOnClickListener(refreshView -> earningBoardViewDataSetup());
