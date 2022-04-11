@@ -53,7 +53,7 @@ public interface DebtDAO {
 
     //here we want to select e last limiter numbers of elements of the table Debt
     @Query("SELECT * FROM debt ORDER BY debt_id DESC LIMIT :limiter ")
-    List<Earning> getLastDebts(int limiter);
+    List<Debt> getLastDebts(int limiter);
 
     @Query("SELECT * FROM debt WHERE amount =:amount ")
     List<Debt> loadAllDebtByAmount(double amount);

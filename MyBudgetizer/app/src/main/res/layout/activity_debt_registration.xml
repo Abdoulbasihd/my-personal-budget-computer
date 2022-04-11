@@ -277,8 +277,36 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/sticker_layout"
+                            android:id="@+id/telltale_layout"
                             android:layout_below="@+id/creditor_contact_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/big_margin_10"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            app:hintTextColor="@color/default_text_color_blue_cyan"
+                            app:boxBackgroundColor="@color/default_text_input_color"
+                            android:hint="@string/telltale"
+
+                            android:textColorHint="@color/default_text_color_blue_cyan"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/telltale_edit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/default_text_color"
+                                android:maxLength="8"
+                                android:maxLines="1"
+                                android:inputType="text"
+                                android:text="@={debtRegistor.telltale}"
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/sticker_layout"
+                            android:layout_below="@+id/telltale_layout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/big_margin_10"
@@ -299,6 +327,7 @@
                                 android:maxLength="8"
                                 android:maxLines="1"
                                 android:inputType="text"
+                                android:text="@={debtRegistor.sticker}"
                                 />
 
                         </com.google.android.material.textfield.TextInputLayout>

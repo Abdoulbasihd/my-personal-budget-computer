@@ -201,7 +201,7 @@
                 android:background="@color/default_text_color_blue_cyan" />
 
             <RelativeLayout
-                android:id="@+id/layout_last_expenses"
+                android:id="@+id/layout_last_debts"
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -211,7 +211,7 @@
                 >
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/my_last_expenses_recycler"
+                    android:id="@+id/my_last_debts_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/small_margin_2"

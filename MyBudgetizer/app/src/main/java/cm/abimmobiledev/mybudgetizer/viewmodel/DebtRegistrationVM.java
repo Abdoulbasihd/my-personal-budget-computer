@@ -11,7 +11,7 @@ public class DebtRegistrationVM extends BaseObservable {
     private Debt debtReg;
 
     public DebtRegistrationVM(){
-        debtReg = new Debt("", 0, "", "", "", "", "", "");
+        debtReg = new Debt("", 0, "", "", "", "", "", "", "");
     }
 
     @Bindable
@@ -111,6 +111,16 @@ public class DebtRegistrationVM extends BaseObservable {
     public void  setCreditorContact (String creditorContact){
         debtReg.setCreditorContact(creditorContact);
         notifyPropertyChanged(BR.creditorContact);
+    }
+
+    @Bindable
+    public String getTelltale(){
+        return debtReg.getTelltale();
+    }
+
+    public void  setTelltale (String telltale){
+        debtReg.setTelltale(telltale);
+        notifyPropertyChanged(BR.telltale);
     }
 
 }

@@ -81,4 +81,7 @@
     <string name="paid">Payé</string>
     <string name="debtor_names">Noms du debiteur</string>
     <string name="debtor_contact">Contact du débiteur</string>
+    <string name="witness">Témoin</string>
+    <string name="telltale">Temoin</string>
+    <string name="new_debt">Nouvelle dette</string>
 </resources>

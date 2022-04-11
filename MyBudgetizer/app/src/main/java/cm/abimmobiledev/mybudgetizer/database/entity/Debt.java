@@ -31,14 +31,17 @@ public class Debt extends BasicInfo{
     @ColumnInfo(name = "creditor_contact")
     public String creditorContact;
 
+    public String telltale; //witness  ==> temoin
 
-    public Debt(String entitled, double amount, String loanDate, String dueDate, String creditorName, String creditorContact, String description, String sticker) {
+
+    public Debt(String entitled, double amount, String loanDate, String dueDate, String creditorName, String creditorContact, String description, String sticker, String telltale) {
         super(entitled, amount, sticker);
         this.loaningDate = loanDate;
         this.repaymentDueDate = dueDate;
         this.creditorName = creditorName;
         this.creditorContact = creditorContact;
         this.description = description;
+        this.telltale = telltale;
     }
 
     public int getDebtId() {
@@ -103,5 +106,13 @@ public class Debt extends BasicInfo{
 
     public void setRepaymentDate(String repaymentDate) {
         this.repaymentDate = repaymentDate;
+    }
+
+    public String getTelltale() {
+        return telltale;
+    }
+
+    public void setTelltale(String telltale) {
+        this.telltale = telltale;
     }
 }

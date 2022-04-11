@@ -214,7 +214,7 @@ public class DebtRegistrationActivity extends AppCompatActivity {
 
     }
 
-    public boolean requiredDebtRegistrationDataFilled(String entitled, String amount, String loanDate, String dueDate, String creditorNames) {
+    public  boolean requiredDebtRegistrationDataFilled(String entitled, String amount, String loanDate, String dueDate, String creditorNames) {
         try {
             if (Double.parseDouble(amount)<0)
                 return  false;
@@ -255,7 +255,7 @@ public class DebtRegistrationActivity extends AppCompatActivity {
         debtRegExecService.execute(() -> {
 
             try {
-                Debt debt = new Debt(debtRegistrationVM.getEntitle(), Double.parseDouble(debtRegistrationVM.getAmount()), debtRegistrationVM.getLoanDate(), debtRegistrationVM.getRepaymentDueDate(), debtRegistrationVM.getCreditorNames(), debtRegistrationVM.getCreditorContact(), debtRegistrationVM.getDescription(), debtRegistrationVM.getSticker());
+                Debt debt = new Debt(debtRegistrationVM.getEntitle(), Double.parseDouble(debtRegistrationVM.getAmount()), debtRegistrationVM.getLoanDate(), debtRegistrationVM.getRepaymentDueDate(), debtRegistrationVM.getCreditorNames(), debtRegistrationVM.getCreditorContact(), debtRegistrationVM.getDescription(), debtRegistrationVM.getSticker(), debtRegistrationVM.getTelltale());
 
                 BudgetizerAppDatabase appDatabaseDebtReg = BudgetizerAppDatabase.getInstance(getApplicationContext());
                 appDatabaseDebtReg.debtDAO().insertAll(debt);
