@@ -104,7 +104,7 @@ public class DebtBoardActivity extends AppCompatActivity {
             try {
                 BudgetizerAppDatabase earningSelectorAppDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());
 
-                List<Debt> periodicDebt = earningSelectorAppDatabase.debtDAO().loadAllDebtLikeFormattedLoanDate("%"+period+"%");
+                periodicDebts = earningSelectorAppDatabase.debtDAO().loadAllDebtLikeFormattedLoanDate("%"+period+"%");
 
 
                 runOnUiThread(() -> {

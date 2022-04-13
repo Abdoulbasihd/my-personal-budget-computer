@@ -17,7 +17,6 @@ public class Expense extends BasicInfo {
     public String dateTimeOfExpense;
 
     public String reason;
-    public String sticker; // for filtering purpose; example : construction
 
     public Expense(String entitled, double amount, String dateTimeOfExpense, String reason, String sticker) {
         super(entitled, amount, sticker);
@@ -49,11 +48,4 @@ public class Expense extends BasicInfo {
         this.reason = reason;
     }
 
-    public String getSticker() {
-        return sticker;
-    }
-
-    public void setSticker(String sticker) {
-        this.sticker = sticker;
-    }
 }

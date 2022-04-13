@@ -11,7 +11,10 @@
         android:layout_height="wrap_content"
         app:cardElevation="@dimen/card_elevation_medium_4"
         app:cardCornerRadius="@dimen/default_card_radius_5"
-        android:layout_margin="@dimen/small_margin_2"
+        android:layout_marginStart="@dimen/small_margin_2"
+        android:layout_marginEnd="@dimen/small_margin_2"
+        android:layout_marginTop="0.5dp"
+        android:layout_marginBottom="0dp"
         android:id="@+id/debt_card"
         >
 
@@ -252,24 +255,16 @@
                     android:textColor="@color/default_text_color_blue_cyan"
                     android:textSize="@dimen/default_body_text_size_12" />
 
-                <View
-                    android:layout_below="@+id/witness_name"
-                    android:layout_centerHorizontal="true"
-                    android:layout_width="120dp"
-                    android:layout_height="1dp"
-                    android:background="@color/black"
-                    android:id="@+id/end_separator"
-                    />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/debt_paid_card"
-                    android:layout_below="@+id/end_separator"
+                    android:layout_below="@+id/witness_name"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="@dimen/big_margin_10"
                     app:cardElevation="@dimen/default_card_elevation_2"
                     app:cardCornerRadius="@dimen/default_card_radius_5"
                     app:cardBackgroundColor="@color/paid_green_color"
-                    android:layout_width="105dp"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
                     >
@@ -293,14 +288,15 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/debt_unpaid_card"
-                    android:layout_below="@+id/end_separator"
+                    android:layout_below="@+id/witness_name"
                     android:layout_centerHorizontal="true"
                     android:layout_margin="@dimen/default_border_margin_4"
                     app:cardElevation="@dimen/default_card_elevation_2"
                     app:cardCornerRadius="@dimen/default_card_radius_5"
                     app:cardBackgroundColor="@color/unpaid_red_color"
-                    android:layout_width="105dp"
+                    android:layout_width="64dp"
                     android:layout_height="wrap_content"
+                    android:visibility="visible"
                     >
                     <RelativeLayout
                         android:layout_margin="@dimen/small_margin_2"
@@ -346,6 +342,30 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ic_twotone_delete_forever_24" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/more_action_card"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/delete_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="@dimen/default_border_margin_4"
+                app:cardCornerRadius="@dimen/default_card_radius_5"
+                app:cardElevation="@dimen/card_elevation_medium_4"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <ImageView
+                        android:id="@+id/edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_twotone_edit_24" />
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>

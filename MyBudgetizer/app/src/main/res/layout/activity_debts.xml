@@ -1,9 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.debt.DebtsActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/default_border_margin_4"
+        app:cardElevation="@dimen/default_card_elevation_2"
+        app:cardCornerRadius="@dimen/default_card_radius_5"
+        tools:context=".ui.debt.DebtsActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/small_margin_2"
+            >
+            <TextView
+                android:id="@+id/debts_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/my_debts"
+                android:textColor="@color/default_text_color_blue_cyan"
+                android:textSize="@dimen/title_text_medium_size_15"
+                android:textStyle="bold" />
+            <View
+                android:id="@+id/title_separator"
+                android:layout_width="@dimen/view_line_default_width"
+                android:layout_height="2dp"
+                android:layout_below="@+id/debts_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/big_margin_10" />
+
+            <RadioGroup
+                android:visibility="gone"
+                android:id="@+id/ps_radio_group"
+                android:layout_below="@+id/title_separator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_margin="@dimen/small_margin_2"
+                android:padding="@dimen/small_margin_2"
+                >
+                <RadioButton
+                    android:id="@+id/br_paid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/paid"
+                    />
+                <RadioButton
+                    android:id="@+id/br_unpaid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/not_paid"
+                    />
+                <RadioButton
+                    android:id="@+id/br_paid_and_unpaid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/all"
+                    />
+            </RadioGroup>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/date_filter_select_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ps_radio_group"
+                android:layout_margin="@dimen/small_margin_2"
+                app:cardElevation="@dimen/default_card_elevation_2"
+                app:cardCornerRadius="@dimen/default_card_radius_5"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <RelativeLayout
+                        android:id="@+id/date_filter_select_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ps_radio_group"
+
+                        >
+                        <TextView
+                            android:id="@+id/date_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Filtrer par date de : "
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginBottom="0dp"
+                            android:layout_marginTop="0dp"
+                            />
+                        <RadioGroup
+                            android:layout_below="@+id/date_title"
+                            android:id="@+id/payment_date_radio_group"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:layout_margin="0dp"
+                            android:padding="@dimen/default_border_margin_4"
+                            >
+                            <RadioButton
+                                android:id="@+id/br_contraction_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Contraction"
+                                android:layout_margin="@dimen/small_margin_2"
+                                android:checked="true"
+                                />
+                            <RadioButton
+                                android:id="@+id/br_expiration_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Expiration"
+                                android:layout_margin="@dimen/small_margin_2"
+                                />
+                            <RadioButton
+                                android:id="@+id/br_payment_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Paiement"
+                                android:layout_margin="@dimen/small_margin_2"
+                                />
+
+                        </RadioGroup>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/search_edit_layout"
+                        android:visibility="visible"
+                        android:layout_below="@+id/date_filter_select_layout"
+                        >
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_toStartOf="@+id/debts_search_date_picker"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:hint="@string/fill_in_a_date_or_part_of_a_date"
+                            app:boxBackgroundColor="@color/default_input_color"
+                            app:hintAnimationEnabled="true"
+                            app:hintTextColor="@color/default_text_color_blue_cyan">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/debt_date_input"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <ImageView
+                            android:id="@+id/debts_search_date_picker"
+                            android:layout_toStartOf="@+id/debts_search"
+                            android:layout_margin="@dimen/small_margin_2"
+                            android:layout_width="40dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/twotone_edit_calendar_blue_500_48dp"
+                            />
+
+                        <ImageView
+                            android:id="@+id/debts_search"
+                            android:layout_width="40dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginTop="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            android:layout_marginBottom="@dimen/small_margin_2"
+                            android:src="@drawable/ic_twotone_search_48" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/total_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/date_filter_select_card"
+                android:layout_margin="@dimen/small_margin_2"
+                app:cardElevation="@dimen/default_card_elevation_2"
+                app:cardCornerRadius="@dimen/default_card_radius_5"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_margin_2"
+                    >
+                    <TextView
+                        android:id="@+id/title_total"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total"
+                        android:textColor="@color/default_text_color_blue_cyan"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/title_text_medium_size_15"
+                        android:layout_alignParentStart="true"
+                        />
+                    <TextView
+                        android:id="@+id/total_debt_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/default_text_color_blue_cyan"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/title_text_medium_size_15"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@+id/title_total"
+
+                        android:textAlignment="textEnd"
+                        />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/periodic_debt_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/total_layout" />
+
+            <TextView
+                android:id="@+id/no_item_found_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/no_debt_found"
+                android:textAlignment="center"
+                android:textColor="@color/default_text_color_blue_cyan"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

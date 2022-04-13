@@ -1,6 +1,9 @@
 package cm.abimmobiledev.mybudgetizer.ui.debt.adapter;
 
+import static cm.abimmobiledev.mybudgetizer.ui.expense.ExpenseDashboardActivity.getCurrentDayFormatted;
+
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
@@ -15,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -69,7 +73,40 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtViewHolder
         holder.debtAmount.setText(String.valueOf(debt.getAmount()));
         holder.debtTitle.setText(debt.getEntitled());
 
-        holder.debtCard.setOnClickListener(v -> Snackbar.make(v, "Comming up, modify and set paid...", Snackbar.LENGTH_LONG).show());
+        holder.editCard.setOnClickListener(v -> {
+            AlertDialog.Builder myDebtUpdateAlertDialog = Util.initAlertDialogBuilder(holder.debtCard.getContext(), "Modification",  "Voulez-vous modifier ou marquer comme payée ?");
+            AlertDialog.Builder myDebtUpdatedAlertDialog = Util.initAlertDialogBuilder(holder.debtCard.getContext(), holder.debtCard.getContext().getString(R.string.state),  "Effectuée ! \nBien vouloir recharger la page...");
+
+            myDebtUpdateAlertDialog.setNegativeButton("Marquer payée aujourd'hui", (dialog, which) -> {
+                //Ne rien faire ici
+                String currentDay = getCurrentDayFormatted(Calendar.getInstance());
+                debt.setRepaymentDate(currentDay);
+                debt.setRefundedOrPaid(true);
+
+                ProgressDialog debtUpdateProgress = Util.initProgressDialog(holder.debtCard.getContext(), "En cours");
+                debtUpdateProgress.show();
+
+
+                ExecutorService debtUpdateExecService = Executors.newSingleThreadExecutor();
+                debtUpdateExecService.execute(() -> {
+                    BudgetizerAppDatabase appDatabaseDebtUpdate = BudgetizerAppDatabase.getInstance(holder.debtSticker.getContext());
+                    appDatabaseDebtUpdate.debtDAO().update(debt);
+
+                    new Handler(Looper.getMainLooper()).post(() -> {
+                        debtUpdateProgress.dismiss();
+                        myDebtUpdatedAlertDialog.setPositiveButton("OK", (dialog1, which1) -> {
+                            //nothing to do here, just close
+                        }).show();
+                    });
+                });
+            });
+            myDebtUpdateAlertDialog.setPositiveButton("Plus de modification", (dialog, which) -> {
+                //TODO : open new activity for updating. could be the same as registration page
+            });
+            myDebtUpdateAlertDialog.show();
+
+
+        });
 
 
         holder.deleteContent.setOnClickListener(deleteItemView -> {
@@ -131,6 +168,7 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtViewHolder
 
         final CardView debtCard;
         final CardView deleteContent;
+        final CardView editCard;
 
         final TextView debtSticker;
         final CardView debtStickerCard;
@@ -152,6 +190,7 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtViewHolder
 
             debtCard = itemView.findViewById(R.id.debt_card);
             deleteContent = itemView.findViewById(R.id.delete_content);
+            editCard = itemView.findViewById(R.id.more_action_card);
 
             debtSticker = itemView.findViewById(R.id.sticker);
             debtStickerCard = itemView.findViewById(R.id.debt_sticker);

@@ -249,6 +249,14 @@ public class DebtRegistrationActivity extends AppCompatActivity {
 
     }
 
+    public Debt debtSetPay(Debt debt) throws BudgetizerGeneralException {
+        if (debt==null)
+            throw new BudgetizerGeneralException("Param debt much be initialized");
+
+        debt.setRefundedOrPaid(debt.getRepaymentDate()!=null && !debt.getRepaymentDate().isEmpty());
+        return debt;
+    }
+
     public void debtDataBaseRegistrationService(){
 
         ExecutorService debtRegExecService = Executors.newSingleThreadExecutor();
@@ -256,12 +264,14 @@ public class DebtRegistrationActivity extends AppCompatActivity {
 
             try {
                 Debt debt = new Debt(debtRegistrationVM.getEntitle(), Double.parseDouble(debtRegistrationVM.getAmount()), debtRegistrationVM.getLoanDate(), debtRegistrationVM.getRepaymentDueDate(), debtRegistrationVM.getCreditorNames(), debtRegistrationVM.getCreditorContact(), debtRegistrationVM.getDescription(), debtRegistrationVM.getSticker(), debtRegistrationVM.getTelltale());
+                debt.setRepaymentDate(debtRegistrationVM.getRepaymentDate());
+                debt = debtSetPay(debt);
 
                 BudgetizerAppDatabase appDatabaseDebtReg = BudgetizerAppDatabase.getInstance(getApplicationContext());
                 appDatabaseDebtReg.debtDAO().insertAll(debt);
             }
             catch (Exception exception) {
-
+                Log.d(TAG_DEBT_REG, exception.getLocalizedMessage(), exception);
                 runOnUiThread(() -> {
                     debtRegProgress.dismiss();
                     debtRegDialog.setMessage(getString(R.string.an_error_occured)+"\n"+exception.getLocalizedMessage());

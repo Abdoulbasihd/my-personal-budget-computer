@@ -94,4 +94,5 @@
     <string name="expires_this_month">Expire ce mois</string>
     <string name="expire_this_year">Expire cette année</string>
     <string name="filter_otherwise">Filtrer autrement</string>
+    <string name="all">Tout</string>
 </resources>
