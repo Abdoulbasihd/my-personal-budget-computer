@@ -46,7 +46,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
     public void onBindViewHolder(@NonNull ExpenseViewHolder holder, int position) {
         Expense expense = expenses.get(position);
 
-        if (expense.sticker.trim().isEmpty())
+        if (expense.sticker==null || expense.sticker.trim().isEmpty())
             holder.expenseStickerCard.setVisibility(View.GONE);
         else
             holder.expenseStickerCard.setVisibility(View.VISIBLE);
@@ -92,7 +92,6 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
 
                     notifyItemRemoved(position);
                     notifyItemChanged(position);
-                    //notifyItemPositionChanged(position, expenses.size());
 
                 });
             });

@@ -1,5 +1,7 @@
 package cm.abimmobiledev.mybudgetizer.ui.expense;
 
+import static cm.abimmobiledev.mybudgetizer.ui.expense.ExpenseDashboardActivity.computeExpendedAmount;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -65,17 +67,41 @@ public class ExpensesActivity extends AppCompatActivity {
 
             searchParam = activityExpensesBinding.expenseDateInput.getText().toString().trim();
             try {
-                getExpenses(searchParam);
+                getExpenses(searchParam, true);
             } catch (BudgetizerGeneralException exception) {
                 Log.d("TAG", "onFling: "+exception, exception);
             }
 
         });
 
+        activityExpensesBinding.incomeSearch.setOnClickListener(incomeView -> {
+            String incomeSticker = activityExpensesBinding.stickerInput.getText().toString();
+            try {
+                getExpenses(incomeSticker, false);
+            } catch (BudgetizerGeneralException exception) {
+                Log.d(EXPENSES_TAG, "getting expenses by sticker: "+exception, exception);
+            }
+        });
 
         activityExpensesBinding.expenseSearchDatePicker.setOnClickListener(expenseDatePickView -> pickSearchableDate());
 
+        activityExpensesBinding.filterByStickerTitleIcon.setOnClickListener(stickerView -> {
+            if (activityExpensesBinding.stickerSearchLayout.getVisibility()==View.VISIBLE) {
+                activityExpensesBinding.stickerSearchLayout.setVisibility(View.GONE);
+                return;
+            }
+            activityExpensesBinding.stickerSearchLayout.setVisibility(View.VISIBLE);
+            activityExpensesBinding.searchByDateLayout.setVisibility(View.GONE);
+        });
 
+        activityExpensesBinding.filterByDateTitleIcon.setOnClickListener(dateFilterView -> {
+            if (activityExpensesBinding.searchByDateLayout.getVisibility()==View.VISIBLE) {
+                activityExpensesBinding.searchByDateLayout.setVisibility(View.GONE);
+                return;
+            }
+            activityExpensesBinding.searchByDateLayout.setVisibility(View.VISIBLE);
+            activityExpensesBinding.stickerSearchLayout.setVisibility(View.GONE);
+        });
 
     }
 
@@ -107,32 +133,55 @@ public class ExpensesActivity extends AppCompatActivity {
         return intent.getStringExtra(ExNavigation.SEARCH_PARAM);
     }
 
-    public void getExpenses(String dateSearchPattern) throws BudgetizerGeneralException {
+    /**
+     * <h2>Looking up expenses either by date or by a sticker filter</h2>
+     * @param searchPattern : pattern to look up (filter)
+     * @param byDate boolean; true if looking up by date, false else (looking up by sticker)
+     * @throws BudgetizerGeneralException when pattern is null
+     */
+    public void getExpenses(String searchPattern, boolean byDate) throws BudgetizerGeneralException {
 
-        if (dateSearchPattern==null)
-            throw new BudgetizerGeneralException("date should not be null");
+        if (searchPattern==null)
+            throw new BudgetizerGeneralException("search pattern should not be null");
 
-        final String searchable = "%"+dateSearchPattern+"%";
+        if (byDate)
+            searchPattern = "%"+searchPattern+"%";
+
+        final String searchable = searchPattern;
 
         expenseListProgress.show();
         ExecutorService expensesPatternSearch = Executors.newSingleThreadExecutor();
 
         expensesPatternSearch.execute(() -> {
             BudgetizerAppDatabase searchExpensesAppDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());
-            myPeriodicExpenses = searchExpensesAppDatabase.expenseDAO().loadAllExpenseOfAGivenMonth(searchable);
+
+            if (byDate)
+                myPeriodicExpenses = searchExpensesAppDatabase.expenseDAO().loadAllExpenseOfAGivenMonth(searchable);
+            else
+                myPeriodicExpenses = searchExpensesAppDatabase.expenseDAO().loadExpensesByStickerFilter(searchable);
+
 
             ExpenseAdapter expenseAdapter = new ExpenseAdapter(myPeriodicExpenses);
 
             runOnUiThread(() -> {
 
+                try {
+                    double computedAmount = computeExpendedAmount(myPeriodicExpenses);
 
-                activityExpensesBinding.periodicExpensesRecycler.setHasFixedSize(true);
-                activityExpensesBinding.periodicExpensesRecycler.setLayoutManager(new LinearLayoutManager(this));
-                activityExpensesBinding.periodicExpensesRecycler.setAdapter(expenseAdapter);
-                //activityExpensesBinding.periodicExpensesRecycler.setVerticalScrollBarEnabled(true);
-                //activityExpensesBinding.periodicExpensesRecycler.setVerticalFadingEdgeEnabled(true);
-                //activityExpensesBinding.periodicExpensesRecycler.setVerticalScrollbarPosition(View.SCROLLBAR_POSITION_RIGHT);
 
+                    activityExpensesBinding.periodicExpensesRecycler.setHasFixedSize(true);
+                    activityExpensesBinding.periodicExpensesRecycler.setLayoutManager(new LinearLayoutManager(this));
+                    activityExpensesBinding.periodicExpensesRecycler.setAdapter(expenseAdapter);
+                    activityExpensesBinding.periodicExpensesRecycler.setVerticalScrollBarEnabled(true);
+                    activityExpensesBinding.periodicExpensesRecycler.setVerticalFadingEdgeEnabled(true);
+                    activityExpensesBinding.periodicExpensesRecycler.setVerticalScrollbarPosition(View.SCROLLBAR_POSITION_RIGHT);
+
+                    //set total expended
+                    activityExpensesBinding.totalExpended.setText(String.format("%s F. CFA", computedAmount));
+
+                } catch (BudgetizerGeneralException exception) {
+                    Log.d(EXPENSES_TAG, "getExpenses: ", exception);
+                }
                 //dismiss progress here
                 expenseListProgress.dismiss();
 
@@ -142,7 +191,6 @@ public class ExpensesActivity extends AppCompatActivity {
                     activityExpensesBinding.noItemFoundTv.setVisibility(View.GONE);
                 }
                 else {
-
                     activityExpensesBinding.periodicExpensesRecycler.setVisibility(View.GONE);
                     activityExpensesBinding.noItemFoundTv.setVisibility(View.VISIBLE);
                 }
@@ -157,13 +205,13 @@ public class ExpensesActivity extends AppCompatActivity {
         Calendar cal = Calendar.getInstance();
 
         if (param.equalsIgnoreCase(ExNavigation.EXPENSE_OF_TODAY))
-            getExpenses(ExpenseDashboardActivity.getCurrentDayFormatted(cal));
+            getExpenses(ExpenseDashboardActivity.getCurrentDayFormatted(cal), true);
 
         else if (param.equalsIgnoreCase(ExNavigation.EXPENSE_OF_THIS_MONTH))
-            getExpenses(ExpenseDashboardActivity.getCurrentMonthFormatted(cal));
+            getExpenses(ExpenseDashboardActivity.getCurrentMonthFormatted(cal), true);
 
         else if (param.equalsIgnoreCase(ExNavigation.EXPENSE_OF_THIS_YEAR))
-            getExpenses(ExpenseDashboardActivity.getCurrentYearFormatted(cal));
+            getExpenses(ExpenseDashboardActivity.getCurrentYearFormatted(cal), true);
     }
 
     /**

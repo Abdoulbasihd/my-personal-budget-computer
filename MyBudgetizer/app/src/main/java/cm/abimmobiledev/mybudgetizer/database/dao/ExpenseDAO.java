@@ -19,6 +19,8 @@ public interface ExpenseDAO {
     @Query("SELECT * FROM expense WHERE expense_id IN (:expenseIds)")
     List<Expense> loadAllByIds(int[] expenseIds);
 
+    @Query("SELECT * FROM expense WHERE sticker =:sticker ")
+    List<Expense> loadExpensesByStickerFilter(String sticker);
 
     @Query("SELECT * FROM expense WHERE date_time_of_expense LIKE :monthFormatted ")
     List<Expense> loadAllExpenseOfAGivenMonth(String monthFormatted); // month formatted.... we ain't need others (for month and day) as only the param change
