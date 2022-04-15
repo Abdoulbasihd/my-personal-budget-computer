@@ -87,7 +87,6 @@
                         android:id="@+id/date_filter_select_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/ps_radio_group"
 
                         >
                         <TextView
@@ -115,7 +114,6 @@
                                 android:layout_height="wrap_content"
                                 android:text="Contraction"
                                 android:layout_margin="@dimen/small_margin_2"
-                                android:checked="true"
                                 />
                             <RadioButton
                                 android:id="@+id/br_expiration_date"
@@ -141,7 +139,6 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/search_edit_layout"
                         android:visibility="visible"
-                        android:layout_below="@+id/date_filter_select_layout"
                         >
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_toStartOf="@+id/debts_search_date_picker"

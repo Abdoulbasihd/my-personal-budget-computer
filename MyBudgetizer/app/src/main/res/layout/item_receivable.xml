@@ -67,16 +67,14 @@
                     android:textStyle="bold" />
 
 
-
                 <View
+                    android:id="@+id/separator"
                     android:layout_width="20dp"
                     android:layout_height="0.7dp"
-                    android:layout_centerHorizontal="true"
                     android:layout_below="@+id/receivable_title"
-                    android:id="@+id/separator"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginBottom="@dimen/default_border_margin_4"
-                    android:background="@color/default_text_color_blue_cyan"
-                    />
+                    android:background="@color/default_text_color_blue_cyan" />
 
                 <TextView
                     android:id="@+id/amount_title"
@@ -159,16 +157,15 @@
 
                 <TextView
                     android:id="@+id/pay_date_title"
-                    android:layout_below="@+id/due_date_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/default_body_text_size_12"
-                    android:textColor="@color/default_text_color_blue_cyan"
-                    android:text="@string/paid_on"
-                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_below="@+id/due_date_title"
                     android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginTop="@dimen/small_margin_2"
                     android:layout_marginEnd="@dimen/default_border_margin_4"
-                    />
+                    android:text="@string/paid_on"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:textSize="@dimen/default_body_text_size_12" />
                 <TextView
                     android:id="@+id/pay_date"
                     android:layout_below="@+id/due_date"
@@ -210,16 +207,16 @@
 
                 <TextView
                     android:id="@+id/debtor_contact_title"
+                    android:layout_below="@+id/debtor_name_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/debtor_name_title"
-                    android:layout_marginStart="@dimen/default_border_margin_4"
-                    android:layout_marginTop="@dimen/small_margin_2"
-                    android:layout_marginEnd="@dimen/default_border_margin_4"
-                    android:text="@string/debtor_contact"
+                    android:textSize="@dimen/default_body_text_size_12"
                     android:textColor="@color/default_text_color_blue_cyan"
-                    android:textSize="@dimen/default_body_text_size_12" />
-
+                    android:text="@string/debtor_contact"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    />
                 <TextView
                     android:id="@+id/debtor_contact"
                     android:layout_width="wrap_content"
@@ -232,16 +229,39 @@
                     android:textColor="@color/default_text_color_blue_cyan"
                     android:textSize="@dimen/default_body_text_size_12" />
 
+                <TextView
+                    android:id="@+id/witness_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/debtor_contact_title"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    android:text="@string/witness"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:textSize="@dimen/default_body_text_size_12" />
+                <TextView
+                    android:id="@+id/witness_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/debtor_contact"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:textSize="@dimen/default_body_text_size_12" />
+
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/debt_paid_card"
-                    android:layout_below="@+id/creditor_contact_title"
+                    android:id="@+id/receivable_paid_card"
+                    android:layout_below="@+id/witness_name"
                     android:layout_centerHorizontal="true"
-                    android:layout_margin="@dimen/big_margin_10"
+                    android:layout_marginBottom="@dimen/big_margin_10"
                     app:cardElevation="@dimen/default_card_elevation_2"
                     app:cardCornerRadius="@dimen/default_card_radius_5"
                     app:cardBackgroundColor="@color/paid_green_color"
-                    android:layout_width="105dp"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
                     >
@@ -264,15 +284,16 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/debt_unpaid_card"
-                    android:layout_below="@+id/creditor_contact_title"
+                    android:id="@+id/receivable_unpaid_card"
+                    android:layout_below="@+id/witness_name"
                     android:layout_centerHorizontal="true"
-                    android:layout_margin="@dimen/big_margin_10"
+                    android:layout_margin="@dimen/default_border_margin_4"
                     app:cardElevation="@dimen/default_card_elevation_2"
                     app:cardCornerRadius="@dimen/default_card_radius_5"
                     app:cardBackgroundColor="@color/unpaid_red_color"
-                    android:layout_width="105dp"
+                    android:layout_width="64dp"
                     android:layout_height="wrap_content"
+                    android:visibility="visible"
                     >
                     <RelativeLayout
                         android:layout_margin="@dimen/small_margin_2"
@@ -296,10 +317,11 @@
 
             </RelativeLayout>
 
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/delete_content"
                 android:layout_alignParentEnd="true"
-                android:layout_below="@+id/debt_sticker"
+                android:layout_below="@+id/receivable_sticker"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_margin="@dimen/default_border_margin_4"
@@ -320,11 +342,34 @@
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/more_action_card"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/delete_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="@dimen/default_border_margin_4"
+                app:cardCornerRadius="@dimen/default_card_radius_5"
+                app:cardElevation="@dimen/card_elevation_medium_4"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <ImageView
+                        android:id="@+id/edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_twotone_edit_24" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
 
 
 
         </RelativeLayout>
-
 
 
     </androidx.cardview.widget.CardView>

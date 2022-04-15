@@ -30,8 +30,22 @@ public class Receivable extends BasicInfo {
     public String debtorContact;
 
     public String description;
+    public String telltale;
 
-    public Receivable(String entitled, double amount, String sticker, String loanDate, String dueDate, String disbursementDate, String debtorName, String debtorContact, String description) {
+    /**
+     * <h1>Receivable constructor</h1>
+     * @param entitled String
+     * @param amount double
+     * @param sticker String
+     * @param loanDate String
+     * @param dueDate String
+     * @param disbursementDate String
+     * @param debtorName String
+     * @param debtorContact String
+     * @param description String
+     * @param tellTale String
+     */
+    public Receivable(String entitled, double amount, String sticker, String loanDate, String dueDate, String disbursementDate, String debtorName, String debtorContact, String description, String tellTale) {
         super(entitled, amount, sticker);
         this.loanDate = loanDate;
         this.dueDate = dueDate;
@@ -39,6 +53,11 @@ public class Receivable extends BasicInfo {
         this.debtorName = debtorName;
         this.debtorContact = debtorContact;
         this.description = description;
+        this.telltale = tellTale;
+    }
+
+    public Receivable() {
+        super("", 0, "");
     }
 
     public int getReceivableId() {
@@ -103,5 +122,13 @@ public class Receivable extends BasicInfo {
 
     public void setRefundedOrPaid(boolean refundedOrPaid) {
         this.refundedOrPaid = refundedOrPaid;
+    }
+
+    public String getTelltale() {
+        return telltale;
+    }
+
+    public void setTelltale(String tellTale) {
+        this.telltale = tellTale;
     }
 }

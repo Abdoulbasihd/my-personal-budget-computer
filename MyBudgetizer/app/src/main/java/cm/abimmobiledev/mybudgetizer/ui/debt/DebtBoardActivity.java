@@ -40,7 +40,6 @@ public class DebtBoardActivity extends AppCompatActivity {
     ActivityDebtBoardBinding debtBoardBinding;
 
 
-    AlertDialog.Builder debtBoardDialog;
     ProgressDialog debtsListProgress;
     ProgressDialog debtBoardResumeProgress;
     List<Debt> periodicDebts;
@@ -53,10 +52,6 @@ public class DebtBoardActivity extends AppCompatActivity {
 
         debtBoardBinding = DataBindingUtil.setContentView(this, R.layout.activity_debt_board);
 
-        debtBoardDialog = Util.initAlertDialogBuilder(this, getString(R.string.new_debt), getString(R.string.save_done));
-        debtBoardDialog.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
-            //NOTHING TO DO, just close
-        });
         debtsListProgress = Util.initProgressDialog(this, getString(R.string.looking_up));
         debtBoardResumeProgress = Util.initProgressDialog(this, getString(R.string.looking_up));
 
