@@ -41,10 +41,10 @@ public class BottomSheetMoreReceivableMenuFragment extends BottomSheetDialogFrag
         View view = inflater.inflate(R.layout.fragment_bottom_sheet_more_receivable_menu, container, false);
 
         MaterialButton assignedToday = view.findViewById(R.id.assigned_today);
-        assignedToday.setOnClickListener(v -> DebtNavigator.openDebtsSearch(getActivity(), DebtNavigator.DEBT_CONTRACTED_TODAY));
+        assignedToday.setOnClickListener(v -> ReceivNav.openReceivablesSearch(getActivity(), DebtNavigator.DEBT_CONTRACTED_TODAY));
 
         MaterialButton expiresToday = view.findViewById(R.id.expires_today);
-        expiresToday.setOnClickListener(v -> DebtNavigator.openDebtsSearch(getActivity(), DebtNavigator.DEBT_EXPIRES_TODAY));
+        expiresToday.setOnClickListener(v -> ReceivNav.openReceivablesSearch(getActivity(), DebtNavigator.DEBT_EXPIRES_TODAY));
 
         MaterialButton paidToday = view.findViewById(R.id.paid_today);
         paidToday.setOnClickListener(v -> ReceivNav.openReceivablesSearch(getActivity(), DebtNavigator.DEBT_PAID_TODAY));
