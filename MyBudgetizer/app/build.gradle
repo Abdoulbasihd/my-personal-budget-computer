@@ -17,10 +17,16 @@ android {
         minSdkVersion 19
         targetSdkVersion 31
         versionCode 1
-        versionName "0.2 Incomes"
+        versionName "2022.04.15.0.3 'soumaye 14'"
         multiDexEnabled true //to sole error ... Cannot fit requested classes in a single dex file (# methods: 79235 > 65536) ??
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -47,7 +53,7 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1' //why multidex ? to solve Cannot fit requested classes in a single dex file (# methods: 79235 > 65536)
 
 //    implementation 'androidx.databinding:library:3.2.0-alpha11'
-     implementation 'androidx.databinding:databinding-runtime:7.1.2'
+     implementation 'androidx.databinding:databinding-runtime:7.1.3'
 
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
