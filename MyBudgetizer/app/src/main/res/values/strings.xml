@@ -95,4 +95,12 @@
     <string name="expire_this_year">Expire cette année</string>
     <string name="filter_otherwise">Filtrer autrement</string>
     <string name="all">Tout</string>
+    <string name="empty">Vide</string>
+    <string name="new_element">new element</string>
+    <string name="my_last_receivables_given">Mes derniers créances données</string>
+    <string name="registering_a_new_receivable">Enregistrement d\'une nouvelle créance</string>
+    <string name="already_paid">Déjà payée</string>
+    <string name="receivable_assigned_today">Créance accordéé aujourd\'hui</string>
+    <string name="assigned_this_month">Assignée ce mois</string>
+    <string name="no_item_found">Aucun element trouvé</string>
 </resources>

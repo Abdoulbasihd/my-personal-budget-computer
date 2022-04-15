@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.receivable.ReceivableRegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.receivable.ReceivableBoardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.receivable.ReceivablesActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.debt.DebtsActivity"
             android:exported="false" />
         <activity

@@ -13,7 +13,7 @@
         android:layout_margin="@dimen/default_border_margin_4"
         app:cardElevation="@dimen/default_card_elevation_2"
         app:cardCornerRadius="@dimen/default_card_radius_5"
-        tools:context=".ui.debt.DebtsActivity">
+        tools:context=".ui.receivable.ReceivablesActivity">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -21,11 +21,11 @@
             android:layout_margin="@dimen/small_margin_2"
             >
             <TextView
-                android:id="@+id/debts_title"
+                android:id="@+id/receivables_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="@string/my_debts"
+                android:text="@string/my_receivables"
                 android:textColor="@color/default_text_color_blue_cyan"
                 android:textSize="@dimen/title_text_medium_size_15"
                 android:textStyle="bold" />
@@ -33,7 +33,7 @@
                 android:id="@+id/title_separator"
                 android:layout_width="@dimen/view_line_default_width"
                 android:layout_height="2dp"
-                android:layout_below="@+id/debts_title"
+                android:layout_below="@+id/receivables_title"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/big_margin_10" />
 
@@ -100,7 +100,7 @@
                             />
                         <RadioGroup
                             android:layout_below="@+id/date_title"
-                            android:id="@+id/payment_date_radio_group"
+                            android:id="@+id/filtering_dates_radio_group"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:orientation="horizontal"
@@ -141,7 +141,7 @@
                         android:visibility="visible"
                         >
                         <com.google.android.material.textfield.TextInputLayout
-                            android:layout_toStartOf="@+id/debts_search_date_picker"
+                            android:layout_toStartOf="@+id/recs_search_date_picker"
                             android:layout_width="match_parent"
                             android:layout_height="60dp"
                             android:hint="@string/fill_in_a_date_or_part_of_a_date"
@@ -150,7 +150,7 @@
                             app:hintTextColor="@color/default_text_color_blue_cyan">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/debt_date_input"
+                                android:id="@+id/receivable_date_input"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp" />
 
@@ -158,8 +158,8 @@
 
 
                         <ImageView
-                            android:id="@+id/debts_search_date_picker"
-                            android:layout_toStartOf="@+id/debts_search"
+                            android:id="@+id/recs_search_date_picker"
+                            android:layout_toStartOf="@+id/recs_search"
                             android:layout_margin="@dimen/small_margin_2"
                             android:layout_width="40dp"
                             android:layout_height="50dp"
@@ -167,7 +167,7 @@
                             />
 
                         <ImageView
-                            android:id="@+id/debts_search"
+                            android:id="@+id/recs_search"
                             android:layout_width="40dp"
                             android:layout_height="50dp"
                             android:layout_alignParentEnd="true"
@@ -224,7 +224,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/periodic_debt_recycler"
+                android:id="@+id/periodic_rec_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/total_layout" />
@@ -234,7 +234,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="@string/no_debt_found"
+                android:text="@string/no_item_found"
                 android:textAlignment="center"
                 android:textColor="@color/default_text_color_blue_cyan"
                 android:textStyle="bold"

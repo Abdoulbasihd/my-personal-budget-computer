@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="receivable"
+            type="cm.abimmobiledev.mybudgetizer.viewmodel.RecRegVM" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="@dimen/default_border_margin_4"
+        app:cardCornerRadius="@dimen/default_card_radius_5"
+        app:cardElevation="@dimen/default_card_elevation_2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.receivable.ReceivableRegistrationActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/new_receivable_form_on_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_border_margin_4"
+                android:layout_marginStart="@dimen/default_border_margin_4"
+                android:layout_marginEnd="@dimen/default_border_margin_4"
+                android:layout_marginBottom="54dp"
+                app:cardElevation="@dimen/default_card_elevation_2"
+                app:cardCornerRadius="@dimen/default_card_radius_5"
+                >
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin_2"
+                        android:layout_marginStart="@dimen/small_margin_2"
+                        android:layout_marginEnd="@dimen/small_margin_2"
+                        android:layout_marginBottom="106dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/title_new_receivable"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentStart="true"
+                            android:text="@string/registering_a_new_receivable"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/title_text_medium_size_15"
+                            android:textColor="@color/default_text_color_blue_cyan"
+                            android:textStyle="bold"
+                            />
+                        <View
+                            android:id="@+id/title_new_receivable_sep"
+                            android:layout_width="@dimen/view_line_default_width"
+                            android:layout_height="0.7dp"
+                            android:layout_below="@+id/title_new_receivable"
+                            android:layout_centerHorizontal="true"
+                            />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/entitled_layout"
+                            android:layout_below="@+id/title_new_receivable_sep"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/big_margin_10"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            app:hintTextColor="@color/default_text_color_blue_cyan"
+                            app:boxBackgroundColor="@color/default_text_input_color"
+                            android:hint="@string/entitled"
+                            android:textColorHint="@color/default_text_color_blue_cyan"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/entitled_edit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@={receivable.entitle}"
+                                android:textColor="@color/default_text_color"
+                                android:maxLines="1"
+                                android:maxEms="1"
+                                android:inputType="textPersonName"
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/amount_layout"
+                            android:layout_below="@+id/entitled_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/big_margin_10"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            app:hintTextColor="@color/default_text_color_blue_cyan"
+                            app:boxBackgroundColor="@color/default_text_input_color"
+                            android:hint="@string/amount"
+
+                            android:textColorHint="@color/default_text_color_blue_cyan"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/amount_edit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@={receivable.amount}"
+                                android:textColor="@color/default_text_color"
+                                android:inputType="numberDecimal"
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/loaning_date_time_layout"
+                            android:layout_below="@+id/amount_layout"
+                            android:layout_toStartOf="@+id/pick_loaning_date_and_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/big_margin_10"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            app:hintTextColor="@color/default_text_color_blue_cyan"
+                            app:boxBackgroundColor="@color/default_text_input_color"
+                            android:hint="@string/loaning_date"
+
+                            android:textColorHint="@color/default_text_color_blue_cyan"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/loaning_date_time_edit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@={receivable.loanDate}"
+                                android:inputType="datetime"
+                                android:textColor="@color/default_text_color"
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <ImageView
+                            android:id="@+id/pick_loaning_date_and_time"
+                            android:layout_marginTop="@dimen/big_margin_10"
+                            android:layout_below="@+id/amount_layout"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentEnd="true"
+                            android:src="@drawable/twotone_edit_calendar_blue_500_48dp"
+                            android:contentDescription="calendar_pick_up" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/disbursement_due_date_layout"
+                            android:layout_below="@+id/loaning_date_time_layout"
+                            android:layout_toStartOf="@+id/pick_loaning_date_and_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/big_margin_10"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            app:hintTextColor="@color/default_text_color_blue_cyan"
+                            app:boxBackgroundColor="@color/default_text_input_color"
+                            android:hint="@string/repayment_due_date"
+
+                            android:textColorHint="@color/default_text_color_blue_cyan"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/disbursement_due_date_edit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@={receivable.dueDate}"
+                                android:inputType="datetime"
+                                android:textColor="@color/default_text_color"
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <ImageView
+                            android:id="@+id/pick_disbursement_due_date"
+                            android:layout_marginTop="@dimen/big_margin_10"
+                            android:layout_below="@+id/loaning_date_time_layout"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentEnd="true"
+                            android:src="@drawable/twotone_edit_calendar_blue_500_48dp"
+                            android:contentDescription="calendar_pick_up" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/disbursement_date_time_layout"
+                            android:layout_below="@+id/disbursement_due_date_layout"
+                            android:layout_toStartOf="@+id/pick_loaning_date_and_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/big_margin_10"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            app:hintTextColor="@color/default_text_color_blue_cyan"
+                            app:boxBackgroundColor="@color/default_text_input_color"
+                            android:hint="@string/repayment_date__if_paid_already"
+
+                            android:textColorHint="@color/default_text_color_blue_cyan"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/disbursement_date_time_edit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@={receivable.disbursementDate}"
+                                android:inputType="datetime"
+                                android:textColor="@color/default_text_color"
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <ImageView
+                            android:id="@+id/disbursement_date_and_time"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_below="@+id/disbursement_due_date_layout"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="@dimen/big_margin_10"
+                            android:contentDescription="calendar_pick_up"
+                            android:src="@drawable/twotone_edit_calendar_blue_500_48dp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/debtor_name_layout"
+                            android:layout_below="@+id/disbursement_date_time_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/big_margin_10"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            app:hintTextColor="@color/default_text_color_blue_cyan"
+                            app:boxBackgroundColor="@color/default_text_input_color"
+                            android:hint="@string/debtor_names"
+                            android:textColorHint="@color/default_text_color_blue_cyan"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/debtor_names_edit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@={receivable.debtorNames}"
+                                android:inputType="textPersonName"
+                                android:textColor="@color/default_text_color"
+
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/debtor_contact_layout"
+                            android:layout_below="@+id/debtor_name_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/big_margin_10"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            app:hintTextColor="@color/default_text_color_blue_cyan"
+                            app:boxBackgroundColor="@color/default_text_input_color"
+                            android:hint="@string/debtor_contact"
+
+                            android:textColorHint="@color/default_text_color_blue_cyan"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/debtor_contact_edit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@={receivable.debtorContact}"
+                                android:textColor="@color/default_text_color"
+                                android:inputType="text"
+
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/telltale_layout"
+                            android:layout_below="@+id/debtor_contact_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/big_margin_10"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            app:hintTextColor="@color/default_text_color_blue_cyan"
+                            app:boxBackgroundColor="@color/default_text_input_color"
+                            android:hint="@string/telltale"
+
+                            android:textColorHint="@color/default_text_color_blue_cyan"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/telltale_edit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/default_text_color"
+                                android:maxLength="8"
+                                android:maxLines="1"
+                                android:inputType="text"
+                                android:text="@={receivable.telltale}"
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/sticker_layout"
+                            android:layout_below="@+id/telltale_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/big_margin_10"
+                            android:layout_marginStart="@dimen/small_margin_2"
+                            android:layout_marginEnd="@dimen/small_margin_2"
+                            android:layout_marginBottom="54dp"
+                            app:hintTextColor="@color/default_text_color_blue_cyan"
+                            app:boxBackgroundColor="@color/default_text_input_color"
+                            android:hint="@string/filtering_sticker"
+                            android:textColorHint="@color/default_text_color_blue_cyan"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/sticker_edit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/default_text_color"
+                                android:maxLength="8"
+                                android:maxLines="1"
+                                android:inputType="text"
+                                android:text="@={receivable.sticker}"
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </RelativeLayout>
+
+                </ScrollView>
+
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/save_receivable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/default_border_margin_4"
+                android:layout_marginTop="@dimen/default_border_margin_4"
+                android:layout_marginEnd="@dimen/default_border_margin_4"
+                android:layout_marginBottom="@dimen/big_margin_10"
+                android:text="@string/save"
+                android:textColor="@color/text_white" />
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</layout>
