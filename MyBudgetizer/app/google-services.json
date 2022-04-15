@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "451110674062",
+    "project_id": "my-budgetizer",
+    "storage_bucket": "my-budgetizer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451110674062:android:17e6fe5059fb0624f8b3df",
+        "android_client_info": {
+          "package_name": "cm.abimmobiledev.mybudgetizer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451110674062-cfks6phiokh44il0s0he6t57br0vp9n0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWm_atj6dczlthfCUJvXynL4-lXbNFjcU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451110674062-cfks6phiokh44il0s0he6t57br0vp9n0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
