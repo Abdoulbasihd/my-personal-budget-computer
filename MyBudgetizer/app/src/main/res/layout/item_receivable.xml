@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/card_elevation_medium_4"
+        app:cardCornerRadius="@dimen/default_card_radius_5"
+        android:layout_margin="@dimen/small_margin_2"
+        android:id="@+id/receivable_card"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/receivable_sticker"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/small_margin_2"
+                app:cardElevation="@dimen/default_card_elevation_2"
+                app:cardCornerRadius="@dimen/default_card_radius_5"
+                app:cardBackgroundColor="@color/teal_200"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                >
+                <RelativeLayout
+                    android:layout_margin="@dimen/small_margin_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/sticker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:maxLength="10"
+                        android:textAlignment="center"
+                        android:textColor="@color/text_white" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:id="@+id/main_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/delete_content"
+                >
+
+                <TextView
+                    android:id="@+id/receivable_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginEnd="@dimen/small_margin_2"
+                    android:text="title"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:textSize="@dimen/title_text_medium_size_15"
+                    android:textStyle="bold" />
+
+
+                <View
+                    android:id="@+id/separator"
+                    android:layout_width="20dp"
+                    android:layout_height="0.7dp"
+                    android:layout_below="@+id/receivable_title"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/default_border_margin_4"
+                    android:background="@color/default_text_color_blue_cyan" />
+
+                <TextView
+                    android:id="@+id/amount_title"
+                    android:layout_below="@+id/separator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_body_text_size_12"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:text="@string/amount"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    />
+
+                <TextView
+                    android:id="@+id/amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/separator"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    android:text="500 F.CFA"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:textSize="@dimen/default_body_text_size_12" />
+
+                <TextView
+                    android:id="@+id/loan_date_title"
+                    android:layout_below="@+id/amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_body_text_size_12"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:text="@string/loaning_date"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    />
+
+                <TextView
+                    android:id="@+id/loan_date"
+                    android:layout_below="@+id/amount"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_body_text_size_12"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:text="2020/12/12 12:12:12"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    />
+
+                <TextView
+                    android:id="@+id/due_date_title"
+                    android:layout_below="@+id/loan_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_body_text_size_12"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:text="@string/due_date"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    />
+                <TextView
+                    android:id="@+id/due_date"
+                    android:layout_below="@+id/loan_date"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_body_text_size_12"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:text="2020/12/12 12:12:12"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    />
+
+                <TextView
+                    android:id="@+id/pay_date_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/due_date_title"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    android:text="@string/paid_on"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:textSize="@dimen/default_body_text_size_12" />
+                <TextView
+                    android:id="@+id/pay_date"
+                    android:layout_below="@+id/due_date"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_body_text_size_12"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:text="2020/12/12 12:12:12"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    />
+
+                <TextView
+                    android:id="@+id/debtor_name_title"
+                    android:layout_below="@+id/pay_date_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_body_text_size_12"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:text="@string/debtor_names"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    />
+
+                <TextView
+                    android:id="@+id/debtor_names"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pay_date"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:textSize="@dimen/default_body_text_size_12" />
+
+                <TextView
+                    android:id="@+id/debtor_contact_title"
+                    android:layout_below="@+id/debtor_name_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_body_text_size_12"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:text="@string/debtor_contact"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    />
+                <TextView
+                    android:id="@+id/debtor_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/debtor_names"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:textSize="@dimen/default_body_text_size_12" />
+
+                <TextView
+                    android:id="@+id/witness_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/debtor_contact_title"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    android:text="@string/witness"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:textSize="@dimen/default_body_text_size_12" />
+                <TextView
+                    android:id="@+id/witness_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/debtor_contact"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:textSize="@dimen/default_body_text_size_12" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/receivable_paid_card"
+                    android:layout_below="@+id/witness_name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/big_margin_10"
+                    app:cardElevation="@dimen/default_card_elevation_2"
+                    app:cardCornerRadius="@dimen/default_card_radius_5"
+                    app:cardBackgroundColor="@color/paid_green_color"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    >
+                    <RelativeLayout
+                        android:layout_margin="@dimen/small_margin_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/paid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="@string/paid"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_white" />
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/receivable_unpaid_card"
+                    android:layout_below="@+id/witness_name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="@dimen/default_border_margin_4"
+                    app:cardElevation="@dimen/default_card_elevation_2"
+                    app:cardCornerRadius="@dimen/default_card_radius_5"
+                    app:cardBackgroundColor="@color/unpaid_red_color"
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    >
+                    <RelativeLayout
+                        android:layout_margin="@dimen/small_margin_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/unpaid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="@string/not_paid"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_white"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+
+            </RelativeLayout>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/delete_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/receivable_sticker"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="@dimen/default_border_margin_4"
+                app:cardCornerRadius="@dimen/default_card_radius_5"
+                app:cardElevation="@dimen/card_elevation_medium_4"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <ImageView
+                        android:id="@+id/delete_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_twotone_delete_forever_24" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/more_action_card"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/delete_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="@dimen/default_border_margin_4"
+                app:cardCornerRadius="@dimen/default_card_radius_5"
+                app:cardElevation="@dimen/card_elevation_medium_4"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <ImageView
+                        android:id="@+id/edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_twotone_edit_24" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

@@ -4,19 +4,19 @@ Fix a periodical budget, compute daily spends
 
 ## 1.  Fonctionnalités
 
-* --> ajouter, modifier, supprimer une dépense (crud)
-* --> ajouter, modiifer, supprimer une dette (crud)
-* --> ajouter, modifier, supprimer un gain (crud)
-* --> ajouter, modifier, supprimer une créance (crud)  (ce qui m'est dû)
-* --> ajouter, modifier, supprimer un budget
-* --> lister mes dépenses pour une période (jour, mois, année)
-* --> lister mes gains pour une période
-* --> lister mes dettes  d'une période
-* --> lister mes créance d'une période
-* --> lister toutes mes dettes non remboursée
-* --> lister mes dettes remboursée d'une période
-* --> lster toutes mes créances non payées
-* --> lister mes créances payées d'une période
+* --> ajouter, consulter, modifier, supprimer une dépense (crud)
+* --> ajouter, consulter, modifier, supprimer une dette (crud)
+* --> ajouter, consulter, modifier, supprimer un gain (crud)
+* --> ajouter, consulter, modifier, supprimer une créance (crud)  (ce qui m'est dû)
+* --> ajouter, consulter, modifier, supprimer un budget
+* --> lister/consulter mes dépenses pour une période (jour, mois, année)
+* --> lister/consulter mes gains pour une période
+* --> lister/consulter mes dettes  d'une période
+* --> lister/consulter mes créance d'une période
+* --> lister/consulter toutes mes dettes non remboursée
+* --> lister/consulter mes dettes remboursée d'une période
+* --> lister/consulter toutes mes créances non payées
+* --> lister/consulter mes créances payées d'une période
 
 
 __***Une dépense peut être liée ou non à un budget. Et un budget peut enregistrer plusieurs dépenses***__
@@ -48,8 +48,8 @@ __***Une dépense peut être liée ou non à un budget. Et un budget peut enregi
 	 - intitulé
 	 - montant
 	 - date d'emprunt
-	 - date d'échéance de remboursement
-	 - date de remboursement
+	 - date d'échéance de remboursement (date au plus tard)
+	 - date de remboursement (date effectif de remboursement)
 	 - remboursé ou non (boolean)
 	 - nom du créancier
 	 - contact du créancier

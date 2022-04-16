@@ -2,13 +2,16 @@ package cm.abimmobiledev.mybudgetizer.database.entity;
 
 public class BasicInfo {
 
+    public String sticker; //for filtering purpose.
+
     public String entitled;
 
     public double amount;
 
-    public BasicInfo(String entitled, double amount) {
+    public BasicInfo(String entitled, double amount, String sticker) {
         this.entitled = entitled;
         this.amount = amount;
+        this.sticker = sticker;
     }
 
     public String getEntitled() {
@@ -27,4 +30,11 @@ public class BasicInfo {
         this.amount = amount;
     }
 
+    public String getSticker() {
+        return sticker;
+    }
+
+    public void setSticker(String sticker) {
+        this.sticker = sticker;
+    }
 }

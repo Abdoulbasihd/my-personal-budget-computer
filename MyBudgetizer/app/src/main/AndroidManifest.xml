@@ -4,11 +4,20 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_app_budgetizer"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo_app_budgetizer"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.receivable.ReceivableRegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.receivable.ReceivableBoardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.receivable.ReceivablesActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.debt.DebtsActivity"
             android:exported="false" />
