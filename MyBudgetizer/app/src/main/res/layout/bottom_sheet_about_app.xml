@@ -47,7 +47,7 @@
             android:layout_marginTop="@dimen/default_border_margin_4"
             android:layout_marginEnd="@dimen/default_border_margin_4"
             android:layout_marginBottom="@dimen/default_border_margin_4"
-            android:text="Cette version présente juste les fonctionnalités gestion des dépenses et des gains : enregistrer, voir la liste d'une période donnée, et éventuellement supprimer (à cause d'erreur d'enregistrement ??)... Les autres fonctionnalité seront développer prochainement; merci de suivre les mis-à-jours"
+            android:text="Cette version présente les fonctionnalités gestion des dépenses, gains, dettes et créances. On peut enregistrer, voir la liste d'une période donnée, et éventuellement supprimer (à cause d'erreur d'enregistrement ??)... Les autres fonctionnalité seront développer prochainement; merci de suivre les mis-à-jours"
             android:textAlignment="center"
             android:textColor="@color/default_text_color_blue_cyan" />
 
