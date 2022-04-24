@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Budgetizer</string>
+    <string name="app_name">Djiba Am !</string>
     <string name="my_expenses">Mes Dépenses</string>
     <string name="icon_expenses">icon expenses</string>
     <string name="menu_for_expense_registering_or_periodic_expenses_consultation">Menu pour enregistrer une dépense ou consulter mes dépenses d\'une période.</string>

@@ -296,7 +296,7 @@
                     android:id="@+id/card_account_manager"
                     android:layout_below="@+id/card_receivable"
                     android:layout_alignParentStart="true"
-                    android:layout_width="120dp"
+                    android:layout_width="200dp"
                     android:layout_height="120dp"
                     android:layout_margin="@dimen/small_margin_2"
                     app:cardElevation="@dimen/default_card_elevation_2"
@@ -316,12 +316,14 @@
                             android:layout_marginEnd="@dimen/small_margin_2"
                             android:layout_marginBottom="@dimen/small_margin_2"
                             android:contentDescription="@string/icon_expenses"
+                            android:layout_centerHorizontal="true"
                             android:src="@drawable/twotone_manage_accounts_blue_500_48dp" />
 
                         <TextView
                             android:id="@+id/account_manager_title"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
                             android:layout_below="@+id/account_manager_logo"
                             android:layout_marginStart="@dimen/small_margin_2"
                             android:layout_marginTop="@dimen/small_margin_2"
@@ -340,8 +342,8 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_about_app"
                     android:layout_below="@+id/card_receivable"
-                    android:layout_alignParentEnd="true"
-                    android:layout_width="120dp"
+                    android:layout_toEndOf="@+id/card_account_manager"
+                    android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:layout_margin="@dimen/small_margin_2"
                     app:cardElevation="@dimen/default_card_elevation_2"
@@ -361,6 +363,7 @@
                             android:layout_marginEnd="@dimen/small_margin_2"
                             android:layout_marginBottom="@dimen/small_margin_2"
                             android:contentDescription="@string/icon_expenses"
+                            android:layout_centerHorizontal="true"
                             android:src="@drawable/twotone_question_mark_blue_500_48dp" />
 
                         <TextView
@@ -368,6 +371,7 @@
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/about_app_logo"
+                            android:layout_centerHorizontal="true"
                             android:layout_marginStart="@dimen/small_margin_2"
                             android:layout_marginTop="@dimen/small_margin_2"
                             android:layout_marginEnd="@dimen/small_margin_2"
