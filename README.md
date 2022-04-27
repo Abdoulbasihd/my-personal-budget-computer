@@ -21,6 +21,10 @@ Fix a periodical budget, compute daily spends
 
 __***Une dépense peut être liée ou non à un budget. Et un budget peut enregistrer plusieurs dépenses***__
 
+- L'affichage de la liste des budget doit pouvoir indiquer le niveau de consommation du budget.
+Par exemple, le budget peut être consommé à 30% à date d'affichage.
+- Le budget dont le montant a été totalement consommé ne devraient plus être selectionnable pour une dépense donnée
+- Quid de budget expiré et non totalement consommé ? que faire de ca ?
 
 ## 2. Les enregistrements
 
