@@ -12,6 +12,8 @@ public class Expense extends BasicInfo {
     @ColumnInfo(name = "expense_id")
     public int expenseId;
 
+    public int fkBudgetId;
+
 
     @ColumnInfo(name = "date_time_of_expense")
     public String dateTimeOfExpense;

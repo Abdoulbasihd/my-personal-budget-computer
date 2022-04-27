@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/card_elevation_medium_4"
+        app:cardCornerRadius="@dimen/default_card_radius_5"
+        android:layout_marginStart="@dimen/small_margin_2"
+        android:layout_marginEnd="@dimen/small_margin_2"
+        android:layout_marginTop="0.5dp"
+        android:layout_marginBottom="0dp"
+        android:id="@+id/budget_card"
+        >
+
+    </androidx.cardview.widget.CardView>
+</layout>

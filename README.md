@@ -22,7 +22,8 @@ Fix a periodical budget, compute daily spends
 __***Une dépense peut être liée ou non à un budget. Et un budget peut enregistrer plusieurs dépenses***__
 
 - L'affichage de la liste des budget doit pouvoir indiquer le niveau de consommation du budget.
-Par exemple, le budget peut être consommé à 30% à date d'affichage.
+Par exemple, le budget peut être consommé à 30% à date d'affichage.  
+Le budget a donc comme elt calculé le montant consommé
 - Le budget dont le montant a été totalement consommé ne devraient plus être selectionnable pour une dépense donnée
 - Quid de budget expiré et non totalement consommé ? que faire de ca ?
 
@@ -34,12 +35,14 @@ Par exemple, le budget peut être consommé à 30% à date d'affichage.
 	 - date de fin
 	 - montant total
 	 - [liste des dépenses lié ? relation 1 budget pour plusieur depenses ]
+	 - sticker
 
 * > __**depense**__
 	 - intitulé
 	 - montant
 	 - date et heure de dépense
 	 - raison (description)
+	 - sticker
 
 * > __**Gain**__
 	 - intitulé
@@ -47,6 +50,7 @@ Par exemple, le budget peut être consommé à 30% à date d'affichage.
 	 - date de gain
 	 - source des fonds
 	 - description
+	 - sticker
 
 * > __**Dette**__
 	 - intitulé
@@ -57,6 +61,8 @@ Par exemple, le budget peut être consommé à 30% à date d'affichage.
 	 - remboursé ou non (boolean)
 	 - nom du créancier
 	 - contact du créancier
+	 - sticker
+	 - temoin
 	
 * > __**Creance**__
 	 - intitulé
@@ -67,7 +73,15 @@ Par exemple, le budget peut être consommé à 30% à date d'affichage.
 	 - nom de l'emprunteur
 	 - contact de l'emprunteur
 	 - description
+	 - sticker
+	 - temoin
 
 
-__Add next : link to an account__
+* > __**Account**__
+	- nom du compte
+	- créance utilisé
+	- balance liquide
+	- balance en bank
+	- balance en porte feuille mobile (mobile money)
+	- total balance => calculé
 
