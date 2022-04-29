@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/rounded_blue_view.xml" value="0.15989583333333332" />
+        <entry key="app/src/main/res/layout/activity_budget_board.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/activity_budget_form.xml" value="0.13958333333333334" />
         <entry key="app/src/main/res/layout/activity_debt_board.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_debt_registration.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_debts.xml" value="0.17" />
@@ -25,7 +28,7 @@
         <entry key="app/src/main/res/layout/fragment_bottom_sheet_more_earnings.xml" value="0.13958333333333334" />
         <entry key="app/src/main/res/layout/fragment_bottom_sheet_more_expense_menu.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_bottom_sheet_more_receivable_menu.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/item_budget.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_budget.xml" value="0.18" />
         <entry key="app/src/main/res/layout/item_debt.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_expense.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_income.xml" value="0.22" />

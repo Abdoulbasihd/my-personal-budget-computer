@@ -103,4 +103,21 @@
     <string name="receivable_assigned_today">Créance accordéé aujourd\'hui</string>
     <string name="assigned_this_month">Assignée ce mois</string>
     <string name="no_item_found">Aucun element trouvé</string>
+    <string name="beggining_date">Date de debut</string>
+    <string name="remaining">Restant</string>
+    <string name="consumed">Consommé</string>
+    <string name="my_balances">Mes Soldes</string>
+    <string name="cash">En espèce</string>
+    <string name="mobile_wallet_mobile_money">Portefeuille mobile (mobile money)</string>
+    <string name="summarized_view_of_my_balances">Vue résumé de mes soldes</string>
+    <string name="my_last_budgets">Mes derniers budgets</string>
+    <string name="create_a_new_budget">Créer un nouveau budget</string>
+    <string name="starting_date">Date de debut</string>
+    <string name="end_date">Date de fin</string>
+    <string name="new_budget">Nouveau Budget</string>
+    <string name="in_bank">En banque</string>
+    <string name="budget_deleted_with_associated_expended_actualize_please">Budget Supprimée ainsi que toutes les dépenses associées... Bien vouloir actualiser</string>
+    <string name="do_you_really_want_to_delete_this_budget_it_ll_lead_to_delete_all_linked_expenses">Voulez-vous vraiment supprimer ce budget ? La suppression d\'un budget entrainera la suppression de toutes les dépenses associées...</string>
+    <string name="cancel">Annuler</string>
+    <string name="go_on">Continuer</string>
 </resources>

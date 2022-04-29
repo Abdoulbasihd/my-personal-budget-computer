@@ -8,8 +8,8 @@ import java.util.List;
 public class BudgetWithExpenses {
     @Embedded public Budget budget;
     @Relation(
-            parentColumn = "budgetId",
-            entityColumn = "fkBudgetId"
+            parentColumn = "budget_id",
+            entityColumn = "fk_budget_id"
     )
     public List<Expense> expenses;
 

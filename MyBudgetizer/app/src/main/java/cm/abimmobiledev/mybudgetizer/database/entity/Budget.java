@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey;
 public class Budget extends BasicInfo{
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "budget_id")
     public int budgetId;
 
     @ColumnInfo(name = "beginning_date")
@@ -15,6 +16,8 @@ public class Budget extends BasicInfo{
 
     @ColumnInfo(name = "end_date")
     public String endDate;
+
+    public String description;
 
     public Budget(String entitled, double amount, String sticker, String beginningDate, String endDate) {
         super(entitled, amount, sticker);
@@ -45,5 +48,13 @@ public class Budget extends BasicInfo{
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

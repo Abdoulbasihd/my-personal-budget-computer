@@ -9,7 +9,6 @@ import androidx.room.Update;
 import java.util.List;
 
 import cm.abimmobiledev.mybudgetizer.database.entity.Debt;
-import cm.abimmobiledev.mybudgetizer.database.entity.Earning;
 
 @Dao
 public interface DebtDAO {

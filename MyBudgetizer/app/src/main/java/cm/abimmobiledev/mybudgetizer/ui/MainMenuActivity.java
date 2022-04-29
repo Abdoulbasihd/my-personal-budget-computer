@@ -11,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import cm.abimmobiledev.mybudgetizer.R;
 import cm.abimmobiledev.mybudgetizer.databinding.ActivityMainMenuBinding;
+import cm.abimmobiledev.mybudgetizer.nav.BudgetNav;
 import cm.abimmobiledev.mybudgetizer.nav.DebtNavigator;
 import cm.abimmobiledev.mybudgetizer.nav.ExNavigation;
 import cm.abimmobiledev.mybudgetizer.nav.IncNavigator;
@@ -26,7 +27,7 @@ public class MainMenuActivity extends AppCompatActivity {
         mainMenuBinding = DataBindingUtil.setContentView(this, R.layout.activity_main_menu);
 
         //implement this group first....
-        mainMenuBinding.cardBudget.setOnClickListener(aboutView -> Snackbar.make(aboutView, getString(R.string.not_yet_implemented), Snackbar.LENGTH_LONG).show());
+        mainMenuBinding.cardBudget.setOnClickListener(aboutView -> BudgetNav.openBudgetsHome(MainMenuActivity.this));
 
         mainMenuBinding.cardDebts.setOnClickListener(aboutView -> DebtNavigator.openDebtsHome(MainMenuActivity.this));
 

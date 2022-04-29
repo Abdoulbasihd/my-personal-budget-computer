@@ -4,6 +4,7 @@ Fix a periodical budget, compute daily spends
 
 ## 1.  Fonctionnalités
 
+En gros, nous pouvons :
 * --> ajouter, consulter, modifier, supprimer une dépense (crud)
 * --> ajouter, consulter, modifier, supprimer une dette (crud)
 * --> ajouter, consulter, modifier, supprimer un gain (crud)
@@ -25,7 +26,9 @@ __***Une dépense peut être liée ou non à un budget. Et un budget peut enregi
 Par exemple, le budget peut être consommé à 30% à date d'affichage.  
 Le budget a donc comme elt calculé le montant consommé
 - Le budget dont le montant a été totalement consommé ne devraient plus être selectionnable pour une dépense donnée
-- Quid de budget expiré et non totalement consommé ? que faire de ca ?
+- Une dépense est associée à un et un seul budget. et lorsque ledit budget est supprimé, toutes les dépenses associées le sont également
+- Pour ajouter une dépense, on doit pouvoir selectionner le budget associé et vérifier que le budget selectionné le permet (montant non totalement consommé)
+
 
 ## 2. Les enregistrements
 
@@ -34,8 +37,9 @@ Le budget a donc comme elt calculé le montant consommé
 	 - date de début
 	 - date de fin
 	 - montant total
-	 - [liste des dépenses lié ? relation 1 budget pour plusieur depenses ]
+	 - [liste des dépenses lié. relation 1 budget pour plusieurs depenses ]
 	 - sticker
+	 - description
 
 * > __**depense**__
 	 - intitulé
@@ -84,4 +88,11 @@ Le budget a donc comme elt calculé le montant consommé
 	- balance en bank
 	- balance en porte feuille mobile (mobile money)
 	- total balance => calculé
+	- budgetized balance
+	
+___________________________________________________________
+La création de budget dépend du compte. Pour la prémière version de l'application, l'utilisateur a un seul compte (Pour les prochaines versions, on peut prévoir des sous comptes). Un budget est donc lié à un compte utilisateur et un compte utilisateur peut avoir plusieurs budget
+Pour la création de budget, on devrait vérifier que le compte a de l'argent suffisemment. Pour celà, l'on doit être en mesure de determiner le montant non budgétisé
+
+Lors de la création d'une dépense, on débite le montant du compte
 
