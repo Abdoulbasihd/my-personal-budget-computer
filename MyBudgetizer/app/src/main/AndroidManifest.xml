@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.budget.BudgetFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.budget.BudgetBoardActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.receivable.ReceivableRegistrationActivity"
             android:exported="false" />
         <activity

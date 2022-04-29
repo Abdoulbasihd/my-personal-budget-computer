@@ -55,9 +55,40 @@
                         android:layout_centerHorizontal="true"
                         />
 
+
+                    <LinearLayout
+                        android:layout_below="@+id/title_new_expense_sep"
+                        android:orientation="vertical"
+                        android:padding="10dip"
+                        android:id="@+id/layout_budget_select"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!-- Text Label -->
+                        <TextView
+                            android:id="@+id/title_budgets"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Quel budget impacter ?"
+                            android:textColor="@color/default_text_color_blue_cyan"
+                            android:layout_marginBottom="@dimen/small_margin_2"
+                            android:layout_marginTop="@dimen/small_margin_2"
+                            android:layout_marginStart="@dimen/default_border_margin_4"
+                            android:layout_marginEnd="@dimen/default_border_margin_4"
+                            />
+
+                        <!-- Spinner Element -->
+                        <Spinner
+                            android:id="@+id/spinner_budgets"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            />
+                    </LinearLayout>
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/entitled_layout"
-                        android:layout_below="@+id/title_new_expense_sep"
+                        android:layout_below="@+id/layout_budget_select"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/big_margin_10"
