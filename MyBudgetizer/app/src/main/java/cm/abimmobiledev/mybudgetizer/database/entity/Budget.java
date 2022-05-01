@@ -19,6 +19,8 @@ public class Budget extends BasicInfo{
 
     public String description;
 
+    public double consumed;
+
     public Budget(String entitled, double amount, String sticker, String beginningDate, String endDate) {
         super(entitled, amount, sticker);
         this.beginningDate = beginningDate;
@@ -56,5 +58,13 @@ public class Budget extends BasicInfo{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public double getConsumed() {
+        return consumed;
+    }
+
+    public void setConsumed(double consumed) {
+        this.consumed = consumed;
     }
 }

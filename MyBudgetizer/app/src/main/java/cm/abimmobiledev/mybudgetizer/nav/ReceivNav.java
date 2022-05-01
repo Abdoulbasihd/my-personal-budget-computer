@@ -14,21 +14,27 @@ import cm.abimmobiledev.mybudgetizer.ui.receivable.ReceivablesActivity;
 
 public class ReceivNav {
 
-    public static void openReceivablesHome(Activity contextToReceivableBoard) {
+    public static void openReceivablesHome(Activity contextToReceivableBoard, String acc, String curr) {
         Intent intentToRecDash = new Intent(contextToReceivableBoard, ReceivableBoardActivity.class);
+        intentToRecDash.putExtra(ExNavigation.ACC_NAME_PARAM, acc);
+        intentToRecDash.putExtra(ExNavigation.CURRENCY_PARAM, curr);
         contextToReceivableBoard.startActivity(intentToRecDash);
         contextToReceivableBoard.finish();
     }
 
-    public static void openNewReceivable(Activity contextToNewReceivable) {
+    public static void openNewReceivable(Activity contextToNewReceivable, String acc, String curr) {
         Intent intentToNewReceivable = new Intent(contextToNewReceivable, ReceivableRegistrationActivity.class);
+        intentToNewReceivable.putExtra(ExNavigation.CURRENCY_PARAM, curr);
+        intentToNewReceivable.putExtra(ExNavigation.ACC_NAME_PARAM, acc);
         contextToNewReceivable.startActivity(intentToNewReceivable);
         contextToNewReceivable.finish();
     }
 
 
-    public static void openReceivablesSearch(Activity contextToRecsSearch, String searchParam) {
+    public static void openReceivablesSearch(Activity contextToRecsSearch, String searchParam, String acc, String curr) {
         Intent intentToRecsSearch = new Intent(contextToRecsSearch, ReceivablesActivity.class);
+        intentToRecsSearch.putExtra(ExNavigation.ACC_NAME_PARAM, acc);
+        intentToRecsSearch.putExtra(ExNavigation.CURRENCY_PARAM, curr);
         intentToRecsSearch.putExtra(SEARCH_PARAM, searchParam);
         contextToRecsSearch.startActivity(intentToRecsSearch);
         contextToRecsSearch.finish();

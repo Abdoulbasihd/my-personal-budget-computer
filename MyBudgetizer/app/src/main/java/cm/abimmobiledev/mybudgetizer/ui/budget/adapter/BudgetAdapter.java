@@ -72,7 +72,7 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.BudgetView
             BudgetWithExpenses budgetWithExpenses = appDatabaseBudgetConsumedSelector.budgetDAO().getExpensesOfGivenBudget(budget.getBudgetId());
 
             try {
-                double consumedAmount = getConsumedAmount(budgetWithExpenses);
+                double consumedAmount = budget.getConsumed();
                 int consumedPercentage = (int) getConsumedPercent(consumedAmount, budget);
 
                 new Handler(Looper.getMainLooper()).post(() -> {
@@ -133,6 +133,7 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.BudgetView
         return budgets.size();
     }
 
+    @Deprecated
     public static double getConsumedAmount(BudgetWithExpenses budgetWithExpenses) throws BudgetizerGeneralException {
         if (budgetWithExpenses==null || budgetWithExpenses.expenses == null)
             throw new BudgetizerGeneralException("param must be initialized");
@@ -157,6 +158,7 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.BudgetView
 
         return (consumed * 100) / budget.getAmount(); // percentage = (consumed * 100) / total to consume
     }
+
 
     public static class BudgetViewHolder extends RecyclerView.ViewHolder {
 

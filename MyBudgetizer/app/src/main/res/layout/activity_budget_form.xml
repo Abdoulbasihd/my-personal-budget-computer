@@ -199,7 +199,7 @@
                             android:layout_marginTop="@dimen/big_margin_10"
                             android:layout_marginStart="@dimen/small_margin_2"
                             android:layout_marginEnd="@dimen/small_margin_2"
-                            android:layout_marginBottom="54dp"
+                            android:layout_marginBottom="@dimen/small_margin_2"
                             app:hintTextColor="@color/default_text_color_blue_cyan"
                             app:boxBackgroundColor="@color/default_text_input_color"
                             android:hint="@string/filtering_sticker"

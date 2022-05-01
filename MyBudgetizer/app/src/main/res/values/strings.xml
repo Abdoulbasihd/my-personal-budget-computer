@@ -120,4 +120,9 @@
     <string name="do_you_really_want_to_delete_this_budget_it_ll_lead_to_delete_all_linked_expenses">Voulez-vous vraiment supprimer ce budget ? La suppression d\'un budget entrainera la suppression de toutes les dépenses associées...</string>
     <string name="cancel">Annuler</string>
     <string name="go_on">Continuer</string>
+    <string name="going_on_budget_total">Total budget en cours</string>
+    <string name="account_name">Nom du compte</string>
+    <string name="select_currency">Choisir le devise</string>
+    <string name="page_not_initialized">Page Not Initialized</string>
+    <string name="insufficient_account_balance_to_create_this_budget">Le solde insuffisant du compte est insuffisant pour la création de ce budget</string>
 </resources>

@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,6 +42,9 @@ public class ExpenseDashboardActivity extends AppCompatActivity {
     ProgressDialog expenseBoardProgress;
     List<Expense> periodicExpenses;
 
+    String  accountName;
+    String currency;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,14 +58,19 @@ public class ExpenseDashboardActivity extends AppCompatActivity {
 
         expenseDashboardBinding = DataBindingUtil.setContentView(this, R.layout.activity_expense_dashboard);
 
+        expBoardInitByIntent(getIntent());
 
         expenseDashboardBinding.newExpense.setOnClickListener(newExpenseView -> {
             //open expense registration page
-            ExNavigation.openNewExpense(ExpenseDashboardActivity.this);
+            ExNavigation.openNewExpense(ExpenseDashboardActivity.this, accountName, currency);
         });
 
         expenseDashboardBinding.showMore.setOnClickListener(moveExpensesView -> {
             BottomSheetMoreExpenseMenuFragment moreExpenseBD = new BottomSheetMoreExpenseMenuFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString(ExNavigation.ACC_NAME_PARAM, accountName);
+            bundle.putString(ExNavigation.CURRENCY_PARAM, currency);
+            moreExpenseBD.setArguments(bundle);
             //moreExpenseBD.setContentView(R.layout.fragment_bottom_sheet_more_expense_menu);
             moreExpenseBD.show(getSupportFragmentManager(), "ModalBottomSheet");
 
@@ -80,7 +89,7 @@ public class ExpenseDashboardActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        ExNavigation.openMainHome(ExpenseDashboardActivity.this);
+        ExNavigation.openMainHome(ExpenseDashboardActivity.this, accountName, currency);
     }
 
     public void dashViewDataSetup(){
@@ -226,5 +235,11 @@ public class ExpenseDashboardActivity extends AppCompatActivity {
         final int mYear = c.get(Calendar.YEAR);
         return String.valueOf(mYear);
     }
+
+    public void  expBoardInitByIntent(Intent expBoardIntent) {
+        accountName = expBoardIntent.getStringExtra(ExNavigation.ACC_NAME_PARAM);
+        currency = expBoardIntent.getStringExtra(ExNavigation.CURRENCY_PARAM);
+    }
+
 
 }

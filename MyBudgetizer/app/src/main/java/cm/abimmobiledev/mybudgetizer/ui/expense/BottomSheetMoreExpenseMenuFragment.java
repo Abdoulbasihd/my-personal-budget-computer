@@ -15,6 +15,9 @@ import cm.abimmobiledev.mybudgetizer.nav.ExNavigation;
 
 public class BottomSheetMoreExpenseMenuFragment extends BottomSheetDialogFragment {
 
+    private String accountName;
+    private String currency;
+
     public BottomSheetMoreExpenseMenuFragment() {
         // Required empty public constructor
     }
@@ -23,6 +26,10 @@ public class BottomSheetMoreExpenseMenuFragment extends BottomSheetDialogFragmen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(getArguments()!=null){
+            accountName = getArguments().getString(ExNavigation.ACC_NAME_PARAM);
+            currency = getArguments().getString(ExNavigation.CURRENCY_PARAM);
+        }
     }
 
     @Override
@@ -36,13 +43,13 @@ public class BottomSheetMoreExpenseMenuFragment extends BottomSheetDialogFragmen
         MaterialButton thisYear = view.findViewById(R.id.view_this_year_expenses);
         MaterialButton searchOther = view.findViewById(R.id.filter_for_a_given_date);
 
-        today.setOnClickListener(todayView -> ExNavigation.openExpenseSearch(getActivity(), ExNavigation.EXPENSE_OF_TODAY));
+        today.setOnClickListener(todayView -> ExNavigation.openExpenseSearch(getActivity(), ExNavigation.EXPENSE_OF_TODAY, accountName, currency));
 
-        thisMonth.setOnClickListener(monthExpView -> ExNavigation.openExpenseSearch(getActivity(), ExNavigation.EXPENSE_OF_THIS_MONTH));
+        thisMonth.setOnClickListener(monthExpView -> ExNavigation.openExpenseSearch(getActivity(), ExNavigation.EXPENSE_OF_THIS_MONTH, accountName, currency));
 
-        thisYear.setOnClickListener(yearView -> ExNavigation.openExpenseSearch(getActivity(), ExNavigation.EXPENSE_OF_THIS_YEAR));
+        thisYear.setOnClickListener(yearView -> ExNavigation.openExpenseSearch(getActivity(), ExNavigation.EXPENSE_OF_THIS_YEAR, accountName, currency));
 
-        searchOther.setOnClickListener(yearView -> ExNavigation.openExpenseSearch(getActivity(), ExNavigation.EXPENSE_OF_A_DATE));
+        searchOther.setOnClickListener(yearView -> ExNavigation.openExpenseSearch(getActivity(), ExNavigation.EXPENSE_OF_A_DATE, accountName, currency));
 
         return view;
     }

@@ -5,22 +5,30 @@ import static cm.abimmobiledev.mybudgetizer.ui.expense.ExpenseRegistrationActivi
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import cm.abimmobiledev.mybudgetizer.R;
 import cm.abimmobiledev.mybudgetizer.database.BudgetizerAppDatabase;
+import cm.abimmobiledev.mybudgetizer.database.entity.Account;
 import cm.abimmobiledev.mybudgetizer.database.entity.Earning;
 import cm.abimmobiledev.mybudgetizer.databinding.ActivityEarningRegistrationBinding;
 import cm.abimmobiledev.mybudgetizer.exception.BudgetizerGeneralException;
+import cm.abimmobiledev.mybudgetizer.nav.ExNavigation;
 import cm.abimmobiledev.mybudgetizer.nav.IncNavigator;
 import cm.abimmobiledev.mybudgetizer.useful.Util;
 import cm.abimmobiledev.mybudgetizer.viewmodel.IncomeRegViewModel;
@@ -35,6 +43,12 @@ public class EarningRegistrationActivity extends AppCompatActivity {
     IncomeRegViewModel incomeRegViewModel;
 
     private static final String INC_REG_TAG = "INC_REG";
+    private String accountName;
+    private String currency;
+
+    List<String> accountTypes;
+    ArrayAdapter<String> accountAdapter;
+    int selectedAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +61,25 @@ public class EarningRegistrationActivity extends AppCompatActivity {
         earningRegistrationBinding = DataBindingUtil.setContentView(this, R.layout.activity_earning_registration);
         earningRegistrationBinding.setIncomeModel(incomeRegViewModel);
         earningRegistrationBinding.executePendingBindings();
+
+        earnRegInitByIntent(getIntent());
+        accountTypes = getAccountTypes();
+        accountAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, accountTypes);
+        accountAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // attaching data adapter to spinner
+        earningRegistrationBinding.spinnerAccounts.setAdapter(accountAdapter);
+        earningRegistrationBinding.spinnerAccounts.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedAccount = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         incomeRegDialog = Util.initAlertDialogBuilder(this, "Gain", getString(R.string.save_done));
         incomeRegDialog.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
@@ -92,7 +125,7 @@ public class EarningRegistrationActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        IncNavigator.openEarningsHome(EarningRegistrationActivity.this);
+        IncNavigator.openEarningsHome(EarningRegistrationActivity.this, accountName, currency);
     }
 
     /**
@@ -178,11 +211,25 @@ public class EarningRegistrationActivity extends AppCompatActivity {
 
 
                 BudgetizerAppDatabase appDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());
+
+                //get the account and update amount value by adding the earned ...
+                Account acc =
+                        updateCorrectWallet(
+                                appDatabase.accountDAO().getAccounts().get(0),
+                                earningNew.getAmount(),
+                                selectedAccount
+                        );
+
+                //insert the earning and update acc in data base
                 appDatabase.earningDAO().insertAll(earningNew);
+                appDatabase.accountDAO().update(acc);
+
+
+
             }
             catch (Exception exception) {
                 runOnUiThread(() -> {
-                    incomeRegDialog.setMessage(getString(R.string.an_error_occured)+"\n"+exception.getLocalizedMessage());
+                    incomeRegDialog.setMessage( getString(R.string.an_error_occured)+"\n"+exception.getLocalizedMessage());
                     incomeRegProgress.dismiss();
                     incomeRegDialog.show();
                 });
@@ -191,7 +238,7 @@ public class EarningRegistrationActivity extends AppCompatActivity {
 
             runOnUiThread(() -> {
                 incomeRegDialog.setMessage(getString(R.string.saved));
-                incomeRegDialog.setNegativeButton(getString(R.string.back), (dialog, which) -> IncNavigator.openEarningsHome(EarningRegistrationActivity.this));
+                incomeRegDialog.setNegativeButton(getString(R.string.back), (dialog, which) -> IncNavigator.openEarningsHome(EarningRegistrationActivity.this, accountName, currency));
                 incomeRegDialog.show();
                 incomeRegProgress.dismiss();
             });
@@ -202,5 +249,32 @@ public class EarningRegistrationActivity extends AppCompatActivity {
         });
 
     }
+
+    public void  earnRegInitByIntent(Intent earnRIntent) {
+        accountName = earnRIntent.getStringExtra(ExNavigation.ACC_NAME_PARAM);
+        currency = earnRIntent.getStringExtra(ExNavigation.CURRENCY_PARAM);
+    }
+
+    public static Account updateCorrectWallet(Account acc, double amount, int wallet){
+        if (wallet==2)
+            acc.setBankBalance(acc.getBankBalance()+amount);
+        else if (wallet==1)
+            acc.setMobileWalletBalance(acc.getMobileWalletBalance()+amount);
+        else
+            acc.setCashBalance(acc.getCashBalance()+amount);
+
+        acc.setAmount(acc.getBankBalance()+acc.getMobileWalletBalance()+acc.getCashBalance());
+
+        return acc;
+    }
+
+    public static List<String> getAccountTypes(){
+        List<String> aT = new ArrayList<>();
+        aT.add("Cash");
+        aT.add("Mobile wallet (mobile money)");
+        aT.add("Bank");
+        return aT;
+    }
+
 
 }

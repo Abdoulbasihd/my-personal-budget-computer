@@ -5,6 +5,7 @@ import static cm.abimmobiledev.mybudgetizer.ui.expense.ExpensesActivity.isGivenD
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,7 +42,9 @@ public class EarningsActivity extends AppCompatActivity {
     ProgressDialog earningListProgress;
 
 
-    String earningSearchParam;
+    private String earningSearchParam;
+    private String accountName;
+    private String currency;
     private String earningTitle = "";
 
     @Override
@@ -57,6 +60,7 @@ public class EarningsActivity extends AppCompatActivity {
 
         try {
             earningSearchParam = getSearchParam(getIntent());
+            earningInitByIntent(getIntent());
 
             dateEditVisibility(earningSearchParam);
             getCorrectIncomes(earningSearchParam);
@@ -85,7 +89,7 @@ public class EarningsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        IncNavigator.openEarningsHome(this);
+        IncNavigator.openEarningsHome(this, accountName, currency);
     }
 
     public void dateEditVisibility(String param) throws BudgetizerGeneralException {
@@ -187,6 +191,11 @@ public class EarningsActivity extends AppCompatActivity {
 
                 }, currentSearchY, currentSearchM, currentSearchD);
         searchableDatePickerDialog.show();
+    }
+
+    public void  earningInitByIntent(Intent earnBoardIntent) {
+        accountName = earnBoardIntent.getStringExtra(ExNavigation.ACC_NAME_PARAM);
+        currency = earnBoardIntent.getStringExtra(ExNavigation.CURRENCY_PARAM);
     }
 
 }

@@ -1,5 +1,8 @@
 package cm.abimmobiledev.mybudgetizer.ui.receivable;
 
+import static cm.abimmobiledev.mybudgetizer.ui.earning.EarningRegistrationActivity.getAccountTypes;
+import static cm.abimmobiledev.mybudgetizer.ui.earning.EarningRegistrationActivity.updateCorrectWallet;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -7,7 +10,11 @@ import androidx.databinding.DataBindingUtil;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
 import java.util.Calendar;
 import java.util.concurrent.ExecutorService;
@@ -15,8 +22,10 @@ import java.util.concurrent.Executors;
 
 import cm.abimmobiledev.mybudgetizer.R;
 import cm.abimmobiledev.mybudgetizer.database.BudgetizerAppDatabase;
+import cm.abimmobiledev.mybudgetizer.database.entity.Account;
 import cm.abimmobiledev.mybudgetizer.database.entity.Receivable;
 import cm.abimmobiledev.mybudgetizer.databinding.ActivityReceivableRegistrationBinding;
+import cm.abimmobiledev.mybudgetizer.nav.ExNavigation;
 import cm.abimmobiledev.mybudgetizer.nav.IncNavigator;
 import cm.abimmobiledev.mybudgetizer.nav.ReceivNav;
 import cm.abimmobiledev.mybudgetizer.ui.earning.EarningRegistrationActivity;
@@ -30,6 +39,11 @@ public class ReceivableRegistrationActivity extends AppCompatActivity {
     RecRegVM recRegVM;
     AlertDialog.Builder recRegDialog;
     ProgressDialog recRegProgress;
+    String accountName;
+    String currency;
+
+    ArrayAdapter<String> accountAdapter;
+    int selectedAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,12 +87,30 @@ public class ReceivableRegistrationActivity extends AppCompatActivity {
         receivableRegistrationBinding.pickDisbursementDueDate.setOnClickListener(dueDateView -> pickDueDate(Calendar.getInstance()));
         receivableRegistrationBinding.disbursementDateAndTime.setOnClickListener(dueDateView -> pickPaymentDate(Calendar.getInstance()));
 
+        recRecInitByIntent(getIntent());
+
+        accountAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getAccountTypes());
+        accountAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // attaching data adapter to spinner
+        receivableRegistrationBinding.spinnerAccounts.setAdapter(accountAdapter);
+        receivableRegistrationBinding.spinnerAccounts.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedAccount = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        ReceivNav.openReceivablesHome(this);
+        ReceivNav.openReceivablesHome(this, accountName, currency);
     }
 
     /**
@@ -268,7 +300,18 @@ public class ReceivableRegistrationActivity extends AppCompatActivity {
                     receivableNew.setRefundedOrPaid(true);
 
                 BudgetizerAppDatabase appDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());
+
+                //get the account and update amount value by substract the receivable given ...
+                Account acc =
+                        updateCorrectWallet(
+                                appDatabase.accountDAO().getAccounts().get(0),
+                                -receivableNew.getAmount(),
+                                selectedAccount
+                        );
+
                 appDatabase.receivableDAO().insertAll(receivableNew);
+                appDatabase.accountDAO().update(acc);
+
             } catch (Exception exception) {
                 runOnUiThread(() -> {
                     recRegDialog.setMessage(getString(R.string.an_error_occured)+"\n"+exception.getLocalizedMessage());
@@ -280,12 +323,21 @@ public class ReceivableRegistrationActivity extends AppCompatActivity {
 
             runOnUiThread(() -> {
                 recRegDialog.setMessage(getString(R.string.saved));
-                recRegDialog.setNegativeButton(getString(R.string.back), (dialog, which) -> IncNavigator.openEarningsHome(ReceivableRegistrationActivity.this));
+                recRegDialog.setNegativeButton(getString(R.string.back), (dialog, which) -> ReceivNav.openReceivablesHome(ReceivableRegistrationActivity.this, accountName, currency));
                 recRegDialog.show();
                 recRegProgress.dismiss();
             });
         });
 
     }
+
+    public void  recRecInitByIntent(Intent recRegIntent) {
+        // if (mainIntent==null)
+        //   throw new BudgetizerGeneralException(getString(R.string.page_not_initialized));
+
+        accountName = recRegIntent.getStringExtra(ExNavigation.ACC_NAME_PARAM);
+        currency = recRegIntent.getStringExtra(ExNavigation.CURRENCY_PARAM);
+    }
+
 
 }

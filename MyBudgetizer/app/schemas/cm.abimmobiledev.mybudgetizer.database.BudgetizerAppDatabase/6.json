@@ -1,0 +1,450 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 6,
+    "identityHash": "355bc3cf6b0fcbb2fe6423a0d56e5340",
+    "entities": [
+      {
+        "tableName": "expense",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`expense_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `fk_budget_id` INTEGER NOT NULL, `date_time_of_expense` TEXT, `reason` TEXT, `sticker` TEXT, `entitled` TEXT, `amount` REAL NOT NULL, FOREIGN KEY(`fk_budget_id`) REFERENCES `budget`(`budget_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "expenseId",
+            "columnName": "expense_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fkBudgetId",
+            "columnName": "fk_budget_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateTimeOfExpense",
+            "columnName": "date_time_of_expense",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "reason",
+            "columnName": "reason",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sticker",
+            "columnName": "sticker",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "entitled",
+            "columnName": "entitled",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount",
+            "columnName": "amount",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "expense_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_expense_fk_budget_id",
+            "unique": false,
+            "columnNames": [
+              "fk_budget_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_expense_fk_budget_id` ON `${TABLE_NAME}` (`fk_budget_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "budget",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "fk_budget_id"
+            ],
+            "referencedColumns": [
+              "budget_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "earning",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`earning_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `funds_source` TEXT, `date_time_of_income` TEXT, `reason_or_desc` TEXT, `sticker` TEXT, `entitled` TEXT, `amount` REAL NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "earningId",
+            "columnName": "earning_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fundsSource",
+            "columnName": "funds_source",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "incomeDateAndTime",
+            "columnName": "date_time_of_income",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "reasonOrDesc",
+            "columnName": "reason_or_desc",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sticker",
+            "columnName": "sticker",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "entitled",
+            "columnName": "entitled",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount",
+            "columnName": "amount",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "earning_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "debt",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`debt_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `refunded_or_paid` INTEGER NOT NULL, `loaning_date` TEXT, `repayment_due_date` TEXT, `repayment_date` TEXT, `description` TEXT, `creditor_name` TEXT, `creditor_contact` TEXT, `telltale` TEXT, `sticker` TEXT, `entitled` TEXT, `amount` REAL NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "debtId",
+            "columnName": "debt_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "refundedOrPaid",
+            "columnName": "refunded_or_paid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "loaningDate",
+            "columnName": "loaning_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "repaymentDueDate",
+            "columnName": "repayment_due_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "repaymentDate",
+            "columnName": "repayment_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditorName",
+            "columnName": "creditor_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "creditorContact",
+            "columnName": "creditor_contact",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "telltale",
+            "columnName": "telltale",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sticker",
+            "columnName": "sticker",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "entitled",
+            "columnName": "entitled",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount",
+            "columnName": "amount",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "debt_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "receivable",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`receivable_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `refunded_or_paid` INTEGER NOT NULL, `loan_date` TEXT, `due_date` TEXT, `disbursement_date` TEXT, `debtor_name` TEXT, `debtor_contact` TEXT, `description` TEXT, `telltale` TEXT, `sticker` TEXT, `entitled` TEXT, `amount` REAL NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "receivableId",
+            "columnName": "receivable_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "refundedOrPaid",
+            "columnName": "refunded_or_paid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "loanDate",
+            "columnName": "loan_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "dueDate",
+            "columnName": "due_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "disbursementDate",
+            "columnName": "disbursement_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "debtorName",
+            "columnName": "debtor_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "debtorContact",
+            "columnName": "debtor_contact",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "telltale",
+            "columnName": "telltale",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sticker",
+            "columnName": "sticker",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "entitled",
+            "columnName": "entitled",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount",
+            "columnName": "amount",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "receivable_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "budget",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`budget_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `beginning_date` TEXT, `end_date` TEXT, `description` TEXT, `consumed` REAL NOT NULL, `sticker` TEXT, `entitled` TEXT, `amount` REAL NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "budgetId",
+            "columnName": "budget_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "beginningDate",
+            "columnName": "beginning_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "endDate",
+            "columnName": "end_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "consumed",
+            "columnName": "consumed",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sticker",
+            "columnName": "sticker",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "entitled",
+            "columnName": "entitled",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount",
+            "columnName": "amount",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "budget_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "account",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` INTEGER NOT NULL, `currency` TEXT, `cash_balance` REAL NOT NULL, `mobile_wallet_balance` REAL NOT NULL, `bank_balance` REAL NOT NULL, `budgetized_balance` REAL NOT NULL, `sticker` TEXT, `entitled` TEXT, `amount` REAL NOT NULL, PRIMARY KEY(`account_id`))",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currency",
+            "columnName": "currency",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cashBalance",
+            "columnName": "cash_balance",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mobileWalletBalance",
+            "columnName": "mobile_wallet_balance",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bankBalance",
+            "columnName": "bank_balance",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "budgetizedBalance",
+            "columnName": "budgetized_balance",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sticker",
+            "columnName": "sticker",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "entitled",
+            "columnName": "entitled",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount",
+            "columnName": "amount",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "account_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '355bc3cf6b0fcbb2fe6423a0d56e5340')"
+    ]
+  }
+}

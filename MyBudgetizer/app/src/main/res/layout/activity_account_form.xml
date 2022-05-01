@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        app:cardElevation="@dimen/default_card_elevation_2"
+        app:cardCornerRadius="@dimen/default_card_radius_5"
+        android:layout_margin="@dimen/default_border_margin_4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.account.AccountFormActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/account_form_on_card"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_border_margin_4"
+                android:layout_marginStart="@dimen/default_border_margin_4"
+                android:layout_marginEnd="@dimen/default_border_margin_4"
+                android:layout_marginBottom="4dp"
+                app:cardElevation="@dimen/default_card_elevation_2"
+                app:cardCornerRadius="@dimen/default_card_radius_5"
+                android:layout_centerInParent="true"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/small_margin_2"
+                    android:layout_marginEnd="@dimen/small_margin_2"
+                    android:layout_marginBottom="26dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/title_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/my_account"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/title_text_medium_size_15"
+                        android:textColor="@color/default_text_color_blue_cyan"
+                        android:textStyle="bold"
+                        />
+                    <View
+                        android:id="@+id/title_account_sep"
+                        android:layout_width="@dimen/view_line_default_width"
+                        android:layout_height="0.7dp"
+                        android:layout_below="@+id/title_account"
+                        android:layout_centerHorizontal="true"
+                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/account_name_layout"
+                        android:layout_below="@+id/title_account_sep"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/big_margin_10"
+                        android:layout_marginStart="@dimen/small_margin_2"
+                        android:layout_marginEnd="@dimen/small_margin_2"
+                        app:hintTextColor="@color/default_text_color_blue_cyan"
+                        app:boxBackgroundColor="@color/default_text_input_color"
+                        android:hint="@string/account_name"
+                        android:textColorHint="@color/default_text_color_blue_cyan"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/account_name_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/default_text_color"
+                            android:maxLines="1"
+                            android:maxEms="1"
+                            android:inputType="textPersonName"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <TextView
+                        android:id="@+id/currency_title"
+                        android:text="@string/select_currency"
+                        android:layout_below="@+id/account_name_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <Spinner
+                        android:id="@+id/currency_spinner"
+                        android:layout_below="@+id/currency_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/save_account"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/account_form_on_card"
+                android:layout_marginStart="@dimen/default_border_margin_4"
+                android:layout_marginTop="@dimen/default_border_margin_4"
+                android:layout_marginEnd="@dimen/default_border_margin_4"
+                android:layout_marginBottom="@dimen/big_margin_10"
+                android:text="@string/save"
+                android:textColor="@color/text_white" />
+
+            <ProgressBar
+                android:id="@+id/account_content_loading"
+                android:visibility="visible"
+                android:shadowColor="@color/default_text_color_blue_cyan"
+                android:layout_centerInParent="true"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                />
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

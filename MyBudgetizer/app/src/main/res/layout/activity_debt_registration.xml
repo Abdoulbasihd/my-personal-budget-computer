@@ -65,9 +65,37 @@
                             android:layout_centerHorizontal="true"
                             />
 
+                        <RelativeLayout
+                            android:id="@+id/account_filter_select_layout"
+                            android:layout_below="@+id/title_new_debt_sep"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dip"
+                            >
+                            <TextView
+                                android:id="@+id/account_filter_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Choisir le compte à impacter "
+                                android:textColor="@color/default_text_color_blue_cyan"
+                                android:layout_marginBottom="@dimen/small_margin_2"
+                                android:layout_marginTop="@dimen/small_margin_2"
+                                android:layout_marginStart="@dimen/default_border_margin_4"
+                                android:layout_marginEnd="@dimen/default_border_margin_4"
+                                />
+
+                            <Spinner
+                                android:id="@+id/spinner_accounts"
+                                android:layout_below="@+id/account_filter_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                />
+                        </RelativeLayout>
+
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/entitled_layout"
-                            android:layout_below="@+id/title_new_debt_sep"
+                            android:layout_below="@+id/account_filter_select_layout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/big_margin_10"

@@ -1,5 +1,6 @@
 package cm.abimmobiledev.mybudgetizer.ui.receivable.adapter;
 
+import static cm.abimmobiledev.mybudgetizer.ui.earning.EarningRegistrationActivity.updateCorrectWallet;
 import static cm.abimmobiledev.mybudgetizer.ui.expense.ExpenseDashboardActivity.getCurrentDayFormatted;
 
 import android.app.ProgressDialog;
@@ -18,11 +19,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import cm.abimmobiledev.mybudgetizer.R;
 import cm.abimmobiledev.mybudgetizer.database.BudgetizerAppDatabase;
+import cm.abimmobiledev.mybudgetizer.database.entity.Account;
 import cm.abimmobiledev.mybudgetizer.database.entity.Receivable;
 import cm.abimmobiledev.mybudgetizer.useful.Util;
 
@@ -71,6 +74,10 @@ public class ReceivableAdapter extends RecyclerView.Adapter<ReceivableAdapter.Re
         holder.receivableAmount.setText(String.valueOf(receivable.getAmount()));
         holder.receivableTitle.setText(receivable.getEntitled());
 
+        if (receivable.getEntitled()!=null && receivable.getEntitled().length()>0){
+            holder.logoView.setText(String.valueOf(receivable.getEntitled().toUpperCase(Locale.ROOT).charAt(0)));
+        }
+
         if (receivable.isRefundedOrPaid())
             holder.editCard.setVisibility(View.GONE);
 
@@ -95,7 +102,15 @@ public class ReceivableAdapter extends RecyclerView.Adapter<ReceivableAdapter.Re
                 ExecutorService debtUpdateExecService = Executors.newSingleThreadExecutor();
                 debtUpdateExecService.execute(() -> {
                     BudgetizerAppDatabase appDatabaseDebtUpdate = BudgetizerAppDatabase.getInstance(holder.receivableSticker.getContext());
+                    //lorsqu'on paie une dette, notre compte est décrémenté.... Quel sous compte impacter alors.... par défaut nous choisissons le compte cash
+                    Account acc =
+                            updateCorrectWallet(
+                                    appDatabaseDebtUpdate.accountDAO().getAccounts().get(0),
+                                    receivable.getAmount(),
+                                    0
+                            );
                     appDatabaseDebtUpdate.receivableDAO().update(receivable);
+                    appDatabaseDebtUpdate.accountDAO().update(acc);
 
                     new Handler(Looper.getMainLooper()).post(() -> {
                         debtUpdateProgress.dismiss();
@@ -168,6 +183,7 @@ public class ReceivableAdapter extends RecyclerView.Adapter<ReceivableAdapter.Re
         final TextView paidOnDate;
         final TextView debtorName;
         final TextView debtorContact;
+        final TextView logoView;
 
         final TextView telltaleName; //the person who testify
 
@@ -202,6 +218,8 @@ public class ReceivableAdapter extends RecyclerView.Adapter<ReceivableAdapter.Re
 
             paidCard = itemView.findViewById(R.id.receivable_paid_card);
             unpaidCard = itemView.findViewById(R.id.receivable_unpaid_card);
+
+            logoView = itemView.findViewById(R.id.title_char_indicator);
         }
     }
 

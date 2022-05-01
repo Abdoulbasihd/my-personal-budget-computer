@@ -168,7 +168,7 @@
                         app:cardBackgroundColor="@color/default_text_color_blue_cyan"
                         >
                         <TextView
-                            android:id="@+id/card_bank_value"
+                            android:id="@+id/bank_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/default_border_margin_4"
@@ -196,7 +196,7 @@
                         android:layout_marginTop="@dimen/small_margin_2"
                         android:layout_marginEnd="@dimen/default_border_margin_4"
                         android:layout_marginBottom="@dimen/small_margin_2"
-                        android:text="Total Budgetisé (en cours)"
+                        android:text="@string/going_on_budget_total"
                         android:textColor="@color/default_text_color_blue_cyan" />
 
                     <androidx.cardview.widget.CardView
@@ -215,7 +215,7 @@
                         app:cardBackgroundColor="@color/unpaid_red_color"
                         >
                         <TextView
-                            android:id="@+id/bugetized_value"
+                            android:id="@+id/all_budgets_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/default_border_margin_4"

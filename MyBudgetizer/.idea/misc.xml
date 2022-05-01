@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/rounded_blue_view.xml" value="0.15989583333333332" />
+        <entry key="app/src/main/res/layout/activity_account_form.xml" value="0.13958333333333334" />
         <entry key="app/src/main/res/layout/activity_budget_board.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_budget_form.xml" value="0.13958333333333334" />
         <entry key="app/src/main/res/layout/activity_debt_board.xml" value="0.18" />

@@ -3,6 +3,8 @@ package cm.abimmobiledev.mybudgetizer.ui.expense;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,13 +24,13 @@ import java.util.concurrent.Executors;
 
 import cm.abimmobiledev.mybudgetizer.R;
 import cm.abimmobiledev.mybudgetizer.database.BudgetizerAppDatabase;
+import cm.abimmobiledev.mybudgetizer.database.entity.Account;
 import cm.abimmobiledev.mybudgetizer.database.entity.Budget;
-import cm.abimmobiledev.mybudgetizer.database.entity.BudgetWithExpenses;
 import cm.abimmobiledev.mybudgetizer.database.entity.Expense;
 import cm.abimmobiledev.mybudgetizer.databinding.ActivityExpenseRegistrationBinding;
 import cm.abimmobiledev.mybudgetizer.exception.BudgetizerGeneralException;
 import cm.abimmobiledev.mybudgetizer.nav.ExNavigation;
-import cm.abimmobiledev.mybudgetizer.ui.budget.adapter.BudgetAdapter;
+import cm.abimmobiledev.mybudgetizer.ui.budget.BudgetFormActivity;
 import cm.abimmobiledev.mybudgetizer.useful.Util;
 import cm.abimmobiledev.mybudgetizer.viewmodel.ExpenseRegViewModel;
 
@@ -39,6 +41,9 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
     ActivityExpenseRegistrationBinding expenseRegistrationBinding;
     AlertDialog.Builder expenseRegDialog;
     ProgressDialog expenseRegProgress;
+
+    String accountName;
+    String currency;
 
     ExpenseRegViewModel expenseRegViewModel;
     List<Budget> unexpiredBudget;
@@ -54,6 +59,7 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
         expenseRegProgress = Util.initProgressDialog(this, getString(R.string.saving));
 
         expenseRegViewModel = new ExpenseRegViewModel();
+        expRegInitByIntent(getIntent());
 
         expenseRegistrationBinding = DataBindingUtil.setContentView(this, R.layout.activity_expense_registration);
         expenseRegistrationBinding.setExpenseModel(expenseRegViewModel);
@@ -121,7 +127,7 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        ExNavigation.openExpensesHome(ExpenseRegistrationActivity.this);
+        ExNavigation.openExpensesHome(ExpenseRegistrationActivity.this, accountName, currency);
     }
 
     /**
@@ -223,14 +229,22 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
             try {
 
                 BudgetizerAppDatabase appDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());
-                BudgetWithExpenses budgetWithExpenses = appDatabase.budgetDAO().getExpensesOfGivenBudget(selectedBudget.getBudgetId());
-                double consumedAmount = BudgetAdapter.getConsumedAmount(budgetWithExpenses);
+             //   BudgetWithExpenses budgetWithExpenses = appDatabase.budgetDAO().getExpensesOfGivenBudget(selectedBudget.getBudgetId());
+              //  double consumedAmount = BudgetAdapter.getConsumedAmount(budgetWithExpenses);
 
                 Expense expenseNew = new Expense(entitle, Double.parseDouble(amount), dateReg, reason, sticker);
                 expenseNew.setFkBudgetId(selectedBudget.budgetId);
 
-                if (consumedAmount+expenseNew.getAmount()<=selectedBudget.getAmount()) {
+                double newConsumption = selectedBudget.getConsumed()+expenseNew.getAmount();
+                if (newConsumption <=selectedBudget.getAmount()) {
                     appDatabase.expenseDAO().insertAll(expenseNew);
+                    selectedBudget.setConsumed(newConsumption);
+                    appDatabase.budgetDAO().update(selectedBudget);
+
+                    List<Account> accounts = appDatabase.accountDAO().getAccounts();
+                    Account account = BudgetFormActivity.updateSubAccounts(accounts.get(0), expenseNew.getAmount());
+                    appDatabase.accountDAO().update(account);
+
                     expenseRegDialog.setMessage(getString(R.string.saved));
                 } else
                     expenseRegDialog.setMessage("Ce budget n'a pas de montant suffisamment disponible pour cette dépense");
@@ -246,7 +260,7 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
             }
 
             runOnUiThread(() -> {
-                expenseRegDialog.setNegativeButton(getString(R.string.back), (dialog, which) -> ExNavigation.openExpensesHome(ExpenseRegistrationActivity.this));
+                expenseRegDialog.setNegativeButton(getString(R.string.back), (dialog, which) -> ExNavigation.openExpensesHome(ExpenseRegistrationActivity.this, accountName, currency));
                 expenseRegDialog.show();
                 expenseRegProgress.dismiss();
             });
@@ -267,14 +281,7 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
                 BudgetizerAppDatabase appDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());
                 List<Budget> allBudgets = appDatabase.budgetDAO().getBudgets();
 
-                Calendar todayCalendar = Calendar.getInstance();
-                int currentYear = todayCalendar.get(Calendar.YEAR);
-                int currentMonth = todayCalendar.get(Calendar.MONTH);
-                int currentDay = todayCalendar.get(Calendar.DAY_OF_MONTH);
-                String currentDate = currentYear + "/" + Util.getMonthFormatted(currentMonth) + "/" + Util.getDayFormatted(currentDay);
-
-
-                unexpiredBudget = filterUnexpiredBudgets(allBudgets, currentDate);
+                unexpiredBudget = filterUnexpiredBudgets(allBudgets, Util.getCurrentDate());
                 unexpiredBudgetTitle = getBudgetTitles(unexpiredBudget);
 
 
@@ -296,11 +303,18 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
                 budgetSpinnerAdapter.notifyDataSetChanged();
                 expenseRegistrationBinding.spinnerBudgets.setAdapter(budgetSpinnerAdapter);
 
+                if(unexpiredBudget.isEmpty()){
+                    AlertDialog.Builder exitAlert = Util.initAlertDialogBuilder(ExpenseRegistrationActivity.this, getString(R.string.new_expense), "Bien vouloir créer de budget avant de dépenser ... :-)");
+                    exitAlert.setPositiveButton("OK", (dialog, which) -> ExpenseRegistrationActivity.this.onBackPressed());
+                    exitAlert.setCancelable(false);
+                    exitAlert.show();
+                }
+
             });
         });
     }
 
-    public List<Budget> filterUnexpiredBudgets(List<Budget> budgets, String currentDate){
+    public static List<Budget> filterUnexpiredBudgets(List<Budget> budgets, String currentDate){
 
         List<Budget> filteredBudgets = new ArrayList<>();
 
@@ -319,12 +333,18 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
         return filteredBudgets;
     }
 
-    public List<String> getBudgetTitles(List<Budget> budgets){
+    public static List<String> getBudgetTitles(List<Budget> budgets){
         List<String> budgetTitles = new ArrayList<>();
         for (int counter=0; counter<budgets.size(); counter++){
             budgetTitles.add(budgets.get(counter).getEntitled());
         }
         return  budgetTitles;
+    }
+
+    public void  expRegInitByIntent(Intent expRegIntent) {
+
+        accountName = expRegIntent.getStringExtra(ExNavigation.ACC_NAME_PARAM);
+        currency = expRegIntent.getStringExtra(ExNavigation.CURRENCY_PARAM);
     }
 
 }

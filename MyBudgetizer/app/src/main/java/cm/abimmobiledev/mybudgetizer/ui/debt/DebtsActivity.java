@@ -32,7 +32,9 @@ public class DebtsActivity extends AppCompatActivity {
 
     ActivityDebtsBinding debtsBinding;
 
-    String debtSearchParam;
+    private String debtSearchParam;
+    private String accountName;
+    private String currency;
     private static final String DEBTS_TAG = "D_TAG";
 
     List<Debt> myPeriodicDebts;
@@ -44,6 +46,8 @@ public class DebtsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         debtsBinding = DataBindingUtil.setContentView(this, R.layout.activity_debts);
         debtsListProgress = Util.initProgressDialog(this, getString(R.string.looking_up));
+
+        debtsInitByIntent(getIntent());
 
         try {
             debtSearchParam = getDebtSearchParam(getIntent());
@@ -81,7 +85,7 @@ public class DebtsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        DebtNavigator.openDebtsHome(DebtsActivity.this);
+        DebtNavigator.openDebtsHome(DebtsActivity.this, accountName, currency);
     }
 
     public static String getDebtSearchParam (Intent debtIntent) throws BudgetizerGeneralException {
@@ -276,4 +280,10 @@ public class DebtsActivity extends AppCompatActivity {
                 }, currentSearchY, currentSearchM, currentSearchD);
         searchableDebtDatePickerDialog.show();
     }
+
+    public void  debtsInitByIntent(Intent debtsIntent) {
+        accountName = debtsIntent.getStringExtra(ExNavigation.ACC_NAME_PARAM);
+        currency = debtsIntent.getStringExtra(ExNavigation.CURRENCY_PARAM);
+    }
+
 }

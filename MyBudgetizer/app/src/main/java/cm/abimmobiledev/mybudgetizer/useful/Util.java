@@ -5,6 +5,8 @@ import android.content.Context;
 
 import androidx.appcompat.app.AlertDialog;
 
+import java.util.Calendar;
+
 public class Util {
 
     public static AlertDialog.Builder initAlertDialogBuilder(Context context, String title, String message){
@@ -75,4 +77,11 @@ public class Util {
         return month;
     }
 
+    public static String getCurrentDate(){
+        Calendar todayCalendar = Calendar.getInstance();
+        int currentYear = todayCalendar.get(Calendar.YEAR);
+        int currentMonth = todayCalendar.get(Calendar.MONTH);
+        int currentDay = todayCalendar.get(Calendar.DAY_OF_MONTH);
+        return currentYear + "/" + Util.getMonthFormatted(currentMonth) + "/" + Util.getDayFormatted(currentDay);
+    }
 }
