@@ -30,6 +30,12 @@
                 android:layout_margin="@dimen/small_margin_2"
                 >
 
+                <include
+                    layout="@layout/welcome_relative_header"
+                    android:id="@+id/welcome_relative_layout"
+                    />
+
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_expenses"
                     android:layout_width="match_parent"
@@ -40,6 +46,7 @@
                     android:layout_marginBottom="@dimen/small_margin_2"
                     app:cardElevation="@dimen/default_card_elevation_2"
                     app:cardCornerRadius="@dimen/default_card_radius_5"
+                    android:layout_below="@+id/welcome_relative_layout"
                     >
                     <RelativeLayout
                         android:layout_width="match_parent"

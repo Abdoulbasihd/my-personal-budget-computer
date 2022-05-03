@@ -54,7 +54,6 @@ public class BudgetBoardActivity extends AppCompatActivity {
         //getting list of budgets (last 20 elements is ok nor) ==> nok, get all
         getLastBudgets();
 
-        //todo : complete with the balance summary
     }
 
     @Override
@@ -85,7 +84,8 @@ public class BudgetBoardActivity extends AppCompatActivity {
                 budgetBoardBinding.myBudgetsRecycler.setVerticalFadingEdgeEnabled(true);
                 budgetBoardBinding.myBudgetsRecycler.setVerticalScrollbarPosition(View.SCROLLBAR_POSITION_RIGHT);
 
-                budgetBoardBinding.allBudgetsValue.setText(goingOnBudgetsAmount+" F.CFA");
+                budgetBoardBinding.accountSummary.allBudgetsValue.setText(String.valueOf(goingOnBudgetsAmount));
+                budgetBoardBinding.accountSummary.allBudgetsCurrency.setText(currency);
                 getAccountBalance(budgets);
 
                 //dismiss progress here
@@ -137,10 +137,14 @@ public class BudgetBoardActivity extends AppCompatActivity {
             double unbudgetized = account.getAmount() - goingOnBudgetsAmount;
 
             runOnUiThread(() -> {
-                budgetBoardBinding.cashValue.setText(account.getCashBalance()+" F.CFA");
-                budgetBoardBinding.bankValue.setText(account.getBankBalance()+" F.CFA");
-                budgetBoardBinding.mobileWalletValue.setText(account.getMobileWalletBalance()+" F.CFA");
-                budgetBoardBinding.unbugetizedValue.setText(unbudgetized+" F.CFA");
+                budgetBoardBinding.accountSummary.cashValue.setText(String.valueOf(account.getCashBalance()));
+                budgetBoardBinding.accountSummary.cashCurrency.setText(currency);
+                budgetBoardBinding.accountSummary.bankValue.setText(String.valueOf(account.getBankBalance()));
+                budgetBoardBinding.accountSummary.bankCurreny.setText(currency);
+                budgetBoardBinding.accountSummary.mobileWalletValue.setText(String.valueOf(account.getMobileWalletBalance()));
+                budgetBoardBinding.accountSummary.mobileWalletCurrency.setText(currency);
+                budgetBoardBinding.accountSummary.unbugetizedValue.setText(String.valueOf(unbudgetized));
+                budgetBoardBinding.accountSummary.unbugetizedCurrency.setText(currency);
 
                 budgetBalanceBoardResumeProgress.dismiss();
             });

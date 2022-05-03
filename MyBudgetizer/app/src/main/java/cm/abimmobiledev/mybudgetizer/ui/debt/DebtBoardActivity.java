@@ -75,9 +75,9 @@ public class DebtBoardActivity extends AppCompatActivity {
 
     public void earningBoardViewDataSetup(){
         final Calendar calendar = Calendar.getInstance();
-        setPeriodicDebts(getCurrentDayFormatted(calendar), PERIOD_DAILY);
-        setPeriodicDebts(getCurrentMonthFormatted(calendar), PERIOD_MONTHLY);
-        setPeriodicDebts(getCurrentYearFormatted(calendar), PERIOD_YEARLY);
+        setPeriodicUnpaidDebts(getCurrentDayFormatted(calendar), PERIOD_DAILY);
+        setPeriodicUnpaidDebts(getCurrentMonthFormatted(calendar), PERIOD_MONTHLY);
+        setPeriodicUnpaidDebts(getCurrentYearFormatted(calendar), PERIOD_YEARLY);
 
         // : get 10 last entries of earnings and show it
         getLastDebts(10);
@@ -88,7 +88,7 @@ public class DebtBoardActivity extends AppCompatActivity {
      * @param period String formatted either for day (yyyy/mm/dd) or for month (yyyy/mm) of just a year (yyyy). Later, looks how you could add  for weeds
      * @param periodicity int : PERIOD_DAILY, PERIOD_MONTHLY or PERIOD_YEARLY. Add for weeks later. to identify which value is to modify
      */
-    public void setPeriodicDebts(String period, int periodicity) {
+    public void setPeriodicUnpaidDebts(String period, int periodicity) {
 
         // : add loader
         debtBoardResumeProgress.show();
@@ -99,7 +99,7 @@ public class DebtBoardActivity extends AppCompatActivity {
             try {
                 BudgetizerAppDatabase earningSelectorAppDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());
 
-                periodicDebts = earningSelectorAppDatabase.debtDAO().loadAllDebtLikeFormattedLoanDate("%"+period+"%");
+                periodicDebts = earningSelectorAppDatabase.debtDAO().loadAllUnpaidDebtLikeFormattedLoanDate("%"+period+"%");
 
 
                 runOnUiThread(() -> {

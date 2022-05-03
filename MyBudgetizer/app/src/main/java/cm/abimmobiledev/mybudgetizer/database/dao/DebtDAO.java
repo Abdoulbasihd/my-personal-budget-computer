@@ -21,6 +21,14 @@ public interface DebtDAO {
     @Query("SELECT * FROM debt WHERE loaning_date LIKE :likeFormattedLoanDate ")
     List<Debt> loadAllDebtLikeFormattedLoanDate(String likeFormattedLoanDate); // year formatted : %yyyy%;
 
+    /**
+     *
+     * @param likeFormattedLoanDate String. %yyyy% for like year; <br> %yyyy/mm% for like month <br> and %yyyy/mm/dd% for like day formatted..
+     * @return a list of debts of a period
+     */
+    @Query("SELECT * FROM debt WHERE loaning_date LIKE :likeFormattedLoanDate and repayment_date=''")
+    List<Debt> loadAllUnpaidDebtLikeFormattedLoanDate(String likeFormattedLoanDate); // year formatted : %yyyy%;
+
     //here we want to select e last limiter numbers of elements of the table Debt
     @Query("SELECT * FROM debt ORDER BY debt_id DESC LIMIT :limiter ")
     List<Debt> getLastDebts(int limiter);

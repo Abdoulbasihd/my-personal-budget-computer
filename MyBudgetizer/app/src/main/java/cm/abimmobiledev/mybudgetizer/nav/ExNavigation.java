@@ -47,7 +47,7 @@ public class ExNavigation {
     public static void openMainHome(Activity contextToMainHome, String accountName, String currency) {
         Intent intentToMainHome = new Intent(contextToMainHome, MainMenuActivity.class);
         intentToMainHome.putExtra(ACC_NAME_PARAM, accountName);
-        intentToMainHome.putExtra(ACC_NAME_PARAM, currency);
+        intentToMainHome.putExtra(CURRENCY_PARAM, currency);
         contextToMainHome.startActivity(intentToMainHome);
         contextToMainHome.finish();
     }

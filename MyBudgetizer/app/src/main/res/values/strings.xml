@@ -125,4 +125,6 @@
     <string name="select_currency">Choisir le devise</string>
     <string name="page_not_initialized">Page Not Initialized</string>
     <string name="insufficient_account_balance_to_create_this_budget">Le solde insuffisant du compte est insuffisant pour la création de ce budget</string>
+    <string name="summary_contracted_and_unpaid">Résumé (contracté et impayé)</string>
+    <string name="welcome__">Bienvenu(e),</string>
 </resources>
