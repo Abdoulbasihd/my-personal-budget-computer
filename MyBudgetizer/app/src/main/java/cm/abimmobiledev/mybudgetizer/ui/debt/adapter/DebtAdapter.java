@@ -6,6 +6,7 @@ import static cm.abimmobiledev.mybudgetizer.ui.expense.ExpenseDashboardActivity.
 import android.app.ProgressDialog;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,8 @@ import cm.abimmobiledev.mybudgetizer.R;
 import cm.abimmobiledev.mybudgetizer.database.BudgetizerAppDatabase;
 import cm.abimmobiledev.mybudgetizer.database.entity.Account;
 import cm.abimmobiledev.mybudgetizer.database.entity.Debt;
+import cm.abimmobiledev.mybudgetizer.exception.BudgetizerGeneralException;
+import cm.abimmobiledev.mybudgetizer.ui.budget.BudgetFormActivity;
 import cm.abimmobiledev.mybudgetizer.useful.Util;
 
 public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtViewHolder> {
@@ -96,14 +99,20 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtViewHolder
                 debtUpdateExecService.execute(() -> {
                     BudgetizerAppDatabase appDatabaseDebtUpdate = BudgetizerAppDatabase.getInstance(holder.debtSticker.getContext());
                     //lorsqu'on paie une dette, notre compte est décrémenté.... Quel sous compte impacter alors.... par défaut nous choisissons le compte cash
-                    Account acc =
-                            updateCorrectWallet(
-                                    appDatabaseDebtUpdate.accountDAO().getAccounts().get(0),
-                                    debt.getAmount(),
-                                    0
-                            );
-                    appDatabaseDebtUpdate.debtDAO().update(debt);
-                    appDatabaseDebtUpdate.accountDAO().update(acc);
+                    //we need to verify account before... if not sufficient wallet, alert
+
+                    Account myAcc =  appDatabaseDebtUpdate.accountDAO().getAccounts().get(0);
+
+                    try {
+                        //if sufficient cash wallet then update
+                        Account account = BudgetFormActivity.updateSubAccounts(myAcc, debt.getAmount());
+                        appDatabaseDebtUpdate.debtDAO().update(debt);
+                        appDatabaseDebtUpdate.accountDAO().update(account);
+
+                    } catch (BudgetizerGeneralException exception) {
+                        Log.d("dAdap", "onBindViewHolder: "+exception.getLocalizedMessage(), exception);
+                        myDebtUpdatedAlertDialog.setMessage(exception.getLocalizedMessage());
+                    }
 
                     new Handler(Looper.getMainLooper()).post(() -> {
                         debtUpdateProgress.dismiss();

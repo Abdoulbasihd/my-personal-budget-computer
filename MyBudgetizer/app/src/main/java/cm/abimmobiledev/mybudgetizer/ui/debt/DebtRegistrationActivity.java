@@ -18,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import java.util.Calendar;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -106,7 +105,7 @@ public class DebtRegistrationActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                //nothing to do here
             }
         });
 
@@ -303,6 +302,7 @@ public class DebtRegistrationActivity extends AppCompatActivity {
                 BudgetizerAppDatabase appDatabaseDebtReg = BudgetizerAppDatabase.getInstance(getApplicationContext());
 
                 //get the account and update amount value by adding the gotten value ...
+                //no need to control as we're adding (not subtraction)... increase account here
                 Account acc =
                         updateCorrectWallet(
                                 appDatabaseDebtReg.accountDAO().getAccounts().get(0),

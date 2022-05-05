@@ -227,22 +227,23 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
         insertExpenseExec.execute(() -> {
 
             try {
-
                 BudgetizerAppDatabase appDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());
              //   BudgetWithExpenses budgetWithExpenses = appDatabase.budgetDAO().getExpensesOfGivenBudget(selectedBudget.getBudgetId());
               //  double consumedAmount = BudgetAdapter.getConsumedAmount(budgetWithExpenses);
+                List<Account> accounts = appDatabase.accountDAO().getAccounts();
 
                 Expense expenseNew = new Expense(entitle, Double.parseDouble(amount), dateReg, reason, sticker);
                 expenseNew.setFkBudgetId(selectedBudget.budgetId);
 
                 double newConsumption = selectedBudget.getConsumed()+expenseNew.getAmount();
                 if (newConsumption <=selectedBudget.getAmount()) {
+                    //if insufficient balance, it'll be stopped here
+                    Account account = BudgetFormActivity.updateSubAccounts(accounts.get(0), expenseNew.getAmount());
+
                     appDatabase.expenseDAO().insertAll(expenseNew);
                     selectedBudget.setConsumed(newConsumption);
                     appDatabase.budgetDAO().update(selectedBudget);
 
-                    List<Account> accounts = appDatabase.accountDAO().getAccounts();
-                    Account account = BudgetFormActivity.updateSubAccounts(accounts.get(0), expenseNew.getAmount());
                     appDatabase.accountDAO().update(account);
 
                     expenseRegDialog.setMessage(getString(R.string.saved));

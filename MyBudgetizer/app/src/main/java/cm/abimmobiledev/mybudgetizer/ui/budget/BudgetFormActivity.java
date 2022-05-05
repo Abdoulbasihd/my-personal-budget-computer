@@ -215,7 +215,8 @@ public class BudgetFormActivity extends AppCompatActivity {
     }
 
     /**
-     * <h1>Update accounts when expended</h1>
+     * <h1>Update accounts when expended (use this to subtract only)</h1>
+     * By priority : cash then mobile then bank
      * @param acc Account
      * @param amountExpended double amount expended
      * @return Account updated
@@ -238,7 +239,7 @@ public class BudgetFormActivity extends AppCompatActivity {
             acc.setMobileWalletBalance(0);
 
         }else
-            throw new BudgetizerGeneralException("Insufficient balance");
+            throw new BudgetizerGeneralException("Insufficient wallet");
 
         return acc;
     }
