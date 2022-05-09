@@ -112,10 +112,12 @@ public class BudgetBoardActivity extends AppCompatActivity {
 
         List<Budget> filteredBudgets = ExpenseRegistrationActivity.filterUnexpiredBudgets(budgets, currentDate);
 
-
         double totalAmount=0;
 
-        for (int counter=0; counter<budgets.size(); counter++){
+        if(filteredBudgets.isEmpty())
+            return totalAmount;
+
+        for (int counter=0; counter<filteredBudgets.size(); counter++){
             totalAmount = totalAmount + filteredBudgets.get(counter).getAmount();
         }
 
