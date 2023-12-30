@@ -11,6 +11,9 @@ public class Budget extends BasicInfo{
     @ColumnInfo(name = "budget_id")
     public int budgetId;
 
+    @ColumnInfo(name = "budget_type")
+    public String budgetType;
+
     @ColumnInfo(name = "beginning_date")
     public String beginningDate;
 
@@ -21,10 +24,11 @@ public class Budget extends BasicInfo{
 
     public double consumed;
 
-    public Budget(String entitled, double amount, String sticker, String beginningDate, String endDate) {
+    public Budget(String budgetType, String entitled, double amount, String sticker, String beginningDate, String endDate) {
         super(entitled, amount, sticker);
         this.beginningDate = beginningDate;
         this.endDate =endDate;
+        this.budgetType = budgetType;
     }
 
 
@@ -67,4 +71,15 @@ public class Budget extends BasicInfo{
     public void setConsumed(double consumed) {
         this.consumed = consumed;
     }
+
+    public void setBudgetType(String budgetType) {
+        this.budgetType =  budgetType;
+    }
+
+    public String getBudgetType(){
+        return this.budgetType;
+    }
+
+    public static String BUDGET_TYPE_PRE = "PREVISION";
+    public static String BUDGET_TYPE_POST = "CONSO";
 }

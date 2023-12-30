@@ -14,7 +14,7 @@ public class BudgetRegVM extends BaseObservable {
     private Budget budgetReg;
 
     public BudgetRegVM(){
-        budgetReg = new Budget("", 0, "", "", "");
+        budgetReg = new Budget("", "", 0, "", "", "");
         budgetReg.setDescription("");
     }
 

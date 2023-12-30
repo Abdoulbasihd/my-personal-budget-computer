@@ -70,7 +70,6 @@ public class BudgetBoardActivity extends AppCompatActivity {
         lastExpensesServ.execute(() -> {
             BudgetizerAppDatabase lastBudgetsAppDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());
             budgets = lastBudgetsAppDatabase.budgetDAO().getBudgets();
-            double goingOnBudgetsAmount = getUnexpiredBudgetsTotalAmount(budgets, Util.getCurrentDate());
 
             BudgetAdapter budgetAdapter = new BudgetAdapter(budgets);
 
@@ -84,8 +83,6 @@ public class BudgetBoardActivity extends AppCompatActivity {
                 budgetBoardBinding.myBudgetsRecycler.setVerticalFadingEdgeEnabled(true);
                 budgetBoardBinding.myBudgetsRecycler.setVerticalScrollbarPosition(View.SCROLLBAR_POSITION_RIGHT);
 
-                budgetBoardBinding.accountSummary.allBudgetsValue.setText(String.valueOf(goingOnBudgetsAmount));
-                budgetBoardBinding.accountSummary.allBudgetsCurrency.setText(currency);
                 getAccountBalance(budgets);
 
                 //dismiss progress here
@@ -108,9 +105,10 @@ public class BudgetBoardActivity extends AppCompatActivity {
 
     }
 
-    public static double getUnexpiredBudgetsTotalAmount(List<Budget> budgets, String currentDate){
+    public static double getUnexpiredBudgetsTotalAmount(List<Budget> budgets, String currentDate, String budgetType){
+        Log.d(BUDGET_BOARD_TAG, "getUnexpiredBudgetsTotalAmount: "+budgetType+" look for");
 
-        List<Budget> filteredBudgets = ExpenseRegistrationActivity.filterUnexpiredBudgets(budgets, currentDate);
+        List<Budget> filteredBudgets = ExpenseRegistrationActivity.filterUnexpiredPrevOrConsoBudgets(budgets, currentDate, budgetType);
 
         double totalAmount=0;
 
@@ -135,7 +133,8 @@ public class BudgetBoardActivity extends AppCompatActivity {
                 return;
 
             Account account = accounts.get(0);
-            double goingOnBudgetsAmount = getUnexpiredBudgetsTotalAmount(budgetList, Util.getCurrentDate());
+            double goingOnBudgetsAmount = getUnexpiredBudgetsTotalAmount(budgetList, Util.getCurrentDate(), Budget.BUDGET_TYPE_POST);
+            double goingOnPrevBudgetsAmount = getUnexpiredBudgetsTotalAmount(budgetList, Util.getCurrentDate(), Budget.BUDGET_TYPE_PRE);
             double unbudgetized = account.getAmount() - goingOnBudgetsAmount;
 
             runOnUiThread(() -> {
@@ -147,6 +146,14 @@ public class BudgetBoardActivity extends AppCompatActivity {
                 budgetBoardBinding.accountSummary.mobileWalletCurrency.setText(currency);
                 budgetBoardBinding.accountSummary.unbugetizedValue.setText(String.valueOf(unbudgetized));
                 budgetBoardBinding.accountSummary.unbugetizedCurrency.setText(currency);
+
+                //CONSO
+                budgetBoardBinding.accountSummary.allBudgetsValue.setText(String.valueOf(goingOnBudgetsAmount));
+                budgetBoardBinding.accountSummary.allBudgetsCurrency.setText(currency);
+
+                //PREVISION
+                budgetBoardBinding.accountSummary.budgetPrevCurrency.setText(currency);
+                budgetBoardBinding.accountSummary.budgetPrevValue.setText(String.valueOf(goingOnPrevBudgetsAmount));
 
                 budgetBalanceBoardResumeProgress.dismiss();
             });

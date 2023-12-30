@@ -22,6 +22,9 @@ public class Account extends BasicInfo{
     @ColumnInfo(name = "bank_balance")
     public double bankBalance;
 
+    //@ColumnInfo(name = "balance")
+   // public double balance;
+
     //amount ==> this is computed and could have been unsaved... when we have an expense, we've to substract here and in upfront...
 
     @ColumnInfo(name = "budgetized_balance")
@@ -30,9 +33,10 @@ public class Account extends BasicInfo{
     public Account(String entitled, String currency) {
         super(entitled, 0, "");
         this.currency = currency;
-        this.cashBalance = cashBalance;
-        this.mobileWalletBalance = mobileWalletBalance;
-        this.bankBalance = bankBalance;
+        this.cashBalance = 0;
+        this.mobileWalletBalance = 0;
+        this.bankBalance = 0;
+       // this.balance = 0;
     }
 
     public int getAccountId() {
@@ -81,5 +85,13 @@ public class Account extends BasicInfo{
 
     public void setBudgetizedBalance(double budgetizedBalance) {
         this.budgetizedBalance = budgetizedBalance;
+    }
+
+    public void setBalance(){
+        this.setAmount(bankBalance + cashBalance + mobileWalletBalance);
+    }
+
+    public double getBalance() {
+        return this.getAmount();
     }
 }

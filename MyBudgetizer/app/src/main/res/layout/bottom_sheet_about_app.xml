@@ -58,7 +58,7 @@
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vous pouvez retrouver le code source de cette application sur GitHub à l'adresse github.com/Abdoulbasihd/my-personal-budget-computer"
+            android:text="Pour une bonne utilisation de cet outils, coommencez par enregistrer vos revenu (argent liquide ou avoir en banque ou dans vos porte feuilles electronque). Une fois le revenu enregistré, vous pouvez créer un ou plusieurs budgets de dépenses. Pour chaque dépense, choisir un budget correspondant. \n Vous pouvez aussi enregistrer vos dettes et vos créances..."
             android:textAlignment="center"
             android:textColor="@color/default_text_color_blue_cyan"
             />
@@ -70,14 +70,27 @@
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Vous pouvez retrouver le code source de cette application sur GitHub à l'adresse github.com/Abdoulbasihd/my-personal-budget-computer"
+            android:textAlignment="center"
+            android:textColor="@color/default_text_color_blue_cyan"
+            />
+
+
+        <TextView
+            android:id="@+id/paragraph_5"
+            android:layout_below="@+id/paragraph_4"
+            android:layout_margin="@dimen/default_border_margin_4"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Vous pouvez nous écrire vos idées d'amélioration  aux adresses \n -> abdulbasihd@gmail.com (Mail) \n -> wa.me/237694814302 (WhatsApp) \n -> t.me/237694814302 (Telegram)"
             android:textAlignment="center"
             android:textColor="@color/default_text_color_blue_cyan"
             />
 
         <TextView
-            android:id="@+id/paragraph_5"
-            android:layout_below="@+id/paragraph_4"
+            android:id="@+id/paragraph_6"
+            android:layout_below="@+id/paragraph_5"
             android:layout_margin="@dimen/default_border_margin_4"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
@@ -88,8 +101,8 @@
             />
 
         <TextView
-            android:id="@+id/paragraph_6"
-            android:layout_below="@+id/paragraph_5"
+            android:id="@+id/paragraph_7"
+            android:layout_below="@+id/paragraph_6"
             android:layout_margin="@dimen/default_border_margin_4"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"

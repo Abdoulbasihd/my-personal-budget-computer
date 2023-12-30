@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 6,
-    "identityHash": "355bc3cf6b0fcbb2fe6423a0d56e5340",
+    "identityHash": "d0dd117c14502ac295807f302107e4c9",
     "entities": [
       {
         "tableName": "expense",
@@ -312,13 +312,19 @@
       },
       {
         "tableName": "budget",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`budget_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `beginning_date` TEXT, `end_date` TEXT, `description` TEXT, `consumed` REAL NOT NULL, `sticker` TEXT, `entitled` TEXT, `amount` REAL NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`budget_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `budget_type` TEXT, `beginning_date` TEXT, `end_date` TEXT, `description` TEXT, `consumed` REAL NOT NULL, `sticker` TEXT, `entitled` TEXT, `amount` REAL NOT NULL)",
         "fields": [
           {
             "fieldPath": "budgetId",
             "columnName": "budget_id",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "budgetType",
+            "columnName": "budget_type",
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "beginningDate",
@@ -444,7 +450,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '355bc3cf6b0fcbb2fe6423a0d56e5340')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd0dd117c14502ac295807f302107e4c9')"
     ]
   }
 }

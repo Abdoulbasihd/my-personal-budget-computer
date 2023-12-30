@@ -249,7 +249,6 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
                     expenseRegDialog.setMessage(getString(R.string.saved));
                 } else
                     expenseRegDialog.setMessage("Ce budget n'a pas de montant suffisamment disponible pour cette dépense");
-
             }
             catch (Exception exception) {
                 runOnUiThread(() -> {
@@ -274,19 +273,14 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
 
         AlertDialog.Builder budgetSelectDialog = Util.initAlertDialogBuilder(this, "Selection de budget", "");
 
-
         ExecutorService getNotExpiredBudgetsExec = Executors.newSingleThreadExecutor();
         getNotExpiredBudgetsExec.execute(() -> {
             try {
-
                 BudgetizerAppDatabase appDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());
                 List<Budget> allBudgets = appDatabase.budgetDAO().getBudgets();
 
                 unexpiredBudget = filterUnexpiredBudgets(allBudgets, Util.getCurrentDate());
                 unexpiredBudgetTitle = getBudgetTitles(unexpiredBudget);
-
-
-
             }
             catch (Exception exception) {
                 runOnUiThread(() -> {
@@ -333,6 +327,47 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
         }
         return filteredBudgets;
     }
+
+    public static List<Budget> filterUnexpiredPrevOrConsoBudgets(List<Budget> budgets, String currentDate, String budgetType){
+
+        List<Budget> filteredBudgets = new ArrayList<>();
+
+        Date currentDateFormatted = new Date(currentDate);
+
+        for (int counter=0; counter<budgets.size(); counter++){
+
+            Date budgetExpDate = new Date(budgets.get(counter).getEndDate());
+
+            int compared = budgetExpDate.compareTo(currentDateFormatted);
+            Log.d(EXP_REG_TAG, "filterUnexpiredPrevOrConsoBudgets: "+budgetType+" look for");
+
+            if (compared>=0 && budgets.get(counter).getBudgetType()!=null && budgets.get(counter).getBudgetType().equals(budgetType)) {
+                filteredBudgets.add(budgets.get(counter));
+                Log.d(EXP_REG_TAG, "filterUnexpiredPrevOrConsoBudgets: "+budgetType+" found");
+            }
+
+        }
+        return filteredBudgets;
+    }
+
+    /*public static List<Budget> filterUnexpiredConBudgets(List<Budget> budgets, String currentDate){
+
+        List<Budget> filteredBudgets = new ArrayList<>();
+
+        Date currentDateFormatted = new Date(currentDate);
+
+        for (int counter=0; counter<budgets.size(); counter++){
+
+            Date budgetExpDate = new Date(budgets.get(counter).getEndDate());
+
+            int compared = budgetExpDate.compareTo(currentDateFormatted);
+
+            if (compared>=0)
+                filteredBudgets.add(budgets.get(counter));
+
+        }
+        return filteredBudgets;
+    }*/
 
     public static List<String> getBudgetTitles(List<Budget> budgets){
         List<String> budgetTitles = new ArrayList<>();

@@ -122,4 +122,6 @@
     <string name="insufficient_account_balance_to_create_this_budget">Balance of the account is insufficient to create this budget</string>
     <string name="summary_contracted_and_unpaid">Summary (of contracted and unpaid debts)</string>
     <string name="welcome__">"Hi! Welcome, "</string>
+    <string name="insufficient_wallet">Insufficient wallet</string>
+    <string name="required_field">Required field</string>
 </resources>

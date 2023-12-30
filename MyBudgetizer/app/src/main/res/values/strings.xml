@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Djiba Am !</string>
     <string name="icon_expenses" translatable="false">icon expenses</string>
-    <string name="menu_for_expense_registering_or_periodic_expenses_consultation">Menu pour enregistrer une dépense ou consulter mes dépenses d\'une période.</string>
+    <string name="menu_for_expense_registering_or_periodic_expenses_consultation">Menu pour enregistrer une dépense ou consulter les dépenses pour une période donnée.</string>
     <string name="my_budgets">Mes Budgets</string>
     <string name="my_debts">Mes dettes</string>
     <string name="my_expenses">Mes Dépenses</string>
@@ -128,4 +128,8 @@
     <string name="welcome__">Bienvenu(e),</string>
     <string name="no_expense_registered">AUCUN ELEMENT TROUVÉ… AUCUNE DEPENSE N\'A ÉTÉ ENREGISTRÉE. ENREGISTRER VOS DEPENSES POUR LES VOIR ICI</string>
     <string name="insufficient_wallet">Solde insuffisant</string>
+    <string name="required_field">Renseigner ce champs SVP</string>
+    <string name="budget_description">Menu pour créer des budgets à base de votre argent disponible (dans votre compte, liquide ou wallet)</string>
+    <string name="revenus_description">Menu pour enregistrer les differents entrées d\'argent (Ce que vous avez à la banque, l\'argent liquide ou le mobile money)</string>
+    <string name="no_account_found">404 : Aucun compte trouvé</string>
 </resources>

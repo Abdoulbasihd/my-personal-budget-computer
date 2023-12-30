@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logo_djiba_am"
+        android:icon="@drawable/twotone_wallet_blue_500_48dp"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo_app_budgetizer"
         android:supportsRtl="true"
@@ -68,7 +68,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.MainMenuActivity"
-            android:exported="false"></activity>
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="false" />
