@@ -18,8 +18,8 @@ android {
         applicationId "cm.abimmobiledev.mybudgetizer"
         minSdkVersion 18
         targetSdkVersion 33
-        versionCode 7
-        versionName "1.5/<<haaramMaoudo1445>>/Aout2023"
+        versionCode 8
+        versionName "1.6/<<soumeteedoWaoube1445>>/Jan2024"
         multiDexEnabled true //to sole error ... Cannot fit requested classes in a single dex file (# methods: 79235 > 65536) ??
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
