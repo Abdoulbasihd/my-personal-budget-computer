@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/baseline_next_plan_blue_500_48dp.xml" value="0.1412037037037037" />
         <entry key="app/src/main/res/drawable/rounded_blue_view.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/layout/account_summary_layout.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_account.xml" value="0.25" />
@@ -20,7 +21,7 @@
         <entry key="app/src/main/res/layout/activity_expense_registration.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_expenses.xml" value="0.16" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.12771739130434784" />
-        <entry key="app/src/main/res/layout/activity_main_menu.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/activity_main_menu.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_receivable_board.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_receivable_registration.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_receivables.xml" value="0.1" />

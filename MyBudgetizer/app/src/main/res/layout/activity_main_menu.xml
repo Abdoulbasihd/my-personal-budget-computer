@@ -271,7 +271,7 @@
                                 android:layout_marginEnd="@dimen/small_margin_2"
                                 android:layout_marginBottom="@dimen/small_margin_2"
                                 android:contentDescription="@string/icon_expenses"
-                                android:src="@drawable/recouvrement_2" />
+                                android:src="@drawable/twotone_published_with_changes_blue_500_48dp" />
 
                             <View
                                 android:layout_width="0.8dp"
@@ -335,7 +335,7 @@
                                 android:layout_marginEnd="@dimen/small_margin_2"
                                 android:layout_marginBottom="@dimen/small_margin_2"
                                 android:contentDescription="@string/icon_expenses"
-                                android:src="@drawable/debt" />
+                                android:src="@drawable/twotone_restore_blue_500_48dp" />
 
                             <TextView
                                 android:id="@+id/debts_title"
