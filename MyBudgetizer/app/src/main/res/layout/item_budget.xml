@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/card_elevation_medium_4"
+        app:cardCornerRadius="@dimen/default_card_radius_5"
+        android:layout_marginStart="@dimen/small_margin_2"
+        android:layout_marginEnd="@dimen/small_margin_2"
+        android:layout_marginTop="0.5dp"
+        android:layout_marginBottom="0.5dp"
+        android:id="@+id/budget_card"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/budget_sticker"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/small_margin_2"
+                app:cardElevation="@dimen/default_card_elevation_2"
+                app:cardCornerRadius="@dimen/default_card_radius_5"
+                app:cardBackgroundColor="@color/teal_200"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                >
+                <RelativeLayout
+                    android:layout_margin="@dimen/small_margin_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/sticker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:maxLength="10"
+                        android:textAlignment="center"
+                        android:textColor="@color/text_white" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/title_char_indicator"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/rounded_blue_view"
+                android:gravity="center"
+                android:padding="6dp"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/main_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/delete_content"
+                android:layout_toEndOf="@+id/title_char_indicator"
+                >
+
+                <TextView
+                    android:id="@+id/budget_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginEnd="@dimen/small_margin_2"
+                    android:text="title"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:textSize="@dimen/title_text_medium_size_15"
+                    android:textStyle="bold" />
+
+
+                <View
+                    android:id="@+id/separator"
+                    android:layout_width="20dp"
+                    android:layout_height="0.7dp"
+                    android:layout_below="@+id/budget_title"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/default_border_margin_4"
+                    android:background="@color/default_text_color_blue_cyan" />
+
+                <TextView
+                    android:id="@+id/amount_title"
+                    android:layout_below="@+id/separator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_body_text_size_12"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:text="@string/amount"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    />
+
+                <TextView
+                    android:id="@+id/budget_amount"
+                    android:layout_below="@+id/separator"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_body_text_size_12"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:text="500 F.CFA"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    />
+
+                <TextView
+                    android:id="@+id/budget_debut_date_title"
+                    android:layout_below="@+id/budget_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_body_text_size_12"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:text="@string/beggining_date"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    />
+
+                <TextView
+                    android:id="@+id/beggining_date"
+                    android:layout_below="@+id/budget_amount"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_body_text_size_12"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:text="2020/12/12 12:12:12"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    />
+
+                <TextView
+                    android:id="@+id/budget_end_date_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/budget_debut_date_title"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    android:text="@string/due_date"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:textSize="@dimen/default_body_text_size_12" />
+
+                <TextView
+                    android:id="@+id/due_date"
+                    android:layout_below="@+id/budget_debut_date_title"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_body_text_size_12"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:text="2020/12/12 12:12:12"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    />
+
+                <TextView
+                    android:id="@+id/budget_desc"
+                    android:layout_below="@+id/due_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_body_text_size_12"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginStart="@dimen/default_border_margin_4"
+                    android:layout_marginEnd="@dimen/default_border_margin_4"
+                    />
+
+                <ProgressBar
+                    android:id="@+id/budget_consumption_progress"
+                    android:layout_below="@+id/budget_desc"
+                    android:layout_marginTop="@dimen/big_margin_10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:progress="30"
+                    android:max="100" /><!--set 100 maximum value for the progress bar-->
+                <TextView
+                    android:id="@+id/consumed_title_text"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/budget_consumption_progress"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/consumed"
+                    android:textColor="@color/default_text_color_blue_cyan" />
+
+                <TextView
+                    android:id="@+id/consumed_value"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/budget_consumption_progress"
+                    android:layout_toEndOf="@+id/consumed_title_text"
+                    android:textColor="@color/unpaid_red_color" />
+
+                <TextView
+                    android:layout_below="@+id/budget_consumption_progress"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/remaining"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/default_text_color_blue_cyan"
+                    />
+
+
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/delete_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/budget_sticker"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="@dimen/default_border_margin_4"
+                app:cardCornerRadius="@dimen/default_card_radius_5"
+                app:cardElevation="@dimen/card_elevation_medium_4"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <ImageView
+                        android:id="@+id/delete_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_twotone_delete_forever_24" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -16,6 +16,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -57,6 +58,10 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
         holder.incomeDate.setText(earning.getIncomeDateAndTime());
         holder.incomeFundsSource.setText(earning.getFundsSource());
         holder.incomeSticker.setText(earning.getSticker());
+
+        if (earning.getEntitled()!=null && earning.getEntitled().length()>0){
+            holder.logoView.setText(String.valueOf(earning.getEntitled().toUpperCase(Locale.ROOT).charAt(0)));
+        }
 
         holder.incomeCard.setOnClickListener(v -> Toast.makeText(holder.incomeCard.getContext(), "suggestions @ abdulbasihd@gmail.com. Thanks", Toast.LENGTH_LONG).show());
 
@@ -119,6 +124,8 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
         final TextView incomeSticker;
         final CardView incomeStickerCard;
 
+        final TextView logoView;
+
         public IncomeViewHolder(@NonNull View incomeItemView) {
             super(incomeItemView);
 
@@ -132,6 +139,8 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
 
             incomeSticker = incomeItemView.findViewById(R.id.sticker);
             incomeStickerCard = incomeItemView.findViewById(R.id.income_sticker);
+
+            logoView = incomeItemView.findViewById(R.id.title_char_indicator);
 
         }
 

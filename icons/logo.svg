@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg5"
+   inkscape:export-filename="/home/abdoulbasihd/AndroidStudioProjects/my-personal-budget-computer/icons/logo_djiba_am.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="1.1.2 (1:1.1+202202050950+0a00cf5339)"
+   sodipodi:docname="logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="0.953125"
+     inkscape:cx="262.81967"
+     inkscape:cy="387.67213"
+     inkscape:window-width="1366"
+     inkscape:window-height="660"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <linearGradient
+       id="linearGradient33519"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#e6d6e8;stop-opacity:1;"
+         offset="0"
+         id="stop33517" />
+    </linearGradient>
+    <symbol
+       id="Information">
+      <title
+         id="title39224">Information</title>
+      <circle
+         cx="36"
+         cy="36"
+         r="24"
+         style="fill:none;stroke-width:6"
+         id="circle39226" />
+      <path
+         d="m 27,32 c 0,-5 1,-11 9,-11 4,0 8,3 8,7 0,4 -2,6 -4,7 -2,1 -4,2 -4,5 0,3 0,6 0,6"
+         style="fill:none;stroke-width:6"
+         id="path39228" />
+      <rect
+         x="33"
+         y="48"
+         width="6"
+         height="6"
+         style="stroke:none"
+         id="rect39230" />
+    </symbol>
+  </defs>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="opacity:0.98893;fill:#c3ebd8;fill-opacity:0.227028"
+       id="rect31716"
+       width="404.37262"
+       height="474.37769"
+       x="34.379364"
+       y="15.654876"
+       rx="1.2377101" />
+    <path
+       style="fill:#0000ba;fill-opacity:0.401549;stroke:#ebf5ff;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.761097;stroke-miterlimit:4;stroke-dasharray:2,1,0.5,1;stroke-dashoffset:0"
+       d="M 104.91377,58.072345 C 137.27754,65.116055 206.94628,159.87636 212.09606,168.33472 223.79995,123.21953 278.06304,35.164595 302.1088,28.635886 323.88408,40.318452 257.33703,150.1824 212.09606,168.33472 171.0867,170.45313 114.82035,104.45055 104.91377,58.072345 Z"
+       id="path857"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#0000ba;fill-opacity:0.401549;stroke:#ebf5ff;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.760784;stroke-miterlimit:4;stroke-dasharray:2,1,0.5,1;stroke-dashoffset:0"
+       d="m 138.24837,69.221293 c -9.77863,19.056099 53.75865,69.685267 73.84769,99.113427 C 213.26592,151.25947 272.1559,77.201892 272.33891,33.306448 246.15771,37.108461 201.58773,110.56513 210.0688,137.10767 191.69188,102.4425 165.00783,75.219217 138.24837,69.221293 Z"
+       id="path2697"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#0000ba;fill-opacity:0.401549;stroke:#ebf5ff;stroke-width:0.90227801;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.760784;stroke-miterlimit:4;stroke-dasharray:1.80455601,0.90227801,0.451139,0.90227801;stroke-dashoffset:0"
+       d="m 160.57243,53.077345 c 7.29233,15.140683 44.75158,77.552985 51.87352,114.869975 C 199.76887,139.12487 238.55076,56.594336 251.66245,17.38486 233.27174,21.791297 205.06448,100.9938 211.02191,131.75594 198.11324,91.579886 179.36933,60.028788 160.57243,53.077345 Z"
+       id="path2697-3"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#0000ba;fill-opacity:0.4;stroke:#ebf5ff;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.760784;stroke-miterlimit:4;stroke-dasharray:2,1,0.5,1;stroke-dashoffset:0"
+       d="m 212.44595,167.94732 c 48.48492,21.75637 134.77508,18.8968 149.84458,68.12236 63.68744,34.25083 62.11403,89.03401 66.93725,141.80468 -30.76569,72.02306 -60.31596,68.53049 -90.09644,79.3418 C 266.37003,483.7057 194.1861,501.58399 126.22237,456.5212 98.500194,436.26111 69.139845,428.79964 45.73215,374.83165 45.80463,331.55121 67.558841,288.90254 83.98814,246.46715 97.326841,207.24281 161.4936,186.16748 212.44595,167.94732 Z"
+       id="path6987"
+       sodipodi:nodetypes="cccccccc" />
+    <path
+       style="fill:#0000ba;fill-opacity:0.4;stroke:#ebf5ff;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.760784;stroke-miterlimit:4;stroke-dasharray:2,1,0.5,1;stroke-dashoffset:0"
+       d="m 212.44595,167.94732 c 49.57989,27.50116 120.04095,52.22751 118.27434,86.55188 15.0967,37.46786 66.99374,76.78013 38.21836,112.04915 -29.29891,67.99423 -70.32049,74.27976 -105.57518,110.92251 l 117.33479,-28.29739 48.52952,-71.29911 C 434.53591,310.49147 397.33629,265.60111 340.79694,205.9182 Z"
+       id="path8623"
+       sodipodi:nodetypes="cccccccc" />
+    <ellipse
+       style="fill:#0000ba;fill-opacity:0.4;stroke:#ebf5ff;stroke-width:1.22105002;stroke-opacity:0.760784;stroke-miterlimit:4;stroke-dasharray:2.44210005,1.22105002,0.61052501,1.22105002;stroke-dashoffset:0"
+       id="path9619"
+       cx="212.7227"
+       cy="169.80644"
+       rx="18.935839"
+       ry="4.5220513" />
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:131.068px;line-height:1.25;font-family:FreeSerif;-inkscape-font-specification:'FreeSerif Bold Italic';text-align:center;letter-spacing:0.0425349px;word-spacing:0.0708914px;text-anchor:middle;fill:#c3ebd8;fill-opacity:0.784993;stroke:#ebf5ff;stroke-width:3.39199996;stroke-opacity:0.760784;stroke-miterlimit:4;stroke-dasharray:1.69599998,1.69599998;stroke-dashoffset:0"
+       x="335.02402"
+       y="240.03197"
+       id="text12668"
+       transform="matrix(0.5759293,-0.06899635,0.20992493,1.7111752,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan12666"
+         x="335.04529"
+         y="240.03197"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeSerif;-inkscape-font-specification:'FreeSerif Bold Italic';text-align:center;text-anchor:middle;fill:#c3ebd8;fill-opacity:0.784993;stroke:#ebf5ff;stroke-width:3.39199996;stroke-opacity:0.760784;stroke-miterlimit:4;stroke-dasharray:1.69599998,1.69599998;stroke-dashoffset:0"
+         dx="0 0 0 0 0.08506956">Djiba am</tspan></text>
+    <use
+       xlink:href="#Information"
+       style="fill:#c3ebd8;stroke:#ebf5ff;fill-opacity:0.78431374;stroke-opacity:0.76078433;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:2, 1, 0.5, 1;stroke-dashoffset:0;stroke-linejoin:bevel;stroke-linecap:butt"
+       id="use41916"
+       x="0"
+       y="0"
+       width="100%"
+       height="100%"
+       transform="translate(213.62151,392.48937)" />
+    <text
+       xml:space="preserve"
+       style="font-size:9.67079px;line-height:1.25;font-family:sans-serif;fill:#c3ebd8;fill-opacity:1;stroke-width:0.906634"
+       x="193.14215"
+       y="431.85156"
+       id="text45071"
+       transform="scale(0.9066336,1.1029814)"><tspan
+         sodipodi:role="line"
+         id="tspan45069"
+         x="193.14215"
+         y="431.85156"
+         style="stroke-width:0.906634">AbdoulBasihdou</tspan></text>
+  </g>
+</svg>

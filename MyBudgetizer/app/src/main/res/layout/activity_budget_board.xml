@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardElevation="@dimen/default_card_elevation_2"
+        android:layout_margin="@dimen/default_border_margin_4"
+        tools:context=".ui.budget.BudgetBoardActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <include
+                layout="@layout/account_summary_layout"
+                android:id="@+id/account_summary"
+                />
+
+            <TextView
+                android:id="@+id/my_budgets_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/account_summary"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="@dimen/default_border_margin_4"
+                android:layout_marginTop="@dimen/default_border_margin_4"
+                android:layout_marginEnd="@dimen/default_border_margin_4"
+                android:text="@string/my_last_budgets"
+                android:textColor="@color/default_text_color_blue_cyan"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/my_last_budgets_title_separator"
+                android:layout_width="@dimen/view_line_default_width"
+                android:layout_height="0.7dp"
+                android:layout_below="@+id/my_budgets_title"
+                android:layout_centerHorizontal="true"
+                android:background="@color/default_text_color_blue_cyan" />
+
+            <RelativeLayout
+                android:id="@+id/layout_budgets"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/my_last_budgets_title_separator"
+                android:layout_marginBottom="50dp"
+                android:orientation="vertical"
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/my_budgets_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/small_margin_2"
+                    android:layout_marginTop="@dimen/small_margin_2"
+                    android:layout_marginEnd="@dimen/small_margin_2"
+                    android:layout_marginBottom="40dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/show_more"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/default_border_margin_4"
+                    android:text="@string/view_more"
+                    android:textColor="@color/text_white"
+                    app:cornerRadius="@dimen/default_card_radius_5"
+                    app:elevation="@dimen/default_card_elevation_2"
+                    />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/no_budget_found"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/big_margin_10"
+                android:layout_marginTop="@dimen/big_margin_10"
+                android:layout_marginEnd="@dimen/big_margin_10"
+                android:layout_marginBottom="@dimen/big_margin_10"
+                android:text="@string/no_item_found"
+                android:textAlignment="center"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/title_text_medium_size_15"
+                android:textStyle="bold|italic" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/new_budget"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:background="@color/default_text_color_blue_cyan"
+                android:src="@drawable/twotone_add_white_48dp"
+                android:layout_margin="@dimen/default_border_margin_4"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

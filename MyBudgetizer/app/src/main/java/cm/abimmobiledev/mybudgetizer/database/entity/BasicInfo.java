@@ -2,7 +2,7 @@ package cm.abimmobiledev.mybudgetizer.database.entity;
 
 public class BasicInfo {
 
-    public String sticker; //for filtering purpose.
+    public String sticker; //for filtering purpose. not need for account only ?
 
     public String entitled;
 

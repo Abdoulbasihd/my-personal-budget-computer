@@ -3,6 +3,10 @@ package cm.abimmobiledev.mybudgetizer.viewmodel;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.text.NumberFormat;
+
 import cm.abimmobiledev.mybudgetizer.BR;
 import cm.abimmobiledev.mybudgetizer.database.entity.Expense;
 
@@ -26,8 +30,12 @@ public class ExpenseRegViewModel extends BaseObservable {
 
     @Bindable
     public String getAmount(){
+
         try {
-            return String.valueOf(expense.getAmount());
+            //return String.valueOf(expense.getAmount());
+            BigDecimal bigExp = new BigDecimal(expense.getAmount(),  MathContext.DECIMAL64);
+            return  bigExp.toPlainString();
+
         }catch (NullPointerException exception){
             return "";
         }

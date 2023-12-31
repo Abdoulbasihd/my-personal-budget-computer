@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -57,6 +58,10 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         holder.expenseTitle.setText(expense.getEntitled());
         holder.expenseAmount.setText(String.valueOf(expense.getAmount()));
         holder.expenseDate.setText(expense.getDateTimeOfExpense());
+
+        if (expense.getEntitled()!=null && expense.getEntitled().length()>0){
+            holder.logoView.setText(String.valueOf(expense.getEntitled().toUpperCase(Locale.ROOT).charAt(0)));
+        }
 
         holder.expenseCard.setOnClickListener(v -> Toast.makeText(holder.expenseCard.getContext(), "suggestions @ abdulbasihd@gmail.com. Thanks", Toast.LENGTH_LONG).show());
         
@@ -117,6 +122,8 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         final CardView expenseCard;
         final CardView deleteContent;
 
+        final TextView logoView;
+
         public ExpenseViewHolder(@NonNull View expenseItemView) {
             super(expenseItemView);
 
@@ -130,6 +137,8 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
 
             expenseCard = expenseItemView.findViewById(R.id.expense_card);
             deleteContent = expenseItemView.findViewById(R.id.delete_content);
+
+            logoView = expenseItemView.findViewById(R.id.title_char_indicator);
 
         }
 

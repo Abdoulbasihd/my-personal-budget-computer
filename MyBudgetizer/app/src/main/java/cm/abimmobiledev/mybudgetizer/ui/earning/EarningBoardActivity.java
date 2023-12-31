@@ -8,6 +8,7 @@ import static cm.abimmobiledev.mybudgetizer.ui.expense.ExpenseDashboardActivity.
 import static cm.abimmobiledev.mybudgetizer.ui.expense.ExpenseDashboardActivity.getCurrentYearFormatted;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,10 +44,15 @@ public class EarningBoardActivity extends AppCompatActivity {
 
     private static final String INCOMES_BOARD_TAG = "EARN_B_TAG";
 
+    private String accountName;
+    private String currency;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         earningBoardBinding = DataBindingUtil.setContentView(this, R.layout.activity_earning_board);
+
+        earnBoardInitByIntent(getIntent());
 
         earningBoardDialog = Util.initAlertDialogBuilder(this, getString(R.string.new_expense), getString(R.string.save_done));
         earningBoardDialog.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
@@ -57,11 +63,11 @@ public class EarningBoardActivity extends AppCompatActivity {
 
         earningBoardBinding.newIncome.setOnClickListener(newExpenseView -> {
             //open expense registration page
-            IncNavigator.openNewIncome(EarningBoardActivity.this);
+            IncNavigator.openNewIncome(EarningBoardActivity.this, accountName, currency);
         });
 
         earningBoardBinding.showMore.setOnClickListener(moveExpensesView -> {
-            BottomSheetMoreEarningsFragment moreEarningsBD = new BottomSheetMoreEarningsFragment();
+            BottomSheetMoreEarningsFragment moreEarningsBD = BottomSheetMoreEarningsFragment.newInstance(accountName, currency);
             //moreExpenseBD.setContentView(R.layout.fragment_bottom_sheet_more_expense_menu);
             moreEarningsBD.show(getSupportFragmentManager(), "ModalBottomSheet");
 
@@ -76,7 +82,7 @@ public class EarningBoardActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        ExNavigation.openMainHome(EarningBoardActivity.this);
+        ExNavigation.openMainHome(EarningBoardActivity.this, accountName, currency);
     }
 
     public void earningBoardViewDataSetup(){
@@ -202,6 +208,12 @@ public class EarningBoardActivity extends AppCompatActivity {
         });
 
     }
+
+    public void  earnBoardInitByIntent(Intent earnBoardIntent) {
+        accountName = earnBoardIntent.getStringExtra(ExNavigation.ACC_NAME_PARAM);
+        currency = earnBoardIntent.getStringExtra(ExNavigation.CURRENCY_PARAM);
+    }
+
 
 
 }

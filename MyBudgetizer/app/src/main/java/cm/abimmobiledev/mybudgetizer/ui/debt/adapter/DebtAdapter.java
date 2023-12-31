@@ -3,9 +3,9 @@ package cm.abimmobiledev.mybudgetizer.ui.debt.adapter;
 import static cm.abimmobiledev.mybudgetizer.ui.expense.ExpenseDashboardActivity.getCurrentDayFormatted;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +16,20 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import cm.abimmobiledev.mybudgetizer.R;
 import cm.abimmobiledev.mybudgetizer.database.BudgetizerAppDatabase;
+import cm.abimmobiledev.mybudgetizer.database.entity.Account;
+import cm.abimmobiledev.mybudgetizer.database.entity.Budget;
 import cm.abimmobiledev.mybudgetizer.database.entity.Debt;
+import cm.abimmobiledev.mybudgetizer.exception.BudgetizerGeneralException;
+import cm.abimmobiledev.mybudgetizer.ui.budget.BudgetFormActivity;
 import cm.abimmobiledev.mybudgetizer.useful.Util;
 
 public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtViewHolder> {
@@ -73,6 +77,10 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtViewHolder
         holder.debtAmount.setText(String.valueOf(debt.getAmount()));
         holder.debtTitle.setText(debt.getEntitled());
 
+        if (debt.getEntitled()!=null && debt.getEntitled().length()>0){
+            holder.debtLogoView.setText(String.valueOf(debt.getEntitled().toUpperCase(Locale.ROOT).charAt(0)));
+        }
+
         holder.editCard.setOnClickListener(v -> {
             AlertDialog.Builder myDebtUpdateAlertDialog = Util.initAlertDialogBuilder(holder.debtCard.getContext(), "Modification",  "Voulez-vous modifier ou marquer comme payée ?");
             AlertDialog.Builder myDebtUpdatedAlertDialog = Util.initAlertDialogBuilder(holder.debtCard.getContext(), holder.debtCard.getContext().getString(R.string.state),  "Effectuée ! \nBien vouloir recharger la page...");
@@ -90,7 +98,21 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtViewHolder
                 ExecutorService debtUpdateExecService = Executors.newSingleThreadExecutor();
                 debtUpdateExecService.execute(() -> {
                     BudgetizerAppDatabase appDatabaseDebtUpdate = BudgetizerAppDatabase.getInstance(holder.debtSticker.getContext());
-                    appDatabaseDebtUpdate.debtDAO().update(debt);
+                    //lorsqu'on paie une dette, notre compte est décrémenté.... Quel sous compte impacter alors.... par défaut nous choisissons le compte cash
+                    //we need to verify account before... if not sufficient wallet, alert
+
+                    Account myAcc =  appDatabaseDebtUpdate.accountDAO().getAccounts().get(0);
+
+                    try {
+                        //if sufficient cash wallet then update
+                        Account account = BudgetFormActivity.debitAccountUpdateSubAccounts(myAcc, debt.getAmount(), Budget.BUDGET_TYPE_POST);
+                        appDatabaseDebtUpdate.debtDAO().update(debt);
+                        appDatabaseDebtUpdate.accountDAO().update(account);
+
+                    } catch (BudgetizerGeneralException exception) {
+                        Log.d("dAdap", "onBindViewHolder: "+exception.getLocalizedMessage(), exception);
+                        myDebtUpdatedAlertDialog.setMessage(exception.getLocalizedMessage());
+                    }
 
                     new Handler(Looper.getMainLooper()).post(() -> {
                         debtUpdateProgress.dismiss();
@@ -119,7 +141,7 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtViewHolder
                 ProgressDialog debtDelProgress = Util.initProgressDialog(holder.deleteContent.getContext(), holder.deleteContent.getContext().getString(R.string.deleting));
                 debtDelProgress.show();
 
-                AlertDialog.Builder myDebtDeletorDialog = Util.initAlertDialogBuilder(holder.deleteContent.getContext(), holder.deleteContent.getContext().getString(R.string.state),  "Revenu Supprimée. Bien vouloir actualiser");
+                AlertDialog.Builder myDebtDeletorDialog = Util.initAlertDialogBuilder(holder.deleteContent.getContext(), holder.deleteContent.getContext().getString(R.string.state),  "Dette Supprimée. Bien vouloir actualiser");
 
 
                 ExecutorService debtDelService = Executors.newSingleThreadExecutor();
@@ -176,6 +198,8 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtViewHolder
         final CardView paidCard;
         final CardView unpaidCard;
 
+        final TextView debtLogoView;
+
         public DebtViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -197,6 +221,8 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtViewHolder
 
             paidCard = itemView.findViewById(R.id.debt_paid_card);
             unpaidCard = itemView.findViewById(R.id.debt_unpaid_card);
+
+            debtLogoView = itemView.findViewById(R.id.title_char_indicator);
         }
     }
 }

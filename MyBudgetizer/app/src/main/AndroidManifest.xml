@@ -4,11 +4,29 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logo_app_budgetizer"
+        android:icon="@drawable/twotone_wallet_blue_500_48dp"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo_app_budgetizer"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.account.AccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.account.AccountFormActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.budget.BudgetFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.budget.BudgetBoardActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.receivable.ReceivableRegistrationActivity"
             android:exported="false" />
@@ -50,13 +68,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.MainMenuActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="false" />

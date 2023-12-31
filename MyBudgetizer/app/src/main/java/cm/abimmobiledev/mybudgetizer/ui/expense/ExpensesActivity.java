@@ -40,12 +40,14 @@ public class ExpensesActivity extends AppCompatActivity {
 
 
     String searchParam;
+    String accountName;
+    String currency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityExpensesBinding = DataBindingUtil.setContentView(this, R.layout.activity_expenses);
-
+        expInitByIntent(getIntent());
         myExpensesDialog = Util.initAlertDialogBuilder(this, getString(R.string.looking_up), getString(R.string.an_error_occured));
         myExpensesDialog.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
             //NOTHING TO DO, just close
@@ -108,7 +110,7 @@ public class ExpensesActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        ExNavigation.openExpensesHome(this);
+        ExNavigation.openExpensesHome(this, accountName, currency);
     }
 
     public static boolean isGivenDateSearch(String param) throws BudgetizerGeneralException {
@@ -132,6 +134,15 @@ public class ExpensesActivity extends AppCompatActivity {
 
         return intent.getStringExtra(ExNavigation.SEARCH_PARAM);
     }
+
+    public void  expInitByIntent(Intent expIntent) {
+        // if (mainIntent==null)
+        //   throw new BudgetizerGeneralException(getString(R.string.page_not_initialized));
+
+        accountName = expIntent.getStringExtra(ExNavigation.ACC_NAME_PARAM);
+        currency = expIntent.getStringExtra(ExNavigation.CURRENCY_PARAM);
+    }
+
 
     /**
      * <h2>Looking up expenses either by date or by a sticker filter</h2>

@@ -1,15 +1,15 @@
 package cm.abimmobiledev.mybudgetizer.ui.receivable;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.Calendar;
 import java.util.List;
@@ -18,16 +18,12 @@ import java.util.concurrent.Executors;
 
 import cm.abimmobiledev.mybudgetizer.R;
 import cm.abimmobiledev.mybudgetizer.database.BudgetizerAppDatabase;
-import cm.abimmobiledev.mybudgetizer.database.entity.Debt;
 import cm.abimmobiledev.mybudgetizer.database.entity.Receivable;
 import cm.abimmobiledev.mybudgetizer.databinding.ActivityReceivablesBinding;
 import cm.abimmobiledev.mybudgetizer.exception.BudgetizerGeneralException;
 import cm.abimmobiledev.mybudgetizer.nav.DebtNavigator;
 import cm.abimmobiledev.mybudgetizer.nav.ExNavigation;
-import cm.abimmobiledev.mybudgetizer.nav.IncNavigator;
 import cm.abimmobiledev.mybudgetizer.nav.ReceivNav;
-import cm.abimmobiledev.mybudgetizer.ui.debt.DebtBoardActivity;
-import cm.abimmobiledev.mybudgetizer.ui.debt.adapter.DebtAdapter;
 import cm.abimmobiledev.mybudgetizer.ui.expense.ExpenseDashboardActivity;
 import cm.abimmobiledev.mybudgetizer.ui.receivable.adapter.ReceivableAdapter;
 import cm.abimmobiledev.mybudgetizer.useful.Util;
@@ -41,12 +37,15 @@ public class ReceivablesActivity extends AppCompatActivity {
 
     List<Receivable> myPeriodicRecs;
     ProgressDialog recsListProgress;
+    String accountName;
+    String currency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         receivablesBinding = DataBindingUtil.setContentView(this, R.layout.activity_receivables);
 
+        receivablesInitByIntent(getIntent());
         recsListProgress = Util.initProgressDialog(this, getString(R.string.looking_up));
 
         receivablesBinding.recsSearchDatePicker.setOnClickListener(v -> pickRecSearchableDate());
@@ -84,7 +83,7 @@ public class ReceivablesActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        ReceivNav.openReceivablesHome(this);
+        ReceivNav.openReceivablesHome(this, accountName, currency);
     }
 
     public static String getRecsSearchParam (Intent debtIntent) throws BudgetizerGeneralException {
@@ -274,4 +273,13 @@ public class ReceivablesActivity extends AppCompatActivity {
                 }, currentSearchY, currentSearchM, currentSearchD);
         searchableDebtDatePickerDialog.show();
     }
+
+    public void  receivablesInitByIntent(Intent recIntent) {
+        // if (mainIntent==null)
+        //   throw new BudgetizerGeneralException(getString(R.string.page_not_initialized));
+
+        accountName = recIntent.getStringExtra(ExNavigation.ACC_NAME_PARAM);
+        currency = recIntent.getStringExtra(ExNavigation.CURRENCY_PARAM);
+    }
+
 }

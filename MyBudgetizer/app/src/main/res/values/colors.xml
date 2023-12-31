@@ -5,6 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="text_white">#FFFFFF</color>
     <color name="text_black">#000000</color>
+    <color name="text_black_2">#12171B</color>
     <color name="default_error_color_red">#FF0104</color>
     <color name="color_important">#CCCDBD</color>
     <color name="default_text_color_blue_cyan">#2196F3</color>

@@ -1,10 +1,17 @@
 package cm.abimmobiledev.mybudgetizer.ui.debt;
 
+import static cm.abimmobiledev.mybudgetizer.ui.earning.EarningRegistrationActivity.getAccountTypes;
+import static cm.abimmobiledev.mybudgetizer.ui.earning.EarningRegistrationActivity.updateCorrectWallet;
+
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,10 +23,12 @@ import java.util.concurrent.Executors;
 
 import cm.abimmobiledev.mybudgetizer.R;
 import cm.abimmobiledev.mybudgetizer.database.BudgetizerAppDatabase;
+import cm.abimmobiledev.mybudgetizer.database.entity.Account;
 import cm.abimmobiledev.mybudgetizer.database.entity.Debt;
 import cm.abimmobiledev.mybudgetizer.databinding.ActivityDebtRegistrationBinding;
 import cm.abimmobiledev.mybudgetizer.exception.BudgetizerGeneralException;
 import cm.abimmobiledev.mybudgetizer.nav.DebtNavigator;
+import cm.abimmobiledev.mybudgetizer.nav.ExNavigation;
 import cm.abimmobiledev.mybudgetizer.useful.Util;
 import cm.abimmobiledev.mybudgetizer.viewmodel.DebtRegistrationVM;
 
@@ -27,11 +36,16 @@ public class DebtRegistrationActivity extends AppCompatActivity {
 
     ActivityDebtRegistrationBinding debtRegistrationBinding;
     DebtRegistrationVM debtRegistrationVM;
+    private String accountName;
+    private String currency;
 
     private final String TAG_DEBT_REG = "D_REG_TAG";
 
     AlertDialog.Builder debtRegDialog;
     ProgressDialog debtRegProgress;
+
+    ArrayAdapter<String> accountAdapter;
+    int selectedAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +55,8 @@ public class DebtRegistrationActivity extends AppCompatActivity {
         debtRegistrationBinding = DataBindingUtil.setContentView(this, R.layout.activity_debt_registration);
         debtRegistrationBinding.setDebtRegistor(debtRegistrationVM);
         debtRegistrationBinding.executePendingBindings();
+
+        debtsRegInitByIntent(getIntent());
 
         debtRegDialog = Util.initAlertDialogBuilder(this, "Nouvelle Dette", getString(R.string.save_done));
         debtRegDialog.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
@@ -77,12 +93,28 @@ public class DebtRegistrationActivity extends AppCompatActivity {
         debtRegistrationBinding.pickRepaymentDateAndTime.setOnClickListener(v -> pickPaymentDate(Calendar.getInstance()));
         debtRegistrationBinding.pickRepayDueDate.setOnClickListener(v -> pickDueDate(Calendar.getInstance()));
 
+        accountAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getAccountTypes());
+        accountAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // attaching data adapter to spinner
+        debtRegistrationBinding.spinnerAccounts.setAdapter(accountAdapter);
+        debtRegistrationBinding.spinnerAccounts.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedAccount = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //nothing to do here
+            }
+        });
+
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        DebtNavigator.openDebtsHome(DebtRegistrationActivity.this);
+        DebtNavigator.openDebtsHome(DebtRegistrationActivity.this, accountName, currency);
     }
 
     /**
@@ -268,7 +300,18 @@ public class DebtRegistrationActivity extends AppCompatActivity {
                 debt = debtSetPay(debt);
 
                 BudgetizerAppDatabase appDatabaseDebtReg = BudgetizerAppDatabase.getInstance(getApplicationContext());
+
+                //get the account and update amount value by adding the gotten value ...
+                //no need to control as we're adding (not subtraction)... increase account here
+                Account acc =
+                        updateCorrectWallet(
+                                appDatabaseDebtReg.accountDAO().getAccounts().get(0),
+                                debt.getAmount(),
+                                selectedAccount
+                        );
+
                 appDatabaseDebtReg.debtDAO().insertAll(debt);
+                appDatabaseDebtReg.accountDAO().update(acc);
             }
             catch (Exception exception) {
                 Log.d(TAG_DEBT_REG, exception.getLocalizedMessage(), exception);
@@ -281,7 +324,7 @@ public class DebtRegistrationActivity extends AppCompatActivity {
 
             runOnUiThread(() -> {
                 debtRegDialog.setMessage(getString(R.string.saved));
-                debtRegDialog.setNegativeButton(getString(R.string.back), (dialog, which) -> DebtNavigator.openDebtsHome(DebtRegistrationActivity.this));
+                debtRegDialog.setNegativeButton(getString(R.string.back), (dialog, which) -> DebtNavigator.openDebtsHome(DebtRegistrationActivity.this, accountName, currency));
                 debtRegDialog.show();
                 debtRegProgress.dismiss();
             });
@@ -290,5 +333,11 @@ public class DebtRegistrationActivity extends AppCompatActivity {
         });
 
     }
+
+    public void  debtsRegInitByIntent(Intent debtRegIntent) {
+        accountName = debtRegIntent.getStringExtra(ExNavigation.ACC_NAME_PARAM);
+        currency = debtRegIntent.getStringExtra(ExNavigation.CURRENCY_PARAM);
+    }
+
 
 }

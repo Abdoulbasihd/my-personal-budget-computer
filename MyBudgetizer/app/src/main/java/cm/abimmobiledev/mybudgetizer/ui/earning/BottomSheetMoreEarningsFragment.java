@@ -19,15 +19,19 @@ import cm.abimmobiledev.mybudgetizer.nav.IncNavigator;
  */
 public class BottomSheetMoreEarningsFragment extends BottomSheetDialogFragment {
 
+    private String accountName;
+    private String currency;
 
     public BottomSheetMoreEarningsFragment() {
         // Required empty public constructor
     }
 
     // Rename and change types and number of parameters
-    public static BottomSheetMoreEarningsFragment newInstance() {
+    public static BottomSheetMoreEarningsFragment newInstance(String accountName, String currency) {
         BottomSheetMoreEarningsFragment fragment = new BottomSheetMoreEarningsFragment();
         Bundle args = new Bundle();
+        args.putString(ExNavigation.CURRENCY_PARAM, currency);
+        args.putString(ExNavigation.ACC_NAME_PARAM, accountName);
         fragment.setArguments(args);
         return fragment;
     }
@@ -35,7 +39,10 @@ public class BottomSheetMoreEarningsFragment extends BottomSheetDialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if (getArguments()!=null) {
+            accountName = getArguments().getString(ExNavigation.ACC_NAME_PARAM);
+            currency = getArguments().getString(ExNavigation.CURRENCY_PARAM);
+        }
     }
 
     @Override
@@ -49,13 +56,13 @@ public class BottomSheetMoreEarningsFragment extends BottomSheetDialogFragment {
         MaterialButton thisYearIncome = view.findViewById(R.id.view_this_year_incomes);
         MaterialButton aDayIncome = view.findViewById(R.id.filter_for_a_given_date);
 
-        todayIncome.setOnClickListener(todayView -> IncNavigator.openEarningsSearch(getActivity(), ExNavigation.EXPENSE_OF_TODAY));
+        todayIncome.setOnClickListener(todayView -> IncNavigator.openEarningsSearch(getActivity(), ExNavigation.EXPENSE_OF_TODAY, accountName, currency));
 
-        thisMonthIncome.setOnClickListener(monthExpView -> IncNavigator.openEarningsSearch(getActivity(), ExNavigation.EXPENSE_OF_THIS_MONTH));
+        thisMonthIncome.setOnClickListener(monthExpView -> IncNavigator.openEarningsSearch(getActivity(), ExNavigation.EXPENSE_OF_THIS_MONTH, accountName, currency));
 
-        thisYearIncome.setOnClickListener(yearView -> IncNavigator.openEarningsSearch(getActivity(), ExNavigation.EXPENSE_OF_THIS_YEAR));
+        thisYearIncome.setOnClickListener(yearView -> IncNavigator.openEarningsSearch(getActivity(), ExNavigation.EXPENSE_OF_THIS_YEAR, accountName, currency));
 
-        aDayIncome.setOnClickListener(yearView -> IncNavigator.openEarningsSearch(getActivity(), ExNavigation.EXPENSE_OF_A_DATE));
+        aDayIncome.setOnClickListener(yearView -> IncNavigator.openEarningsSearch(getActivity(), ExNavigation.EXPENSE_OF_A_DATE, accountName, currency));
 
         return view;
     }

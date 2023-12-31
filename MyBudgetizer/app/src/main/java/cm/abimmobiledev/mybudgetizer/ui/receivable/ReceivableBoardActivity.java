@@ -8,6 +8,7 @@ import static cm.abimmobiledev.mybudgetizer.ui.expense.ExpenseDashboardActivity.
 import static cm.abimmobiledev.mybudgetizer.ui.expense.ExpenseDashboardActivity.getCurrentYearFormatted;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,11 +29,13 @@ import cm.abimmobiledev.mybudgetizer.databinding.ActivityReceivableBoardBinding;
 import cm.abimmobiledev.mybudgetizer.exception.BudgetizerGeneralException;
 import cm.abimmobiledev.mybudgetizer.nav.ExNavigation;
 import cm.abimmobiledev.mybudgetizer.nav.ReceivNav;
-import cm.abimmobiledev.mybudgetizer.ui.debt.BottomSheetMoreDebtsFragment;
 import cm.abimmobiledev.mybudgetizer.ui.receivable.adapter.ReceivableAdapter;
 import cm.abimmobiledev.mybudgetizer.useful.Util;
 
 public class ReceivableBoardActivity extends AppCompatActivity {
+
+    String accountName;
+    String currency;
 
     ActivityReceivableBoardBinding receivableBoardBinding;
 
@@ -46,16 +49,17 @@ public class ReceivableBoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         receivableBoardBinding = DataBindingUtil.setContentView(this, R.layout.activity_receivable_board);
 
+        recBInitByIntent(getIntent());
         recsListProgress = Util.initProgressDialog(this, getString(R.string.looking_up));
         recBoardResumeProgress = Util.initProgressDialog(this, getString(R.string.looking_up));
 
         receivableBoardBinding.showMore.setOnClickListener(v -> {
-            BottomSheetMoreReceivableMenuFragment moreReceivableMenuFragment = new BottomSheetMoreReceivableMenuFragment();
+            BottomSheetMoreReceivableMenuFragment moreReceivableMenuFragment = BottomSheetMoreReceivableMenuFragment.newInstance(accountName, currency);
             moreReceivableMenuFragment.show(getSupportFragmentManager(), "MDebtModalBottomSheet");
         });
 
         receivableBoardBinding.cardRefresh.setOnClickListener(refreshView -> recBoardViewDataSetup());
-        receivableBoardBinding.newReceivable.setOnClickListener(receivable -> ReceivNav.openNewReceivable(ReceivableBoardActivity.this));
+        receivableBoardBinding.newReceivable.setOnClickListener(receivable -> ReceivNav.openNewReceivable(ReceivableBoardActivity.this, accountName, currency));
         recBoardViewDataSetup();
 
     }
@@ -63,7 +67,7 @@ public class ReceivableBoardActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        ExNavigation.openMainHome(ReceivableBoardActivity.this);
+        ExNavigation.openMainHome(ReceivableBoardActivity.this, accountName, currency);
     }
 
     public void recBoardViewDataSetup(){
@@ -188,5 +192,11 @@ public class ReceivableBoardActivity extends AppCompatActivity {
         });
 
     }
+
+    public void  recBInitByIntent(Intent recBIntent) {
+        accountName = recBIntent.getStringExtra(ExNavigation.ACC_NAME_PARAM);
+        currency = recBIntent.getStringExtra(ExNavigation.CURRENCY_PARAM);
+    }
+
 
 }

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg86059"
+   inkscape:version="1.1.2 (1:1.1+202202050950+0a00cf5339)"
+   sodipodi:docname="debts.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview86061"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.43473625"
+     inkscape:cx="266.82845"
+     inkscape:cy="587.71266"
+     inkscape:window-width="1366"
+     inkscape:window-height="660"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs86056">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient101428">
+      <stop
+         style="stop-color:#211e1f;stop-opacity:1;"
+         offset="0"
+         id="stop101424" />
+      <stop
+         style="stop-color:#211e1f;stop-opacity:0;"
+         offset="1"
+         id="stop101426" />
+    </linearGradient>
+    <rect
+       x="284.7266"
+       y="487.3646"
+       width="279.42006"
+       height="105.95596"
+       id="rect95180" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient101428"
+       id="linearGradient101430"
+       x1="285.28646"
+       y1="501.25197"
+       x2="398.02097"
+       y2="501.25197"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#2196f3;fill-opacity:0.67843139;stroke:#f2fce8;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.8509804"
+       d="M 123.89144,66.557667 C 99.849177,38.898046 76.000229,63.409202 79.907655,67.076938 c 25.324615,23.771153 24.621815,32.19124 24.621815,32.19124 6.22263,0.453781 -40.44859,-5.286088 0,0 0,0 49.22347,-15.407254 52.74246,-28.362561 3.51899,-12.955307 -33.38049,-4.34795 -33.38049,-4.34795 z"
+       id="path86155"
+       sodipodi:nodetypes="csccsc" />
+    <path
+       style="fill:#2196f3;fill-opacity:0.68000001;stroke:#f2fce8;stroke-width:0.277348px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.85000002"
+       d="m 104.52947,99.268178 c 21.94186,10.224142 -30.421097,5.468792 0,0 70.98246,-30.826444 88.77834,33.779762 71.22316,63.490692 l -11.55969,18.86528 C 126.75034,225.63403 40.181186,187.96383 61.370236,188.19313 37.452115,170.55826 41.854713,146.46362 41.567405,135.73495 35.001627,85.307093 69.270066,79.405783 104.52947,99.268178 Z"
+       id="path87900"
+       sodipodi:nodetypes="ccccccc" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.92246884,0.09453644,-0.33433697,2.1130357,-37.312887,-956.69808)"
+       id="text95178"
+       style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';white-space:pre;shape-inside:url(#rect95180);fill:url(#linearGradient101430);fill-opacity:1;stroke:#000000;stroke-opacity:1"><tspan
+         x="284.72656"
+         y="510.95901"
+         id="tspan119405">DETTES</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:127.189px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';fill:#2196f3;fill-opacity:0.29143757;stroke-width:2.38481;stroke:#f3ecfc;stroke-opacity:0.1765109"
+       x="74.577209"
+       y="190.53281"
+       id="text105453"
+       transform="scale(0.96468725,1.0366054)"><tspan
+         sodipodi:role="line"
+         id="tspan105451"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:127.189px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';fill:#2196f3;fill-opacity:0.29143757;stroke-width:2.38481;stroke:#f3ecfc;stroke-opacity:0.1765109"
+         x="74.577209"
+         y="190.53281">?</tspan></text>
+  </g>
+</svg>

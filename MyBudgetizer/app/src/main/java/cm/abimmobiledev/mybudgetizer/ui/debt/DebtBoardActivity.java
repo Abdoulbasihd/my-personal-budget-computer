@@ -7,15 +7,15 @@ import static cm.abimmobiledev.mybudgetizer.ui.expense.ExpenseDashboardActivity.
 import static cm.abimmobiledev.mybudgetizer.ui.expense.ExpenseDashboardActivity.getCurrentMonthFormatted;
 import static cm.abimmobiledev.mybudgetizer.ui.expense.ExpenseDashboardActivity.getCurrentYearFormatted;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.Calendar;
 import java.util.List;
@@ -25,14 +25,11 @@ import java.util.concurrent.Executors;
 import cm.abimmobiledev.mybudgetizer.R;
 import cm.abimmobiledev.mybudgetizer.database.BudgetizerAppDatabase;
 import cm.abimmobiledev.mybudgetizer.database.entity.Debt;
-import cm.abimmobiledev.mybudgetizer.database.entity.Earning;
 import cm.abimmobiledev.mybudgetizer.databinding.ActivityDebtBoardBinding;
 import cm.abimmobiledev.mybudgetizer.exception.BudgetizerGeneralException;
 import cm.abimmobiledev.mybudgetizer.nav.DebtNavigator;
 import cm.abimmobiledev.mybudgetizer.nav.ExNavigation;
 import cm.abimmobiledev.mybudgetizer.ui.debt.adapter.DebtAdapter;
-import cm.abimmobiledev.mybudgetizer.ui.earning.BottomSheetMoreEarningsFragment;
-import cm.abimmobiledev.mybudgetizer.ui.earning.adapter.IncomeAdapter;
 import cm.abimmobiledev.mybudgetizer.useful.Util;
 
 public class DebtBoardActivity extends AppCompatActivity {
@@ -45,6 +42,8 @@ public class DebtBoardActivity extends AppCompatActivity {
     List<Debt> periodicDebts;
 
     private static final String DEBT_BOARD_TAG = "DbB_TAG";
+    private String accountName;
+    private String currency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +51,16 @@ public class DebtBoardActivity extends AppCompatActivity {
 
         debtBoardBinding = DataBindingUtil.setContentView(this, R.layout.activity_debt_board);
 
+        debtBoardInitByIntent(getIntent());
         debtsListProgress = Util.initProgressDialog(this, getString(R.string.looking_up));
         debtBoardResumeProgress = Util.initProgressDialog(this, getString(R.string.looking_up));
 
         debtBoardBinding.showMore.setOnClickListener(v -> {
-            BottomSheetMoreDebtsFragment moreDebtsBottomSheet = new BottomSheetMoreDebtsFragment();
+            BottomSheetMoreDebtsFragment moreDebtsBottomSheet = BottomSheetMoreDebtsFragment.newInstance(accountName, currency);
             moreDebtsBottomSheet.show(getSupportFragmentManager(), "MDebtModalBottomSheet");
         });
 
-        debtBoardBinding.newDebt.setOnClickListener(newDebtView -> DebtNavigator.openNewDebt(DebtBoardActivity.this));
+        debtBoardBinding.newDebt.setOnClickListener(newDebtView -> DebtNavigator.openNewDebt(DebtBoardActivity.this, accountName, currency));
         debtBoardBinding.cardRefresh.setOnClickListener(refreshView -> earningBoardViewDataSetup());
 
         earningBoardViewDataSetup();
@@ -69,15 +69,15 @@ public class DebtBoardActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        ExNavigation.openMainHome(DebtBoardActivity.this);
+        ExNavigation.openMainHome(DebtBoardActivity.this, accountName, currency);
     }
 
 
     public void earningBoardViewDataSetup(){
         final Calendar calendar = Calendar.getInstance();
-        setPeriodicDebts(getCurrentDayFormatted(calendar), PERIOD_DAILY);
-        setPeriodicDebts(getCurrentMonthFormatted(calendar), PERIOD_MONTHLY);
-        setPeriodicDebts(getCurrentYearFormatted(calendar), PERIOD_YEARLY);
+        setPeriodicUnpaidDebts(getCurrentDayFormatted(calendar), PERIOD_DAILY);
+        setPeriodicUnpaidDebts(getCurrentMonthFormatted(calendar), PERIOD_MONTHLY);
+        setPeriodicUnpaidDebts(getCurrentYearFormatted(calendar), PERIOD_YEARLY);
 
         // : get 10 last entries of earnings and show it
         getLastDebts(10);
@@ -88,7 +88,7 @@ public class DebtBoardActivity extends AppCompatActivity {
      * @param period String formatted either for day (yyyy/mm/dd) or for month (yyyy/mm) of just a year (yyyy). Later, looks how you could add  for weeds
      * @param periodicity int : PERIOD_DAILY, PERIOD_MONTHLY or PERIOD_YEARLY. Add for weeks later. to identify which value is to modify
      */
-    public void setPeriodicDebts(String period, int periodicity) {
+    public void setPeriodicUnpaidDebts(String period, int periodicity) {
 
         // : add loader
         debtBoardResumeProgress.show();
@@ -99,7 +99,7 @@ public class DebtBoardActivity extends AppCompatActivity {
             try {
                 BudgetizerAppDatabase earningSelectorAppDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());
 
-                periodicDebts = earningSelectorAppDatabase.debtDAO().loadAllDebtLikeFormattedLoanDate("%"+period+"%");
+                periodicDebts = earningSelectorAppDatabase.debtDAO().loadAllUnpaidDebtLikeFormattedLoanDate("%"+period+"%");
 
 
                 runOnUiThread(() -> {
@@ -194,6 +194,11 @@ public class DebtBoardActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    public void  debtBoardInitByIntent(Intent debtBoardIntent) {
+        accountName = debtBoardIntent.getStringExtra(ExNavigation.ACC_NAME_PARAM);
+        currency = debtBoardIntent.getStringExtra(ExNavigation.CURRENCY_PARAM);
     }
 
 
