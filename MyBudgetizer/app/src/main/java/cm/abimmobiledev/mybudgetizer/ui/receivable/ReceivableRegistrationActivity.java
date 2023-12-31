@@ -1,7 +1,6 @@
 package cm.abimmobiledev.mybudgetizer.ui.receivable;
 
 import static cm.abimmobiledev.mybudgetizer.ui.earning.EarningRegistrationActivity.getAccountTypes;
-import static cm.abimmobiledev.mybudgetizer.ui.earning.EarningRegistrationActivity.updateCorrectWallet;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,12 +22,13 @@ import java.util.concurrent.Executors;
 import cm.abimmobiledev.mybudgetizer.R;
 import cm.abimmobiledev.mybudgetizer.database.BudgetizerAppDatabase;
 import cm.abimmobiledev.mybudgetizer.database.entity.Account;
+import cm.abimmobiledev.mybudgetizer.database.entity.Budget;
 import cm.abimmobiledev.mybudgetizer.database.entity.Receivable;
 import cm.abimmobiledev.mybudgetizer.databinding.ActivityReceivableRegistrationBinding;
+import cm.abimmobiledev.mybudgetizer.exception.BudgetizerGeneralException;
 import cm.abimmobiledev.mybudgetizer.nav.ExNavigation;
-import cm.abimmobiledev.mybudgetizer.nav.IncNavigator;
 import cm.abimmobiledev.mybudgetizer.nav.ReceivNav;
-import cm.abimmobiledev.mybudgetizer.ui.earning.EarningRegistrationActivity;
+import cm.abimmobiledev.mybudgetizer.ui.budget.BudgetFormActivity;
 import cm.abimmobiledev.mybudgetizer.useful.Util;
 import cm.abimmobiledev.mybudgetizer.viewmodel.RecRegVM;
 
@@ -301,16 +301,18 @@ public class ReceivableRegistrationActivity extends AppCompatActivity {
 
                 BudgetizerAppDatabase appDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());
 
-                //get the account and update amount value by substract the receivable given ...
-                Account acc =
-                        updateCorrectWallet(
-                                appDatabase.accountDAO().getAccounts().get(0),
-                                -receivableNew.getAmount(),
-                                selectedAccount
-                        );
+                Account account = appDatabase.accountDAO().getAccounts().get(0);
+
+                //if balanceUpdated is >= 0 then there is sufficient balance. else alert the user with error message 'insufficient wallet'
+                //update amount value  of the account (ze balance) by the subtraction of the receivable given ...
+
+                Account accountUpdated = creditAccountUpdateSubAccounts(account, receivableNew.getAmount());
 
                 appDatabase.receivableDAO().insertAll(receivableNew);
-                appDatabase.accountDAO().update(acc);
+                appDatabase.accountDAO().update(accountUpdated);
+                recRegDialog.setMessage(getString(R.string.saved));
+
+
 
             } catch (Exception exception) {
                 runOnUiThread(() -> {
@@ -322,7 +324,6 @@ public class ReceivableRegistrationActivity extends AppCompatActivity {
             }
 
             runOnUiThread(() -> {
-                recRegDialog.setMessage(getString(R.string.saved));
                 recRegDialog.setNegativeButton(getString(R.string.back), (dialog, which) -> ReceivNav.openReceivablesHome(ReceivableRegistrationActivity.this, accountName, currency));
                 recRegDialog.show();
                 recRegProgress.dismiss();
@@ -331,9 +332,16 @@ public class ReceivableRegistrationActivity extends AppCompatActivity {
 
     }
 
+    public static Account creditAccountUpdateSubAccounts(Account acc, double amountCredited) {
+
+        acc.setCashBalance(acc.getCashBalance()+amountCredited);
+        acc.setBalance();
+        return acc;
+    }
+
+
     public void  recRecInitByIntent(Intent recRegIntent) {
-        // if (mainIntent==null)
-        //   throw new BudgetizerGeneralException(getString(R.string.page_not_initialized));
+        //   do throw new BudgetizerGeneralException(getString(R.string.page_not_initialized)) when param is null ?
 
         accountName = recRegIntent.getStringExtra(ExNavigation.ACC_NAME_PARAM);
         currency = recRegIntent.getStringExtra(ExNavigation.CURRENCY_PARAM);

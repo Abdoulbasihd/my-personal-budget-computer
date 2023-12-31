@@ -131,6 +131,7 @@
                             android:text="@={incomeModel.amount}"
                             android:textColor="@color/default_text_color"
                             android:inputType="numberDecimal"
+                            android:maxLength="14"
                             />
 
                     </com.google.android.material.textfield.TextInputLayout>

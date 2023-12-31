@@ -3,7 +3,6 @@ package cm.abimmobiledev.mybudgetizer.ui.expense;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -227,28 +226,28 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
         insertExpenseExec.execute(() -> {
 
             try {
-
                 BudgetizerAppDatabase appDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());
              //   BudgetWithExpenses budgetWithExpenses = appDatabase.budgetDAO().getExpensesOfGivenBudget(selectedBudget.getBudgetId());
               //  double consumedAmount = BudgetAdapter.getConsumedAmount(budgetWithExpenses);
+                List<Account> accounts = appDatabase.accountDAO().getAccounts();
 
                 Expense expenseNew = new Expense(entitle, Double.parseDouble(amount), dateReg, reason, sticker);
                 expenseNew.setFkBudgetId(selectedBudget.budgetId);
 
                 double newConsumption = selectedBudget.getConsumed()+expenseNew.getAmount();
                 if (newConsumption <=selectedBudget.getAmount()) {
+                    //if insufficient balance, it'll be stopped here
+                    Account account = BudgetFormActivity.debitAccountUpdateSubAccounts(accounts.get(0), expenseNew.getAmount(), selectedBudget.getBudgetType());
+
                     appDatabase.expenseDAO().insertAll(expenseNew);
                     selectedBudget.setConsumed(newConsumption);
                     appDatabase.budgetDAO().update(selectedBudget);
 
-                    List<Account> accounts = appDatabase.accountDAO().getAccounts();
-                    Account account = BudgetFormActivity.updateSubAccounts(accounts.get(0), expenseNew.getAmount());
                     appDatabase.accountDAO().update(account);
 
                     expenseRegDialog.setMessage(getString(R.string.saved));
                 } else
                     expenseRegDialog.setMessage("Ce budget n'a pas de montant suffisamment disponible pour cette dépense");
-
             }
             catch (Exception exception) {
                 runOnUiThread(() -> {
@@ -273,19 +272,14 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
 
         AlertDialog.Builder budgetSelectDialog = Util.initAlertDialogBuilder(this, "Selection de budget", "");
 
-
         ExecutorService getNotExpiredBudgetsExec = Executors.newSingleThreadExecutor();
         getNotExpiredBudgetsExec.execute(() -> {
             try {
-
                 BudgetizerAppDatabase appDatabase = BudgetizerAppDatabase.getInstance(getApplicationContext());
                 List<Budget> allBudgets = appDatabase.budgetDAO().getBudgets();
 
                 unexpiredBudget = filterUnexpiredBudgets(allBudgets, Util.getCurrentDate());
                 unexpiredBudgetTitle = getBudgetTitles(unexpiredBudget);
-
-
-
             }
             catch (Exception exception) {
                 runOnUiThread(() -> {
@@ -332,6 +326,47 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
         }
         return filteredBudgets;
     }
+
+    public static List<Budget> filterUnexpiredPrevOrConsoBudgets(List<Budget> budgets, String currentDate, String budgetType){
+
+        List<Budget> filteredBudgets = new ArrayList<>();
+
+        Date currentDateFormatted = new Date(currentDate);
+
+        for (int counter=0; counter<budgets.size(); counter++){
+
+            Date budgetExpDate = new Date(budgets.get(counter).getEndDate());
+
+            int compared = budgetExpDate.compareTo(currentDateFormatted);
+            Log.d(EXP_REG_TAG, "filterUnexpiredPrevOrConsoBudgets: "+budgetType+" look for");
+
+            if (compared>=0 && budgets.get(counter).getBudgetType()!=null && budgets.get(counter).getBudgetType().equals(budgetType)) {
+                filteredBudgets.add(budgets.get(counter));
+                Log.d(EXP_REG_TAG, "filterUnexpiredPrevOrConsoBudgets: "+budgetType+" found");
+            }
+
+        }
+        return filteredBudgets;
+    }
+
+    /*public static List<Budget> filterUnexpiredConBudgets(List<Budget> budgets, String currentDate){
+
+        List<Budget> filteredBudgets = new ArrayList<>();
+
+        Date currentDateFormatted = new Date(currentDate);
+
+        for (int counter=0; counter<budgets.size(); counter++){
+
+            Date budgetExpDate = new Date(budgets.get(counter).getEndDate());
+
+            int compared = budgetExpDate.compareTo(currentDateFormatted);
+
+            if (compared>=0)
+                filteredBudgets.add(budgets.get(counter));
+
+        }
+        return filteredBudgets;
+    }*/
 
     public static List<String> getBudgetTitles(List<Budget> budgets){
         List<String> budgetTitles = new ArrayList<>();

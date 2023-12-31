@@ -35,7 +35,12 @@ public class MainMenuActivity extends AppCompatActivity {
         mainInitByIntent(getIntent());
 
         mainMenuBinding.welcomeRelativeLayout.name.setText(accountName);
-        mainMenuBinding.welcomeRelativeLayout.nameIndicator.setText(String.valueOf(accountName.toUpperCase(Locale.ROOT).charAt(0)));
+
+        if (accountName!=null && !accountName.isEmpty())
+            mainMenuBinding.welcomeRelativeLayout.nameIndicator.setText(String.valueOf(accountName.toUpperCase(Locale.ROOT).charAt(0)));
+        else
+            mainMenuBinding.welcomeRelativeLayout.nameIndicator.setText("");
+
 
         //implement this group first....
         mainMenuBinding.cardBudget.setOnClickListener(aboutView -> BudgetNav.openBudgetsHome(MainMenuActivity.this, accountName, currency));

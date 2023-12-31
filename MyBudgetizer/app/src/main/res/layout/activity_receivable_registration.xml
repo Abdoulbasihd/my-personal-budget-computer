@@ -131,7 +131,6 @@
                             app:hintTextColor="@color/default_text_color_blue_cyan"
                             app:boxBackgroundColor="@color/default_text_input_color"
                             android:hint="@string/amount"
-
                             android:textColorHint="@color/default_text_color_blue_cyan"
                             >
 
@@ -142,6 +141,7 @@
                                 android:text="@={receivable.amount}"
                                 android:textColor="@color/default_text_color"
                                 android:inputType="numberDecimal"
+                                android:maxLength="14"
                                 />
 
                         </com.google.android.material.textfield.TextInputLayout>

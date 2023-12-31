@@ -66,7 +66,7 @@
                 android:id="@+id/main_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toStartOf="@+id/delete_content"
+                android:layout_toStartOf="@+id/more_action_card"
                 android:layout_toEndOf="@+id/title_char_indicator"
                 >
 
@@ -343,6 +343,7 @@
                 android:layout_margin="@dimen/default_border_margin_4"
                 app:cardCornerRadius="@dimen/default_card_radius_5"
                 app:cardElevation="@dimen/card_elevation_medium_4"
+                android:visibility="gone"
                 >
                 <RelativeLayout
                     android:layout_width="match_parent"

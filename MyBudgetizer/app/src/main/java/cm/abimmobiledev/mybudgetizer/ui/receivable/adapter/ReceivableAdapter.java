@@ -82,7 +82,7 @@ public class ReceivableAdapter extends RecyclerView.Adapter<ReceivableAdapter.Re
             holder.editCard.setVisibility(View.GONE);
 
         holder.editCard.setOnClickListener(v -> {
-            AlertDialog.Builder myRecUpdateAlertDialog = Util.initAlertDialogBuilder(holder.debtCard.getContext(), "Modification",  "Voulez-vous modifier ou marquer comme payée ?");
+            AlertDialog.Builder myRecUpdateAlertDialog = Util.initAlertDialogBuilder(holder.debtCard.getContext(), "Modification",  "Voulez-vous modifier ou marquer comme payée ?\nPayer va augmenter votre compte CASH (Liquide)");
             AlertDialog.Builder myRecUpdatedAlertDialog = Util.initAlertDialogBuilder(holder.debtCard.getContext(), holder.debtCard.getContext().getString(R.string.state),  "Effectuée ! \nBien vouloir recharger la page...");
 
             myRecUpdateAlertDialog.setNegativeButton("Marquer payée aujourd'hui", (dialog, which) -> {

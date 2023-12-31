@@ -64,8 +64,13 @@ public class AccountFormActivity extends AppCompatActivity {
             String accName = accountFormBinding.accountNameEdit.getText().toString().trim();
             String currency = currencies.get(selectedCurrency);
 
-            accountSavingProgress.show();
-            insertNewAccount(accName, currency);
+            if(accName.isEmpty()) {
+                accountFormBinding.accountNameEdit.setError(getString(R.string.required_field));
+            } else {
+                accountSavingProgress.show();
+                insertNewAccount(accName, currency);
+            }
+
 
         });
 
@@ -97,13 +102,19 @@ public class AccountFormActivity extends AppCompatActivity {
 
             if(accounts!=null && !accounts.isEmpty()) {
                 //open main menu here
-                Account acc = accounts.get(0);
-                ExNavigation.openMainHome(AccountFormActivity.this, acc.getEntitled(), acc.getCurrency());
+                runOnUiThread(() -> {
+                    Account acc = accounts.get(0);
+                    ExNavigation.openMainHome(AccountFormActivity.this, acc.getEntitled(), acc.getCurrency());
+                });
+
             } else {
                 //dismiss loader here
-                accountFormBinding.accountContentLoading.setVisibility(View.GONE);
-                accountFormBinding.accountFormOnCard.setVisibility(View.VISIBLE);
-                accountFormBinding.saveAccount.setVisibility(View.VISIBLE);
+                runOnUiThread(() -> {
+                    accountFormBinding.accountContentLoading.setVisibility(View.GONE);
+                    accountFormBinding.accountFormOnCard.setVisibility(View.VISIBLE);
+                    accountFormBinding.saveAccount.setVisibility(View.VISIBLE);
+                });
+
             }
         });
     }

@@ -1,16 +1,16 @@
 <resources>
-    <string name="app_name">Djiba Am !</string>
-    <string name="my_expenses">Mes Dépenses</string>
-    <string name="icon_expenses">icon expenses</string>
-    <string name="menu_for_expense_registering_or_periodic_expenses_consultation">Menu pour enregistrer une dépense ou consulter mes dépenses d\'une période.</string>
+    <string name="app_name" translatable="false">Djiba Am !</string>
+    <string name="icon_expenses" translatable="false">icon expenses</string>
+    <string name="menu_for_expense_registering_or_periodic_expenses_consultation">Menu pour enregistrer une dépense ou consulter les dépenses pour une période donnée.</string>
     <string name="my_budgets">Mes Budgets</string>
     <string name="my_debts">Mes dettes</string>
+    <string name="my_expenses">Mes Dépenses</string>
     <string name="my_income_or_earning">Mes entrées (Gains)</string>
     <string name="my_receivables">Mes créances</string>
     <string name="menu_for_adding_a_loan_that_i_gave_to_someone_or_consult_periodic_credits_statuses">Menu pour enregistrer un prêt que j\'ai accordé à un tiers, consulter les crédits que j\'ai accordé sur une période par rapport à leur statut (remboursé ou non)</string>
     <string name="my_account">Mon compte</string>
     <string name="about">Apropos</string>
-    <string name="not_yet_implemented">Not yet implemented... Coming soon</string>
+    <string name="not_yet_implemented" translatable="false">Not yet implemented... Coming soon</string>
     <string name="to_day">Aujourd\'hui</string>
     <string name="summary">Résumé</string>
     <string name="this_month">Ce mois</string>
@@ -27,24 +27,23 @@
     <string name="amount_must_be_a_number_and_is_mandatory">Le montant doit etre une suite de chiffre et est obligatoire</string>
     <string name="new_expense">Nouvelle Dépense</string>
     <string name="save_done">Sauvegarde effectué</string>
-    <string name="saving">Sauvegarde en cours...</string>
+    <string name="saving">Sauvegarde en cours…</string>
     <string name="an_error_occured">Une erreur s\'est produite</string>
     <string name="saved">Sauvegardée</string>
-    <string name="ok">OK</string>
+    <string name="ok" translatable="false">OK</string>
     <string name="expense_date">Date de la dépense :</string>
     <string name="expended_amount">Montant dépensé</string>
-    <string name="looking_up">Recherche...</string>
+    <string name="looking_up">Recherche…</string>
     <string name="view_more">Voir plus</string>
     <string name="today_expenses">Dépenses d\'aujourd\'hui</string>
     <string name="this_month_expense">Dépenses de ce mois</string>
     <string name="this_year_expenses">Dépenses de cette années</string>
     <string name="view_expenses_of_a_date">Voir les dépenses d\'une date</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="my_periodical_expenses">Mes dépenses périodique</string>
-    <string name="no_expense_registered">NO ELEMENT FOUND. NO EXPENSE HAVE BEEN REGISTERED. REGISTER YOUR EXPENSES TO VIEW VIEW IT HERE</string>
     <string name="fill_in_a_date_or_part_of_a_date">Entrer une date ou une partie d\'une date</string>
-    <string name="deleting">Suppression en cours...</string>
+    <string name="deleting">Suppression en cours…</string>
     <string name="back">Rentrer</string>
     <string name="summary_of_my_incomes">Résumé de mes gains</string>
     <string name="my_recent_incomes">Mes récents gains (entrées)</string>
@@ -64,7 +63,7 @@
     <string name="filtering_sticker">Étiquette de filtrage</string>
     <string name="filter_expenses_of_a_period_day_or_month_or_year">Filtrer les dépenses d\'une période</string>
     <string name="filter_by_sticker">Filter par étiquette de filtrage</string>
-    <string name="fill_in_a_sticker_for_filtering">Entrer une étiquette pour filt</string>
+    <string name="fill_in_a_sticker_for_filtering">Entrer une étiquette pour filtrer</string>
     <string name="total">Total</string>
     <string name="my_last_debts_contracted">Mes dernières dettes contractées</string>
     <string name="no_debt_found">Aucune dette trouvée.</string>
@@ -116,15 +115,21 @@
     <string name="end_date">Date de fin</string>
     <string name="new_budget">Nouveau Budget</string>
     <string name="in_bank">En banque</string>
-    <string name="budget_deleted_with_associated_expended_actualize_please">Budget Supprimée ainsi que toutes les dépenses associées... Bien vouloir actualiser</string>
-    <string name="do_you_really_want_to_delete_this_budget_it_ll_lead_to_delete_all_linked_expenses">Voulez-vous vraiment supprimer ce budget ? La suppression d\'un budget entrainera la suppression de toutes les dépenses associées...</string>
+    <string name="budget_deleted_with_associated_expended_actualize_please">Budget Supprimée ainsi que toutes les dépenses associées… Bien vouloir actualiser</string>
+    <string name="do_you_really_want_to_delete_this_budget_it_ll_lead_to_delete_all_linked_expenses">Voulez-vous vraiment supprimer ce budget ? La suppression d\'un budget entrainera la suppression de toutes les dépenses associées…</string>
     <string name="cancel">Annuler</string>
     <string name="go_on">Continuer</string>
     <string name="going_on_budget_total">Total budget en cours</string>
     <string name="account_name">Nom du compte</string>
     <string name="select_currency">Choisir le devise</string>
     <string name="page_not_initialized">Page Not Initialized</string>
-    <string name="insufficient_account_balance_to_create_this_budget">Le solde insuffisant du compte est insuffisant pour la création de ce budget</string>
+    <string name="insufficient_account_balance_to_create_this_budget">Le solde de votre compte est insuffisant pour la création de ce budget</string>
     <string name="summary_contracted_and_unpaid">Résumé (contracté et impayé)</string>
     <string name="welcome__">Bienvenu(e),</string>
+    <string name="no_expense_registered">AUCUN ELEMENT TROUVÉ… AUCUNE DEPENSE N\'A ÉTÉ ENREGISTRÉE. ENREGISTRER VOS DEPENSES POUR LES VOIR ICI</string>
+    <string name="insufficient_wallet">Solde insuffisant</string>
+    <string name="required_field">Renseigner ce champs SVP</string>
+    <string name="budget_description">Menu pour créer des budgets à base de votre argent disponible (dans votre compte, liquide ou wallet)</string>
+    <string name="revenus_description">Menu pour enregistrer les differents entrées d\'argent (Ce que vous avez à la banque, l\'argent liquide ou le mobile money)</string>
+    <string name="no_account_found">404 : Aucun compte trouvé</string>
 </resources>

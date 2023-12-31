@@ -1,15 +1,21 @@
 package cm.abimmobiledev.mybudgetizer.ui.budget;
 
+import static cm.abimmobiledev.mybudgetizer.ui.earning.EarningRegistrationActivity.getAccountTypes;
+
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -37,6 +43,9 @@ public class BudgetFormActivity extends AppCompatActivity {
     AlertDialog.Builder budgetRegDialog;
     ProgressDialog budgetRegProgress;
     ProgressDialog balanceGettingProgress;
+
+    ArrayAdapter<String> budgetTypeAdapter;
+    String selectedBudgetType = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +98,26 @@ public class BudgetFormActivity extends AppCompatActivity {
             //3. update balance
 
         });
+
+        budgetTypeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getBudgetTypes());
+        budgetTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // attaching data adapter to spinner
+        budgetFormBinding.spinnerBudgetType.setAdapter(budgetTypeAdapter);
+        budgetFormBinding.spinnerBudgetType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(TAG_B_FORM_REG, "onItemSelected: "+position);
+                selectedBudgetType = getBudget(position);
+                Log.d(TAG_B_FORM_REG, "onItemSelected: "+selectedBudgetType);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //nothing to do here
+            }
+        });
+
 
     }
 
@@ -173,25 +202,34 @@ public class BudgetFormActivity extends AppCompatActivity {
         budgetRegExecService.execute(() -> {
 
             try {
-                Budget budget = new Budget(budgetRegVM.getEntitle(), Double.parseDouble(budgetRegVM.getAmount()), budgetRegVM.getSticker(), budgetRegVM.getStartDate(), budgetRegVM.getEndDate());
+                Budget budget = new Budget(selectedBudgetType, budgetRegVM.getEntitle(), Double.parseDouble(budgetRegVM.getAmount()), budgetRegVM.getSticker(), budgetRegVM.getStartDate(), budgetRegVM.getEndDate());
                 budget.setDescription(budgetRegVM.getDescription());
 
                 BudgetizerAppDatabase appDatabaseBudgetReg = BudgetizerAppDatabase.getInstance(getApplicationContext());
 
                 List<Account> accounts = appDatabaseBudgetReg.accountDAO().getAccounts();
 
+                //we assume that there is always one and only one account
+
+                if (accounts==null || accounts.isEmpty()) {
+                    budgetRegDialog.setMessage(getString(R.string.no_account_found));
+                    return;
+                }
+
                 Account account = accounts.get(0);
 
-                if ((account.getAmount()-account.getBudgetizedBalance())>=budget.getAmount()) {
-                    appDatabaseBudgetReg.budgetDAO().insertAll(budget);
-
-                    account.setBudgetizedBalance(account.getBudgetizedBalance()+budget.getAmount());
-                    appDatabaseBudgetReg.accountDAO().update(account);
-                    budgetRegDialog.setMessage(getString(R.string.saved));
-
-                } else {
+                //when it is conso, you must consume what you have
+                if((account.getAmount()-account.getBudgetizedBalance()) < budget.getAmount() && budget.getBudgetType()!=null && budget.getBudgetType().equals(Budget.BUDGET_TYPE_POST)){
                     budgetRegDialog.setMessage(getString(R.string.insufficient_account_balance_to_create_this_budget));
+                    return;
                 }
+
+                appDatabaseBudgetReg.budgetDAO().insertAll(budget);
+
+                account.setBudgetizedBalance(account.getBudgetizedBalance()+budget.getAmount());
+                appDatabaseBudgetReg.accountDAO().update(account);
+                budgetRegDialog.setMessage(getString(R.string.saved));
+
 
             }
             catch (Exception exception) {
@@ -215,30 +253,45 @@ public class BudgetFormActivity extends AppCompatActivity {
     }
 
     /**
-     * <h1>Update accounts when expended</h1>
+     * <h1>Update accounts when expended (use this to subtract only)</h1>
+     * By priority : cash then mobile then bank
      * @param acc Account
      * @param amountExpended double amount expended
+     * @param budgetType String budget POST or PRE
      * @return Account updated
      * @throws BudgetizerGeneralException
      */
-    public static Account updateSubAccounts(Account acc, double amountExpended) throws BudgetizerGeneralException {
+    public static Account debitAccountUpdateSubAccounts(Account acc, double amountExpended, String budgetType) throws BudgetizerGeneralException {
 
-        if (acc.getCashBalance() - amountExpended >=0)
+        if (acc.getCashBalance() - amountExpended >=0) {
             acc.setCashBalance(acc.getCashBalance()-amountExpended);
+            acc.setBalance();
+        }
 
         else if ((acc.getCashBalance()+acc.getBankBalance())-amountExpended >=0){
             double remains = acc.getCashBalance() + acc.getMobileWalletBalance() - amountExpended;
             acc.setMobileWalletBalance(remains);
             acc.setCashBalance(0);
+            acc.setBalance();
+        }
 
-        }else if (acc.getCashBalance()+acc.getBankBalance()+acc.getMobileWalletBalance() - amountExpended >=0) {
+        else if (acc.getCashBalance()+acc.getBankBalance()+acc.getMobileWalletBalance() - amountExpended >=0) {
             double bRemains = acc.getCashBalance() + acc.getBankBalance() + acc.getMobileWalletBalance()- amountExpended;
             acc.setBankBalance(bRemains);
             acc.setCashBalance(0);
             acc.setMobileWalletBalance(0);
+            acc.setBalance();
+        }
 
-        }else
-            throw new BudgetizerGeneralException("Insufficient balance");
+        else if(budgetType!=null && budgetType.equals(Budget.BUDGET_TYPE_PRE)){
+            double bRemains = acc.getCashBalance() + acc.getBankBalance() + acc.getMobileWalletBalance()- amountExpended;
+            acc.setBankBalance(bRemains);
+            acc.setCashBalance(0);
+            acc.setMobileWalletBalance(0);
+            acc.setBalance();
+        }
+        else
+            throw new BudgetizerGeneralException("Insufficient wallet");
 
         return acc;
     }
@@ -249,5 +302,18 @@ public class BudgetFormActivity extends AppCompatActivity {
     }
 
 
+    public static List<String> getBudgetTypes(){
+        List<String> aT = new ArrayList<>();
+        aT.add(Budget.BUDGET_TYPE_PRE);
+        aT.add(Budget.BUDGET_TYPE_POST);
+        return aT;
+    }
+
+    public static String getBudget(int position)  {
+        if (position==0)
+            return Budget.BUDGET_TYPE_PRE;
+        else
+            return Budget.BUDGET_TYPE_POST;
+    }
 
 }

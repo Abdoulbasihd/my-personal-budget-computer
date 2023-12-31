@@ -3,6 +3,10 @@ package cm.abimmobiledev.mybudgetizer.viewmodel;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.text.NumberFormat;
+
 import cm.abimmobiledev.mybudgetizer.BR;
 import cm.abimmobiledev.mybudgetizer.database.entity.Receivable;
 
@@ -25,8 +29,14 @@ public class RecRegVM extends BaseObservable {
 
     @Bindable
     public String getAmount(){
+
+        if (receivable.getAmount()==0)
+            return "";
+
         try {
-            return String.valueOf(receivable.getAmount());
+            //return String.valueOf(receivable.getAmount());
+            BigDecimal bigRec = new BigDecimal(receivable.getAmount(),  MathContext.DECIMAL64);
+            return bigRec.toPlainString();
         }catch (NullPointerException exception){
             return "";
         }
