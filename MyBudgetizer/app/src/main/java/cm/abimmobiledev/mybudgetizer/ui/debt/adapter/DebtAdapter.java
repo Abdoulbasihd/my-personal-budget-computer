@@ -1,6 +1,5 @@
 package cm.abimmobiledev.mybudgetizer.ui.debt.adapter;
 
-import static cm.abimmobiledev.mybudgetizer.ui.earning.EarningRegistrationActivity.updateCorrectWallet;
 import static cm.abimmobiledev.mybudgetizer.ui.expense.ExpenseDashboardActivity.getCurrentDayFormatted;
 
 import android.app.ProgressDialog;
@@ -27,6 +26,7 @@ import java.util.concurrent.Executors;
 import cm.abimmobiledev.mybudgetizer.R;
 import cm.abimmobiledev.mybudgetizer.database.BudgetizerAppDatabase;
 import cm.abimmobiledev.mybudgetizer.database.entity.Account;
+import cm.abimmobiledev.mybudgetizer.database.entity.Budget;
 import cm.abimmobiledev.mybudgetizer.database.entity.Debt;
 import cm.abimmobiledev.mybudgetizer.exception.BudgetizerGeneralException;
 import cm.abimmobiledev.mybudgetizer.ui.budget.BudgetFormActivity;
@@ -105,7 +105,7 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtViewHolder
 
                     try {
                         //if sufficient cash wallet then update
-                        Account account = BudgetFormActivity.updateSubAccounts(myAcc, debt.getAmount());
+                        Account account = BudgetFormActivity.debitAccountUpdateSubAccounts(myAcc, debt.getAmount(), Budget.BUDGET_TYPE_POST);
                         appDatabaseDebtUpdate.debtDAO().update(debt);
                         appDatabaseDebtUpdate.accountDAO().update(account);
 

@@ -22,8 +22,10 @@ import java.util.concurrent.Executors;
 import cm.abimmobiledev.mybudgetizer.R;
 import cm.abimmobiledev.mybudgetizer.database.BudgetizerAppDatabase;
 import cm.abimmobiledev.mybudgetizer.database.entity.Account;
+import cm.abimmobiledev.mybudgetizer.database.entity.Budget;
 import cm.abimmobiledev.mybudgetizer.database.entity.Receivable;
 import cm.abimmobiledev.mybudgetizer.databinding.ActivityReceivableRegistrationBinding;
+import cm.abimmobiledev.mybudgetizer.exception.BudgetizerGeneralException;
 import cm.abimmobiledev.mybudgetizer.nav.ExNavigation;
 import cm.abimmobiledev.mybudgetizer.nav.ReceivNav;
 import cm.abimmobiledev.mybudgetizer.ui.budget.BudgetFormActivity;
@@ -304,7 +306,7 @@ public class ReceivableRegistrationActivity extends AppCompatActivity {
                 //if balanceUpdated is >= 0 then there is sufficient balance. else alert the user with error message 'insufficient wallet'
                 //update amount value  of the account (ze balance) by the subtraction of the receivable given ...
 
-                Account accountUpdated = BudgetFormActivity.updateSubAccounts(account, receivableNew.getAmount());
+                Account accountUpdated = creditAccountUpdateSubAccounts(account, receivableNew.getAmount());
 
                 appDatabase.receivableDAO().insertAll(receivableNew);
                 appDatabase.accountDAO().update(accountUpdated);
@@ -329,6 +331,14 @@ public class ReceivableRegistrationActivity extends AppCompatActivity {
         });
 
     }
+
+    public static Account creditAccountUpdateSubAccounts(Account acc, double amountCredited) {
+
+        acc.setCashBalance(acc.getCashBalance()+amountCredited);
+        acc.setBalance();
+        return acc;
+    }
+
 
     public void  recRecInitByIntent(Intent recRegIntent) {
         //   do throw new BudgetizerGeneralException(getString(R.string.page_not_initialized)) when param is null ?

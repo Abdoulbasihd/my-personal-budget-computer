@@ -257,10 +257,11 @@ public class BudgetFormActivity extends AppCompatActivity {
      * By priority : cash then mobile then bank
      * @param acc Account
      * @param amountExpended double amount expended
+     * @param budgetType String budget POST or PRE
      * @return Account updated
      * @throws BudgetizerGeneralException
      */
-    public static Account updateSubAccounts(Account acc, double amountExpended) throws BudgetizerGeneralException {
+    public static Account debitAccountUpdateSubAccounts(Account acc, double amountExpended, String budgetType) throws BudgetizerGeneralException {
 
         if (acc.getCashBalance() - amountExpended >=0) {
             acc.setCashBalance(acc.getCashBalance()-amountExpended);
@@ -282,6 +283,13 @@ public class BudgetFormActivity extends AppCompatActivity {
             acc.setBalance();
         }
 
+        else if(budgetType!=null && budgetType.equals(Budget.BUDGET_TYPE_PRE)){
+            double bRemains = acc.getCashBalance() + acc.getBankBalance() + acc.getMobileWalletBalance()- amountExpended;
+            acc.setBankBalance(bRemains);
+            acc.setCashBalance(0);
+            acc.setMobileWalletBalance(0);
+            acc.setBalance();
+        }
         else
             throw new BudgetizerGeneralException("Insufficient wallet");
 

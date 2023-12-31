@@ -3,7 +3,6 @@ package cm.abimmobiledev.mybudgetizer.ui.expense;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -238,7 +237,7 @@ public class ExpenseRegistrationActivity extends AppCompatActivity {
                 double newConsumption = selectedBudget.getConsumed()+expenseNew.getAmount();
                 if (newConsumption <=selectedBudget.getAmount()) {
                     //if insufficient balance, it'll be stopped here
-                    Account account = BudgetFormActivity.updateSubAccounts(accounts.get(0), expenseNew.getAmount());
+                    Account account = BudgetFormActivity.debitAccountUpdateSubAccounts(accounts.get(0), expenseNew.getAmount(), selectedBudget.getBudgetType());
 
                     appDatabase.expenseDAO().insertAll(expenseNew);
                     selectedBudget.setConsumed(newConsumption);
